@@ -2,10 +2,10 @@
 
 Additional validator implementations for javax.validation.
 
-## ISBNs
-
-The ISBN validator will treat null and blank input strings as valid. If you want to make sure ISBN fields are not null/blank
+Validators will treat null and blank input strings as valid. If you want to make sure fields are not null/blank
 you have to use `@NotNull` or `@NotBlank` in addition.
+
+## ISBNs
 
 ```java
    @ISBN
@@ -16,4 +16,11 @@ you have to use `@NotNull` or `@NotBlank` in addition.
 
    @ISBN(type = ISBNType.ISBN_13)
    private String isbn13;
+```
+
+## Numbers
+
+```java
+   @Numeric
+   private String numeric;
 ```
