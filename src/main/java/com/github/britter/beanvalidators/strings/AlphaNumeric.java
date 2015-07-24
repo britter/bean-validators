@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators;
+package com.github.britter.beanvalidators.strings;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
@@ -29,13 +29,13 @@ import java.lang.annotation.Target;
 
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = AlphabeticConstraintValidator.class)
+@Constraint(validatedBy = AlphaNumericConstraintValidator.class)
 @Documented
-public @interface Alphabetic {
+public @interface AlphaNumeric {
 
     boolean allowSpaces() default false;
 
-    String message() default "{com.github.britter.beanvalidators.Alphabetic.message}";
+    String message() default "{com.github.britter.beanvalidators.strings.AlphaNumeric.message}";
 
     Class<?>[] groups() default {};
 

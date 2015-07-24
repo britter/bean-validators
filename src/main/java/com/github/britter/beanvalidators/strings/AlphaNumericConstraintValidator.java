@@ -13,35 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators;
+package com.github.britter.beanvalidators.strings;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.validator.routines.ISBNValidator;
 
-public class ISBNConstraintValidator implements ConstraintValidator<ISBN, String> {
+public class AlphaNumericConstraintValidator implements ConstraintValidator<AlphaNumeric, String> {
 
-    private ISBNType type;
+    private boolean allowSpaces;
 
     @Override
-    public void initialize(ISBN constraintAnnotation) {
-        this.type = constraintAnnotation.type();
+    public void initialize(AlphaNumeric constraintAnnotation) {
+        this.allowSpaces = constraintAnnotation.allowSpaces();
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
-        if(StringUtils.isBlank(value)) {
-            return true;
-        }
-        
-        switch (type) {
-            case ISBN_10: return ISBNValidator.getInstance().isValidISBN10(value);
-            case ISBN_13: return ISBNValidator.getInstance().isValidISBN13(value);
-            default: return ISBNValidator.getInstance().isValid(value);
-        }
+        return StringUtils.isBlank(value) || allowSpaces ? StringUtils.isAlphanumericSpace(value) : StringUtils.isAlphanumeric(value);
     }
 
 }

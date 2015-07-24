@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators;
+package com.github.britter.beanvalidators.strings;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Numeric {
 
-    String message() default "{com.github.britter.beanvalidators.Numeric.message}";
+    String message() default "{com.github.britter.beanvalidators.strings.Numeric.message}";
 
     Class<?>[] groups() default {};
 

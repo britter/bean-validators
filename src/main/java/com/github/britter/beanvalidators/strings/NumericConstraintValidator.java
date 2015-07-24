@@ -13,26 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators;
+package com.github.britter.beanvalidators.strings;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class AlphaNumericConstraintValidator implements ConstraintValidator<AlphaNumeric, String> {
-
-    private boolean allowSpaces;
+public class NumericConstraintValidator implements ConstraintValidator<Numeric, String> {
 
     @Override
-    public void initialize(AlphaNumeric constraintAnnotation) {
-        this.allowSpaces = constraintAnnotation.allowSpaces();
+    public void initialize(Numeric constraintAnnotation) {
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
-        return StringUtils.isBlank(value) || allowSpaces ? StringUtils.isAlphanumericSpace(value) : StringUtils.isAlphanumeric(value);
+        return StringUtils.isBlank(value) || StringUtils.isNumeric(value);
     }
 
 }

@@ -13,23 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators;
+package com.github.britter.beanvalidators.strings;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.ISBNValidator;
 
-public class NumericConstraintValidator implements ConstraintValidator<Numeric, String> {
+public class ISBNConstraintValidator implements ConstraintValidator<ISBN, String> {
+
+    private ISBNType type;
 
     @Override
-    public void initialize(Numeric constraintAnnotation) {
+    public void initialize(ISBN constraintAnnotation) {
+        this.type = constraintAnnotation.type();
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
-        return StringUtils.isBlank(value) || StringUtils.isNumeric(value);
+        if(StringUtils.isBlank(value)) {
+            return true;
+        }
+        
+        switch (type) {
+            case ISBN_10: return ISBNValidator.getInstance().isValidISBN10(value);
+            case ISBN_13: return ISBNValidator.getInstance().isValidISBN13(value);
+            default: return ISBNValidator.getInstance().isValid(value);
+        }
     }
 
 }

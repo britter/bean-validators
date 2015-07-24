@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators;
+package com.github.britter.beanvalidators.strings;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
@@ -26,19 +26,17 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = AlphaNumericConstraintValidator.class)
+@Constraint(validatedBy = ISBNConstraintValidator.class)
 @Documented
-public @interface AlphaNumeric {
+public @interface ISBN {
 
-    boolean allowSpaces() default false;
+    ISBNType type() default ISBNType.BOTH;
 
-    String message() default "{com.github.britter.beanvalidators.AlphaNumeric.message}";
+    String message() default "{com.github.britter.beanvalidators.strings.ISBN.message}";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
 }
