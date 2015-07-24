@@ -98,3 +98,36 @@ you have to use `@NotNull` or `@NotBlank` in addition.
     @Alphabetic(allowSpaces = true)
     private String alphabetic;
 ```
+
+## AlphaNumeric
+
+```java
+    /**
+     * valid:
+     *      abcd
+     *      abcd1234
+     *      1234
+     *
+     * invalid:
+     *      abcd?
+     *      ab cd
+     *      ab cd 1234
+     *      ab cd 1234?
+     */
+    @AlphaNumeric
+    private String alphaNum;
+
+    /**
+     * valid:
+     *      abcd
+     *      abcd1234
+     *      ab cd
+     *      ab cd 1234
+     *
+     * invalid:
+     *      abcd?
+     *      ab cd 1234?
+     */
+    @AlphaNumeric(allowSpaces = true)
+    private String alphaNum;
+```
