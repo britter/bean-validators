@@ -16,26 +16,26 @@ you have to use `@NotNull` or `@NotBlank` in addition.
 ```java
     /**
      * valid:
-     *      abcd
+     *      "abcd"
      *
      * invalid:
-     *      1234
-     *      abcd1234
-     *      ab cd1234
-     *      ab cd
+     *      "1234"
+     *      "abcd1234"
+     *      "ab cd1234"
+     *      "ab cd"
      */
     @Alphabetic
     private String alphabetic;
 
     /**
      * valid:
-     *      abcd
-     *      ab cd
+     *      "abcd"
+     *      "ab cd"
      *
      * invalid:
-     *      1234
-     *      abcd1234
-     *      ab cd1234
+     *      "1234"
+     *      "abcd1234"
+     *      "ab cd1234"
      */
     @Alphabetic(allowSpaces = true)
     private String alphabetic;
@@ -46,29 +46,29 @@ you have to use `@NotNull` or `@NotBlank` in addition.
 ```java
     /**
      * valid:
-     *      abcd
-     *      abcd1234
-     *      1234
+     *      "abcd"
+     *      "abcd1234"
+     *      "1234"
      *
      * invalid:
-     *      abcd?
-     *      ab cd
-     *      ab cd 1234
-     *      ab cd 1234?
+     *      "abcd?"
+     *      "ab cd"
+     *      "ab cd 1234"
+     *      "ab cd 1234?"
      */
     @AlphaNumeric
     private String alphaNum;
 
     /**
      * valid:
-     *      abcd
-     *      abcd1234
-     *      ab cd
-     *      ab cd 1234
+     *      "abcd"
+     *      "abcd1234"
+     *      "ab cd"
+     *      "ab cd 1234"
      *
      * invalid:
-     *      abcd?
-     *      ab cd 1234?
+     *      "abcd?"
+     *      "ab cd 1234?"
      */
     @AlphaNumeric(allowSpaces = true)
     private String alphaNum;
@@ -86,7 +86,7 @@ The opposite of `org.hibernate.validator.constraints.NotBlank`.
      *      "  "
      *
      * invalid:
-     *      abcd
+     *      "abcd"
      */
     @Blank
     private String blank;
@@ -106,7 +106,7 @@ be thrown.
      *
      * invalid:
      *      "  "
-     *      abcd
+     *      "abcd"
      */
     @Empty
     private String empty;
@@ -150,39 +150,39 @@ be thrown.
 ```java
     /**
      * valid:
-     *      3551551677
-     *      978-3-55155-167-2
+     *      "3551551677"
+     *      "978-3-55155-167-2"
      *
      * invalid:
-     *      35515516770
-     *      978-3-551551672
-     *      abc
+     *      "35515516770"
+     *      "978-3-551551672"
+     *      "abc"
      */
     @ISBN
     private String isbn;
 
     /**
      * valid:
-     *      3551551677
+     *      "3551551677"
      *
      * invalid:
-     *      35515516770
-     *      978-3-55155-167-2
-     *      978-3-551551672
-     *      abc
+     *      "35515516770"
+     *      "978-3-55155-167-2"
+     *      "978-3-551551672"
+     *      "abc"
      */
     @ISBN(type = ISBNType.ISBN_10)
     private String isbn10;
 
     /**
      * valid:
-     *      978-3-55155-167-2
+     *      "978-3-55155-167-2"
      *
      * invalid:
-     *      3551551677
-     *      35515516770
-     *      978-3-551551672
-     *      abc
+     *      "3551551677"
+     *      "35515516770"
+     *      "978-3-551551672"
+     *      "abc"
      */
     @ISBN(type = ISBNType.ISBN_13)
     private String isbn13;
@@ -193,14 +193,14 @@ be thrown.
 ```java
     /**
      * valid:
-     *      1234
+     *      "1234"
      *
      * invalid:
-     *      abc
-     *      -1234
-     *      0.1234
-     *      0x1234
-     *      0e1234
+     *      "abc"
+     *      "-1234"
+     *      "0.1234"
+     *      "0x1234"
+     *      "0e1234"
      */
     @Numeric
     private String numeric;
