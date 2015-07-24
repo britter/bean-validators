@@ -29,6 +29,10 @@
   <description>Additional validator implementations for javax.validation.</description>
   <url>https://github.com/britter/bean-validators</url>
 
+  <properties>
+    <java.version>1.7</java.version>
+  </properties>
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -47,10 +51,6 @@
       <email>beneritter@gmail.com</email>
     </developer>
   </developers>
-
-  <properties>
-    <java.version>1.7</java.version>
-  </properties>
 
   <dependencies>
     <dependency>
