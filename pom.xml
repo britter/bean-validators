@@ -45,7 +45,7 @@
   <scm>
     <url>https://github.com/britter/bean-validators</url>
     <connection>scm:git:git://github.com/britter/bean-validators.git</connection>
-    <developerConnection>scm:git:git://github.com/britter/bean-validators.git</developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com/britter/bean-validators.git</developerConnection>
   </scm>
 
   <developers>
