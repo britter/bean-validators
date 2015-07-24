@@ -24,3 +24,13 @@ you have to use `@NotNull` or `@NotBlank` in addition.
    @Numeric
    private String numeric;
 ```
+
+## Alphabetic
+
+```java
+   @Alphabetic
+   private String alphabetic;
+
+   @Alphabetic(allowSpaces = true)
+   private String alphabetic;
+```
