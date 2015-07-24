@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
 public @interface ISBN {
 
     ISBNType type() default ISBNType.BOTH;
-    
+
     String message() default "{com.github.britter.beanvalidators.ISBN}";
 
     Class<?>[] groups() default {};
