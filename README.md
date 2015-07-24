@@ -4,6 +4,8 @@
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 Additional validator implementations for [javax.validation](http://beanvalidation.org/).
+Most validators use [Apache Commons Lang3](http://commons.apache.org/lang/) and 
+[Apache Commons Validator](http://commons.apache.org/validator/) functionality to implement various validation routines.
 
 Validators will treat null and blank input strings as valid. If you want to make sure fields are not null/blank
 you have to use `@NotNull` or `@NotBlank` in addition.
@@ -131,3 +133,21 @@ you have to use `@NotNull` or `@NotBlank` in addition.
     @AlphaNumeric(allowSpaces = true)
     private String alphaNum;
 ```
+
+## How to release
+
+`mvn -Prelease release:prepare -Darguments=-Dgpg.keyname=<key to use>`
+
+`mvn -Prelease release:perform -Darguments=-Dgpg.keyname=<key to use>`
+
+## License
+
+Code is under the [Apache Licence v2](https://www.apache.org/licenses/LICENSE-2.0.txt).
+
+## Additional Resources
+
++ [javax.validation documentation](http://beanvalidation.org/)
++ [javax.validation reference implementation](http://hibernate.org/validator/)
++ [Apache Commons Lang3](http://commons.apache.org/lang/)
++ [Apache Commons Validator](http://commons.apache.org/validator/)
+
