@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Numeric {
 
-    String message() default "{com.github.britter.beanvalidators.Numeric}";
+    String message() default "{com.github.britter.beanvalidators.Numeric.message}";
 
     Class<?>[] groups() default {};
 

@@ -34,7 +34,7 @@ public @interface ISBN {
 
     ISBNType type() default ISBNType.BOTH;
 
-    String message() default "{com.github.britter.beanvalidators.ISBN}";
+    String message() default "{com.github.britter.beanvalidators.ISBN.message}";
 
     Class<?>[] groups() default {};
 

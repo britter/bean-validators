@@ -44,7 +44,7 @@ public class AlphabeticTest {
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<AlphabeticBean> violation = getFirst(violations);
-        assertThat(violation.getMessage(), is(equalTo("Alphabetic field is not valid")));
+        assertThat(violation.getMessage(), is(equalTo("must be alphabetic")));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AlphabeticTest {
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<AlphabeticBean> violation = getFirst(violations);
-        assertThat(violation.getMessage(), is(equalTo("Alphabetic field is not valid")));
+        assertThat(violation.getMessage(), is(equalTo("must be alphabetic")));
     }
 
     @Test

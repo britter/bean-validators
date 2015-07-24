@@ -68,7 +68,7 @@ public class ISBNTest {
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<ISBNBean> violation = getFirst(violations);
-        assertThat(violation.getMessage(), is(equalTo("ISBN is not valid")));
+        assertThat(violation.getMessage(), is(equalTo("must be an ISBN")));
     }
 
     @Test

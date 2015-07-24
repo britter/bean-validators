@@ -36,7 +36,7 @@ public @interface Alphabetic {
 
     boolean allowSpaces() default false;
 
-    String message() default "{com.github.britter.beanvalidators.Alphabetic}";
+    String message() default "{com.github.britter.beanvalidators.Alphabetic.message}";
 
     Class<?>[] groups() default {};
 

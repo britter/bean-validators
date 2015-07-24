@@ -76,7 +76,7 @@ public class NumericTest {
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<NumericBean> violation = getFirst(violations);
-        assertThat(violation.getMessage(), is("Numeric field is not valid"));
+        assertThat(violation.getMessage(), is("must be numeric"));
     }
 
     private Set<ConstraintViolation<NumericBean>> validate(String property) {
