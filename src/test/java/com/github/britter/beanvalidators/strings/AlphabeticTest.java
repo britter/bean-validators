@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.strings;
 
+import static com.google.common.collect.Iterables.getLast;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -58,7 +59,7 @@ public class AlphabeticTest {
         Set<ConstraintViolation<AlphabeticBean>> violations = validate("alphabetic");
 
         assertThat(violations, hasSize(1));
-        ConstraintViolation<AlphabeticBean> violation = getFirst(violations);
+        ConstraintViolation<AlphabeticBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is(equalTo("must be alphabetic")));
     }
 
@@ -87,7 +88,7 @@ public class AlphabeticTest {
         Set<ConstraintViolation<AlphabeticBean>> violations = validate("alphabeticSpace");
 
         assertThat(violations, hasSize(1));
-        ConstraintViolation<AlphabeticBean> violation = getFirst(violations);
+        ConstraintViolation<AlphabeticBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is(equalTo("must be alphabetic")));
     }
 
@@ -102,10 +103,6 @@ public class AlphabeticTest {
 
     private Set<ConstraintViolation<AlphabeticBean>> validate(String property) {
         return validator.validateProperty(alphabeticBean, property);
-    }
-
-    private static <T> T getFirst(Set<T> set) {
-        return set.iterator().next();
     }
 
     private static class AlphabeticBean {

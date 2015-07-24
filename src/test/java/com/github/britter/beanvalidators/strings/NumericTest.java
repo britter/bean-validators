@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.strings;
 
+import static com.google.common.collect.Iterables.getLast;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -75,16 +76,12 @@ public class NumericTest {
         Set<ConstraintViolation<NumericBean>> violations = validate("numeric");
 
         assertThat(violations, hasSize(1));
-        ConstraintViolation<NumericBean> violation = getFirst(violations);
+        ConstraintViolation<NumericBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is("must be numeric"));
     }
 
     private Set<ConstraintViolation<NumericBean>> validate(String property) {
         return validator.validateProperty(numericBean, property);
-    }
-
-    private static <T> T getFirst(Set<T> set) {
-        return set.iterator().next();
     }
 
     private static final class NumericBean {

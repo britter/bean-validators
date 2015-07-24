@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.strings;
 
+import static com.google.common.collect.Iterables.getLast;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -67,7 +68,7 @@ public class ISBNTest {
         Set<ConstraintViolation<ISBNBean>> violations = validate("isbn");
 
         assertThat(violations, hasSize(1));
-        ConstraintViolation<ISBNBean> violation = getFirst(violations);
+        ConstraintViolation<ISBNBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is(equalTo("must be an ISBN")));
     }
 
@@ -180,10 +181,6 @@ public class ISBNTest {
 
     private Set<ConstraintViolation<ISBNBean>> validate(String property) {
         return validator.validateProperty(isbnBean, property);
-    }
-
-    private static <T> T getFirst(Set<T> set) {
-        return set.iterator().next();
     }
 
     private static final class ISBNBean {
