@@ -20,7 +20,7 @@
   <groupId>com.github.britter</groupId>
   <artifactId>bean-validators</artifactId>
   <packaging>jar</packaging>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2</version>
 
   <name>bean-validators</name>
   <description>Additional validator implementations for javax.validation.</description>
@@ -43,7 +43,7 @@
     <url>https://github.com/britter/bean-validators</url>
     <connection>scm:git:git://github.com/britter/bean-validators.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/britter/bean-validators.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>bean-validators-0.2</tag>
   </scm>
 
   <distributionManagement>
