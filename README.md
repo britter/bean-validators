@@ -1,5 +1,8 @@
 # bean-validators
 
+[![Build Status](https://travis-ci.org/britter/bean-validators.svg?branch=master)](https://travis-ci.org/britter/bean-validators)
+[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+
 Additional validator implementations for [javax.validation](http://beanvalidation.org/).
 
 Validators will treat null and blank input strings as valid. If you want to make sure fields are not null/blank
