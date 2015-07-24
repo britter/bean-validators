@@ -41,6 +41,13 @@
     <url>git:github.com/britter/bean-validators</url>
   </scm>
 
+  <developers>
+    <developer>
+      <name>Benedikt Ritter</name>
+      <email>beneritter@gmail.com</email>
+    </developer>
+  </developers>
+
   <properties>
     <java.version>1.7</java.version>
   </properties>
