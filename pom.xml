@@ -29,6 +29,11 @@
   <description>Additional validator implementations for javax.validation.</description>
   <url>https://github.com/britter/bean-validators</url>
 
+  <properties>
+    <java.version>1.7</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -38,12 +43,17 @@
   </licenses>
 
   <scm>
-    <url>git:github.com/britter/bean-validators</url>
+    <url>https://github.com/britter/bean-validators</url>
+    <connection>scm:git:git://github.com/britter/bean-validators.git</connection>
+    <developerConnection>scm:git:git://github.com/britter/bean-validators.git</developerConnection>
   </scm>
 
-  <properties>
-    <java.version>1.7</java.version>
-  </properties>
+  <developers>
+    <developer>
+      <name>Benedikt Ritter</name>
+      <email>beneritter@gmail.com</email>
+    </developer>
+  </developers>
 
   <dependencies>
     <dependency>
