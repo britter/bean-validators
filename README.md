@@ -135,6 +135,22 @@ you have to use `@NotNull` or `@NotBlank` in addition.
     private String alphaNum;
 ```
 
+## Blank
+
+```java
+    /**
+     * valid:
+     *      null
+     *      ""
+     *      "  "
+     *
+     * invalid:
+     *      abcd
+     */
+    @Blank
+    private String blank;
+```
+
 ## How to release
 
 `mvn -Prelease release:prepare -Darguments=-Dgpg.keyname=<key to use>`
