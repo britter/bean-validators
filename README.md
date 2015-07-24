@@ -135,6 +135,77 @@ you have to use `@NotNull` or `@NotBlank` in addition.
     private String alphaNum;
 ```
 
+## Blank
+
+The opposite of `org.hibernate.validator.constraints.NotBlank`.
+
+```java
+    /**
+     * valid:
+     *      null
+     *      ""
+     *      "  "
+     *
+     * invalid:
+     *      abcd
+     */
+    @Blank
+    private String blank;
+```
+
+## Empty
+
+The `@Empty` annotation is the opposite of `org.hibernate.validator.constraints.NotEmpty` and works on String, 
+Collections, Maps and arrays. If any other type is annotated with `@Empty` a `javax.validation.ValidationException` will
+be thrown. 
+
+```java
+    /**
+     * valid:
+     *      null
+     *      ""
+     *
+     * invalid:
+     *      "  "
+     *      abcd
+     */
+    @Empty
+    private String empty;
+
+    /**
+     * valid:
+     *      null
+     *      empty.isEmpty() == true
+     *
+     * invalid:
+     *      empty.isEmpty() == false
+     */
+    @Empty
+    private Collection<T> empty;
+
+    /**
+     * valid:
+     *      null
+     *      empty.isEmpty() == true
+     *
+     * invalid:
+     *      empty.isEmpty() == false
+     */
+    @Empty
+    private Map<K, V> empty;
+
+    /**
+     * valid:
+     *      null
+     *      empty.length == 0
+     *
+     * invalid:
+     *      empty.length != 0
+     */
+    @Empty
+    private T[] empty;
+```
+
 ## How to release
 
 `mvn -Prelease release:prepare -Darguments=-Dgpg.keyname=<key to use>`
