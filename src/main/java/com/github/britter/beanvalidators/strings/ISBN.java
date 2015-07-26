@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface ISBN {
 
-    ISBNType type() default ISBNType.BOTH;
+    ISBNType type() default ISBNType.ALL;
 
     String message() default "{com.github.britter.beanvalidators.strings.ISBN.message}";
 

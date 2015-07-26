@@ -19,6 +19,6 @@ public enum ISBNType {
 
     ISBN_10,
     ISBN_13,
-    BOTH
+    ALL
 
 }
