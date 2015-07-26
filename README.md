@@ -212,6 +212,21 @@ The opposite of `org.hibernate.validator.constraints.NotBlank`.
 
 ## Net
 
+### Domain
+
+```java
+    /**
+     * valid:
+     *      "www.example.com"
+     *
+     * invalid:
+     *      "http://www.example.com"
+     *      "abcd"
+     */
+    @Domain
+    private String domain;
+```
+
 ### IP
 
 ```java
