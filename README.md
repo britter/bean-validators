@@ -270,6 +270,47 @@ The opposite of `org.hibernate.validator.constraints.NotBlank`.
     private String ipv6;
 ```
 
+### Port
+
+`@Port` can be applied to String, ints and Integers. If `@Port` is applied to any other type, a ValidationException will
+be thrown.
+
+```java
+    /**
+     * valid:
+     *      "8080"
+     *
+     * invalid:
+     *      "-8080"
+     *      "65537"
+     *      "abcd"
+     */
+    @Port
+    private String portString;
+
+    /**
+     * valid:
+     *      8080
+     *
+     * invalid:
+     *      -8080
+     *      65537
+     */
+    @Port
+    private int portInt;
+
+    /**
+     * valid:
+     *      Integer.valueOf(8080)
+     *
+     * invalid:
+     *      Integer.valueOf(-8080)
+     *      Integer.valueOf(65537)
+     */
+    @Port
+    private Integer portInteger;
+```
+
 ## How to release
 
 `mvn -Prelease release:prepare -Darguments=-Dgpg.keyname=<key to use>`
