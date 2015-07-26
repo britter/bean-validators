@@ -11,88 +11,9 @@ Most validators use [Apache Commons Lang3](http://commons.apache.org/lang/) and
 Validators will treat null and blank input strings as valid. If you want to make sure fields are not null/blank
 you have to use `@NotNull` or `@NotBlank` in addition.
 
-## Alphabetic
+## General
 
-```java
-    /**
-     * valid:
-     *      "abcd"
-     *
-     * invalid:
-     *      "1234"
-     *      "abcd1234"
-     *      "ab cd1234"
-     *      "ab cd"
-     */
-    @Alphabetic
-    private String alphabetic;
-
-    /**
-     * valid:
-     *      "abcd"
-     *      "ab cd"
-     *
-     * invalid:
-     *      "1234"
-     *      "abcd1234"
-     *      "ab cd1234"
-     */
-    @Alphabetic(allowSpaces = true)
-    private String alphabetic;
-```
-
-## AlphaNumeric
-
-```java
-    /**
-     * valid:
-     *      "abcd"
-     *      "abcd1234"
-     *      "1234"
-     *
-     * invalid:
-     *      "abcd?"
-     *      "ab cd"
-     *      "ab cd 1234"
-     *      "ab cd 1234?"
-     */
-    @AlphaNumeric
-    private String alphaNum;
-
-    /**
-     * valid:
-     *      "abcd"
-     *      "abcd1234"
-     *      "ab cd"
-     *      "ab cd 1234"
-     *
-     * invalid:
-     *      "abcd?"
-     *      "ab cd 1234?"
-     */
-    @AlphaNumeric(allowSpaces = true)
-    private String alphaNum;
-```
-
-## Blank
-
-The opposite of `org.hibernate.validator.constraints.NotBlank`.
-
-```java
-    /**
-     * valid:
-     *      null
-     *      ""
-     *      "  "
-     *
-     * invalid:
-     *      "abcd"
-     */
-    @Blank
-    private String blank;
-```
-
-## Empty
+### Empty
 
 The `@Empty` annotation is the opposite of `org.hibernate.validator.constraints.NotEmpty` and works on String, 
 Collections, Maps and arrays. If any other type is annotated with `@Empty` a `javax.validation.ValidationException` will
@@ -145,7 +66,90 @@ be thrown.
     private T[] empty;
 ```
 
-## ISBNs
+## Strings
+
+### Alphabetic
+
+```java
+    /**
+     * valid:
+     *      "abcd"
+     *
+     * invalid:
+     *      "1234"
+     *      "abcd1234"
+     *      "ab cd1234"
+     *      "ab cd"
+     */
+    @Alphabetic
+    private String alphabetic;
+
+    /**
+     * valid:
+     *      "abcd"
+     *      "ab cd"
+     *
+     * invalid:
+     *      "1234"
+     *      "abcd1234"
+     *      "ab cd1234"
+     */
+    @Alphabetic(allowSpaces = true)
+    private String alphabetic;
+```
+
+### AlphaNumeric
+
+```java
+    /**
+     * valid:
+     *      "abcd"
+     *      "abcd1234"
+     *      "1234"
+     *
+     * invalid:
+     *      "abcd?"
+     *      "ab cd"
+     *      "ab cd 1234"
+     *      "ab cd 1234?"
+     */
+    @AlphaNumeric
+    private String alphaNum;
+
+    /**
+     * valid:
+     *      "abcd"
+     *      "abcd1234"
+     *      "ab cd"
+     *      "ab cd 1234"
+     *
+     * invalid:
+     *      "abcd?"
+     *      "ab cd 1234?"
+     */
+    @AlphaNumeric(allowSpaces = true)
+    private String alphaNum;
+```
+
+### Blank
+
+The opposite of `org.hibernate.validator.constraints.NotBlank`.
+
+```java
+    /**
+     * valid:
+     *      null
+     *      ""
+     *      "  "
+     *
+     * invalid:
+     *      "abcd"
+     */
+    @Blank
+    private String blank;
+```
+
+### ISBNs
 
 ```java
     /**
@@ -188,7 +192,7 @@ be thrown.
     private String isbn13;
 ```
 
-## Numbers
+### Numbers
 
 ```java
     /**
@@ -204,6 +208,107 @@ be thrown.
      */
     @Numeric
     private String numeric;
+```
+
+## Net
+
+### Domain
+
+```java
+    /**
+     * valid:
+     *      "www.example.com"
+     *
+     * invalid:
+     *      "http://www.example.com"
+     *      "abcd"
+     */
+    @Domain
+    private String domain;
+```
+
+### IP
+
+```java
+    /**
+     * valid:
+     *      "192.168.0.1"
+     *      "fe80::8a1f:a1ff:fe11:9326"
+     *
+     * invalid:
+     *      "abcd"
+     *      "999.168.0.1"
+     *      "ge80::8a1f:a1ff:fe11:9326"
+     */
+    @IP
+    private String ip;
+
+    /**
+     * valid:
+     *      "192.168.0.1"
+     *
+     * invalid:
+     *      "abcd"
+     *      "fe80::8a1f:a1ff:fe11:9326"
+     *      "999.168.0.1"
+     *      "ge80::8a1f:a1ff:fe11:9326"
+     */
+    @IP(type = IPType.IP_V4)
+    private String ipv4;
+
+    /**
+     * valid:
+     *      "fe80::8a1f:a1ff:fe11:9326"
+     *
+     * invalid:
+     *      "abcd"
+     *      "192.168.0.1"
+     *      "999.168.0.1"
+     *      "ge80::8a1f:a1ff:fe11:9326"
+     */
+    @IP(type = IPType.IP_V6)
+    private String ipv6;
+```
+
+### Port
+
+`@Port` can be applied to String, ints and Integers. If `@Port` is applied to any other type, a ValidationException will
+be thrown.
+
+```java
+    /**
+     * valid:
+     *      "8080"
+     *
+     * invalid:
+     *      "-8080"
+     *      "65537"
+     *      "abcd"
+     */
+    @Port
+    private String portString;
+
+    /**
+     * valid:
+     *      8080
+     *
+     * invalid:
+     *      -8080
+     *      65537
+     */
+    @Port
+    private int portInt;
+
+    /**
+     * valid:
+     *      Integer.valueOf(8080)
+     *
+     * invalid:
+     *      Integer.valueOf(-8080)
+     *      Integer.valueOf(65537)
+     */
+    @Port
+    private Integer portInteger;
 ```
 
 ## How to release
