@@ -23,31 +23,28 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
 public class DomainTest {
 
-    private Validator validator;
+    private ValidationWrapper<DomainBean> validator;
     private DomainBean domainBean;
 
     @Before
     public void setUp() throws Exception {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         domainBean = new DomainBean();
+        validator = new ValidationWrapper<>(domainBean);
     }
 
     @Test
     public void shouldValidateNullString() throws Exception {
         domainBean.domain = null;
 
-        Set<ConstraintViolation<DomainBean>> violations = validate("domain");
+        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
 
         assertThat(violations, is(empty()));
     }
@@ -56,7 +53,7 @@ public class DomainTest {
     public void shouldValidateBlankString() throws Exception {
         domainBean.domain = " ";
 
-        Set<ConstraintViolation<DomainBean>> violations = validate("domain");
+        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
 
         assertThat(violations, is(empty()));
     }
@@ -65,7 +62,7 @@ public class DomainTest {
     public void shouldValidateDomain() throws Exception {
         domainBean.domain = "www.example.com";
 
-        Set<ConstraintViolation<DomainBean>> violations = validate("domain");
+        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
 
         assertThat(violations, is(empty()));
     }
@@ -74,15 +71,11 @@ public class DomainTest {
     public void shouldNotValidateRandomString() throws Exception {
         domainBean.domain = "abcd";
 
-        Set<ConstraintViolation<DomainBean>> violations = validate("domain");
+        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<DomainBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is(equalTo("must be a domain")));
-    }
-
-    private Set<ConstraintViolation<DomainBean>> validate(String property) {
-        return validator.validateProperty(domainBean, property);
     }
 
     private static final class DomainBean {
