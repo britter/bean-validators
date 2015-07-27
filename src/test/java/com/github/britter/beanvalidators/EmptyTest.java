@@ -23,10 +23,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.ValidationException;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -38,13 +35,12 @@ import org.junit.Test;
 public class EmptyTest {
 
     private EmptyBean emptyBean;
-    private Validator validator;
+    private ValidationWrapper<EmptyBean> validator;
 
     @Before
     public void setUp() throws Exception {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         emptyBean = new EmptyBean();
+        validator = new ValidationWrapper<>(emptyBean);
     }
 
     // Strings
@@ -53,7 +49,7 @@ public class EmptyTest {
     public void shouldValidateEmptyString() throws Exception {
         emptyBean.string = "";
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("string");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
 
         assertThat(violations, is(empty()));
     }
@@ -62,7 +58,7 @@ public class EmptyTest {
     public void shouldValidateNullString() throws Exception {
         emptyBean.string = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("string");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
 
         assertThat(violations, is(empty()));
     }
@@ -71,7 +67,7 @@ public class EmptyTest {
     public void shouldNotValidateBlankString() throws Exception {
         emptyBean.string = "  ";
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("string");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<EmptyBean> violation = getLast(violations);
@@ -82,7 +78,7 @@ public class EmptyTest {
     public void shouldNotValidateString() throws Exception {
         emptyBean.string = "abcd";
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("string");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<EmptyBean> violation = getLast(violations);
@@ -95,7 +91,7 @@ public class EmptyTest {
     public void shouldValidateNullCollection() throws Exception {
         emptyBean.col = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("col");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("col");
 
         assertThat(violations, is(empty()));
     }
@@ -104,7 +100,7 @@ public class EmptyTest {
     public void shouldValidateEmptyCollection() throws Exception {
         emptyBean.col = Collections.emptyList();
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("col");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("col");
 
         assertThat(violations, is(empty()));
     }
@@ -113,7 +109,7 @@ public class EmptyTest {
     public void shouldNotValidateFilledCollection() throws Exception {
         emptyBean.col = Collections.singleton("abcd");
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("col");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("col");
 
         assertThat(violations, hasSize(1));
     }
@@ -124,7 +120,7 @@ public class EmptyTest {
     public void shouldValidateNullMap() throws Exception {
         emptyBean.map = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("map");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("map");
 
         assertThat(violations, is(empty()));
     }
@@ -133,7 +129,7 @@ public class EmptyTest {
     public void shouldValidateEmptyMap() throws Exception {
         emptyBean.map = Collections.emptyMap();
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("map");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("map");
 
         assertThat(violations, is(empty()));
     }
@@ -142,7 +138,7 @@ public class EmptyTest {
     public void shouldNotValidateFilledMap() throws Exception {
         emptyBean.map = Collections.singletonMap("key", "value");
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("map");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("map");
 
         assertThat(violations, hasSize(1));
     }
@@ -153,7 +149,7 @@ public class EmptyTest {
     public void shouldValidateNullArray() throws Exception {
         emptyBean.array = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("array");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("array");
 
         assertThat(violations, is(empty()));
     }
@@ -162,7 +158,7 @@ public class EmptyTest {
     public void shouldValidateEmptyArray() throws Exception {
         emptyBean.array = new String[0];
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("array");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("array");
 
         assertThat(violations, is(empty()));
     }
@@ -171,7 +167,7 @@ public class EmptyTest {
     public void shouldNotValidateNonEmptyArray() throws Exception {
         emptyBean.array = new String[1];
 
-        Set<ConstraintViolation<EmptyBean>> violations = validate("array");
+        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("array");
 
         assertThat(violations, hasSize(1));
     }
@@ -181,11 +177,7 @@ public class EmptyTest {
     public void shouldName() throws Exception {
         emptyBean.integer = 1;
 
-        validate("integer");
-    }
-
-    private Set<ConstraintViolation<EmptyBean>> validate(String property) {
-        return validator.validateProperty(emptyBean, property);
+        validator.validate("integer");
     }
 
     private static final class EmptyBean {
