@@ -209,6 +209,31 @@ The opposite of `org.hibernate.validator.constraints.NotBlank`.
     private String isbn13;
 ```
 
+### Java number
+
+Makes sure a string contains a valid Java number.
+
+```java
+    /**
+     * valid:
+     *      "1234"
+     *      "-1234"
+     *      "1234L"
+     *      "0x1A"
+     *      "0X1A"
+     *      "017"
+     *      "0.17"
+     *
+     * invalid:
+     *      "abcd"
+     *      "0x1G"
+     *      "018"
+     *      "0,17"
+     */
+    @JavaNumber
+    private String javaNum;
+```
+
 ### Numbers
 
 ```java
