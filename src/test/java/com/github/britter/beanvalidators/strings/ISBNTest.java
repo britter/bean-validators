@@ -23,31 +23,28 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ISBNTest {
 
-    private Validator validator;
+    private ValidationWrapper<ISBNBean> validator;
     private ISBNBean isbnBean;
 
     @Before
     public void setUp() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         isbnBean = new ISBNBean();
+        validator = new ValidationWrapper<>(isbnBean);
     }
 
     @Test
     public void defaultSettingsShouldValidateISBN10() {
         isbnBean.isbn = "3551551677";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn");
 
         assertThat(violations, is(empty()));
     }
@@ -56,7 +53,7 @@ public class ISBNTest {
     public void defaultSettingsShouldValidateISBN13() {
         isbnBean.isbn = "978-3-55155-167-2";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn");
 
         assertThat(violations, is(empty()));
     }
@@ -65,7 +62,7 @@ public class ISBNTest {
     public void defaultSettingShouldNotValidateInvalidISBN() throws Exception {
         isbnBean.isbn = "abc";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<ISBNBean> violation = getLast(violations);
@@ -76,7 +73,7 @@ public class ISBNTest {
     public void defaultSettingShouldValidateNullValue() throws Exception {
         isbnBean.isbn = null;
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn");
 
         assertThat(violations, is(empty()));
     }
@@ -85,7 +82,7 @@ public class ISBNTest {
     public void defaultSettingShouldValidateBlankValue() throws Exception {
         isbnBean.isbn = " ";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn");
 
         assertThat(violations, is(empty()));
     }
@@ -94,7 +91,7 @@ public class ISBNTest {
     public void isbn10SettingShouldValidateISBN10() throws Exception {
         isbnBean.isbn10 = "3551551677";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn10");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn10");
 
         assertThat(violations, is(empty()));
     }
@@ -103,7 +100,7 @@ public class ISBNTest {
     public void isbn10SettingShouldNotValidateISBN13() throws Exception {
         isbnBean.isbn10 = "978-3-55155-167-2";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn10");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn10");
 
         assertThat(violations, hasSize(1));
     }
@@ -112,7 +109,7 @@ public class ISBNTest {
     public void isbn10SettingShouldNotValidateInvalidISBN() throws Exception {
         isbnBean.isbn10 = "abc";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn10");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn10");
 
         assertThat(violations, hasSize(1));
     }
@@ -121,7 +118,7 @@ public class ISBNTest {
     public void isbn10SettingShouldValidateNullValue() throws Exception {
         isbnBean.isbn10 = null;
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn10");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn10");
 
         assertThat(violations, is(empty()));
     }
@@ -130,7 +127,7 @@ public class ISBNTest {
     public void isbn10SettingShouldValidateBlankValue() throws Exception {
         isbnBean.isbn10 = " ";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn10");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn10");
 
         assertThat(violations, is(empty()));
     }
@@ -139,7 +136,7 @@ public class ISBNTest {
     public void isbn13SettingShouldNotValidateISBN10() throws Exception {
         isbnBean.isbn13 = "3551551677";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn13");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn13");
 
         assertThat(violations, hasSize(1));
     }
@@ -148,7 +145,7 @@ public class ISBNTest {
     public void isbn13SettingShouldValidateISBN13() throws Exception {
         isbnBean.isbn10 = "978-3-55155-167-2";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn13");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn13");
 
         assertThat(violations, is(empty()));
     }
@@ -157,7 +154,7 @@ public class ISBNTest {
     public void isbn13SettingShouldNotValidateInvalidISBN() throws Exception {
         isbnBean.isbn13 = "abc";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn13");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn13");
 
         assertThat(violations, hasSize(1));
     }
@@ -166,7 +163,7 @@ public class ISBNTest {
     public void isbn13SettingShouldValidateNullValue() throws Exception {
         isbnBean.isbn13 = null;
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn13");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn13");
 
         assertThat(violations, is(empty()));
     }
@@ -174,13 +171,9 @@ public class ISBNTest {
     public void isbn13SettingShouldValidateBlankValue() throws Exception {
         isbnBean.isbn13 = " ";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validate("isbn13");
+        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn13");
 
         assertThat(violations, is(empty()));
-    }
-
-    private Set<ConstraintViolation<ISBNBean>> validate(String property) {
-        return validator.validateProperty(isbnBean, property);
     }
 
     private static final class ISBNBean {

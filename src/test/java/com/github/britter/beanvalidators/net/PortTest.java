@@ -23,25 +23,22 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.ValidationException;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
 public class PortTest {
 
-    private Validator validator;
+    private ValidationWrapper<PortBean> validator;
     private PortBean portBean;
 
     @Before
     public void setUp() throws Exception {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         portBean = new PortBean();
+        validator = new ValidationWrapper<>(portBean);
     }
 
     // String
@@ -50,7 +47,7 @@ public class PortTest {
     public void shouldValidateNullString() throws Exception {
         portBean.portString = null;
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portString");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
 
         assertThat(violations, is(empty()));
     }
@@ -59,7 +56,7 @@ public class PortTest {
     public void shouldValidateBlankString() throws Exception {
         portBean.portString = " ";
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portString");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
 
         assertThat(violations, is(empty()));
     }
@@ -68,7 +65,7 @@ public class PortTest {
     public void shouldNotValidateRandomString() throws Exception {
         portBean.portString = "abcd";
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portString");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<PortBean> violation = getLast(violations);
@@ -79,7 +76,7 @@ public class PortTest {
     public void shouldValidateValidPortString() throws Exception {
         portBean.portString = "8080";
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portString");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
 
         assertThat(violations, is(empty()));
     }
@@ -88,7 +85,7 @@ public class PortTest {
     public void shouldNotValidateNegativePortString() throws Exception {
         portBean.portString = "-8080";
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portString");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
 
         assertThat(violations, hasSize(1));
     }
@@ -97,7 +94,7 @@ public class PortTest {
     public void shouldNotValidateInvalidPortString() throws Exception {
         portBean.portString = "65537";
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portString");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
 
         assertThat(violations, hasSize(1));
     }
@@ -108,7 +105,7 @@ public class PortTest {
     public void shouldValidateValidPortInt() throws Exception {
         portBean.portInt = 8080;
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portInt");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInt");
 
         assertThat(violations, is(empty()));
     }
@@ -117,7 +114,7 @@ public class PortTest {
     public void shouldNotValidateNegativePortInt() throws Exception {
         portBean.portInt = -8080;
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portInt");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInt");
 
         assertThat(violations, hasSize(1));
     }
@@ -126,7 +123,7 @@ public class PortTest {
     public void shouldNotValidateInvalidPortInt() throws Exception {
         portBean.portInt = 65537;
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portInt");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInt");
 
         assertThat(violations, hasSize(1));
     }
@@ -136,7 +133,7 @@ public class PortTest {
     public void shouldValidateNullPortInteger() throws Exception {
         portBean.portInteger = null;
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portInteger");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInteger");
 
         assertThat(violations, is(empty()));
     }
@@ -145,7 +142,7 @@ public class PortTest {
     public void shouldNotValidateNegativePortInteger() throws Exception {
         portBean.portInteger = -8080;
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portInteger");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInteger");
 
         assertThat(violations, hasSize(1));
     }
@@ -154,7 +151,7 @@ public class PortTest {
     public void shouldNotValidateInvalidPortInteger() throws Exception {
         portBean.portInteger = 65537;
 
-        Set<ConstraintViolation<PortBean>> violations = validate("portInteger");
+        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInteger");
 
         assertThat(violations, hasSize(1));
     }
@@ -165,11 +162,7 @@ public class PortTest {
     public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
         portBean.portObject = new Object();
 
-        validate("portObject");
-    }
-
-    private Set<ConstraintViolation<PortBean>> validate(String property) {
-        return validator.validateProperty(portBean, property);
+        validator.validate("portObject");
     }
 
     private static final class PortBean {

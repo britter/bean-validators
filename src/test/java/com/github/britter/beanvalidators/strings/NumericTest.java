@@ -22,31 +22,28 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
 public class NumericTest {
 
-    private Validator validator;
+    private ValidationWrapper<NumericBean> validator;
     private NumericBean numericBean;
 
     @Before
     public void setUp() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         numericBean = new NumericBean();
+        validator = new ValidationWrapper<>(numericBean);
     }
 
     @Test
     public void shouldValidateNumericString() throws Exception {
         numericBean.numeric = "123456";
 
-        Set<ConstraintViolation<NumericBean>> violations = validate("numeric");
+        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
 
         assertThat(violations, is(empty()));
     }
@@ -55,7 +52,7 @@ public class NumericTest {
     public void shouldValidateNullString() throws Exception {
         numericBean.numeric = null;
 
-        Set<ConstraintViolation<NumericBean>> violations = validate("numeric");
+        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
 
         assertThat(violations, is(empty()));
     }
@@ -64,7 +61,7 @@ public class NumericTest {
     public void shouldValidateBlankString() throws Exception {
         numericBean.numeric = " ";
 
-        Set<ConstraintViolation<NumericBean>> violations = validate("numeric");
+        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
 
         assertThat(violations, is(empty()));
     }
@@ -73,15 +70,11 @@ public class NumericTest {
     public void shouldNotValidateNonNumericString() throws Exception {
         numericBean.numeric = "abc";
 
-        Set<ConstraintViolation<NumericBean>> violations = validate("numeric");
+        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<NumericBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is("must be numeric"));
-    }
-
-    private Set<ConstraintViolation<NumericBean>> validate(String property) {
-        return validator.validateProperty(numericBean, property);
     }
 
     private static final class NumericBean {

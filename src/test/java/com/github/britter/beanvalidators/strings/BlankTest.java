@@ -23,31 +23,28 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
 public class BlankTest {
 
     private BlankBean blankBean;
-    private Validator validator;
+    private ValidationWrapper<BlankBean> validator;
 
     @Before
     public void setUp() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         blankBean = new BlankBean();
+        validator = new ValidationWrapper<>(blankBean);
     }
 
     @Test
     public void shouldValidateEmptyString() throws Exception {
         blankBean.blank = "";
 
-        Set<ConstraintViolation<BlankBean>> violations = validate("blank");
+        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
 
         assertThat(violations, is(empty()));
     }
@@ -56,7 +53,7 @@ public class BlankTest {
     public void shouldValidateNullString() throws Exception {
         blankBean.blank = null;
 
-        Set<ConstraintViolation<BlankBean>> violations = validate("blank");
+        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
 
         assertThat(violations, is(empty()));
     }
@@ -65,7 +62,7 @@ public class BlankTest {
     public void shouldValidateBlankString() throws Exception {
         blankBean.blank = "  ";
 
-        Set<ConstraintViolation<BlankBean>> violations = validate("blank");
+        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
 
         assertThat(violations, is(empty()));
     }
@@ -74,15 +71,11 @@ public class BlankTest {
     public void shouldNotValidateNonBlankString() throws Exception {
         blankBean.blank = " abcd ";
 
-        Set<ConstraintViolation<BlankBean>> violations = validate("blank");
+        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<BlankBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is(equalTo("must be blank")));
-    }
-
-    private Set<ConstraintViolation<BlankBean>> validate(String property) {
-        return validator.validateProperty(blankBean, property);
     }
 
     private static final class BlankBean {

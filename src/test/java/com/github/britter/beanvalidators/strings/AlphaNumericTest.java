@@ -23,31 +23,28 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
 public class AlphaNumericTest {
 
     private AlphaNumericBean alphaNumBean;
-    private Validator validator;
+    private ValidationWrapper<AlphaNumericBean> validator;
 
     @Before
     public void setUp() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         alphaNumBean = new AlphaNumericBean();
+        validator = new ValidationWrapper<>(alphaNumBean);
     }
 
     @Test
     public void defaultSettingsShouldValidateAlphabeticString() throws Exception {
         alphaNumBean.alphaNum = "abcd";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNum");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
 
         assertThat(violations, is(empty()));
     }
@@ -56,7 +53,7 @@ public class AlphaNumericTest {
     public void defaultSettingsShouldValidateAlphabeticNumericString() throws Exception {
         alphaNumBean.alphaNum = "abcd1234";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNum");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
 
         assertThat(violations, is(empty()));
     }
@@ -65,7 +62,7 @@ public class AlphaNumericTest {
     public void defaultSettingsShouldNotValidateNonAlphabeticString() throws Exception {
         alphaNumBean.alphaNum = "abcd?";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNum");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<AlphaNumericBean> violation = getLast(violations);
@@ -76,7 +73,7 @@ public class AlphaNumericTest {
     public void defaultSettingsShouldNotValidateAlphabeticStringWithSpaces() throws Exception {
         alphaNumBean.alphaNum = "ab cd";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNum");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
 
         assertThat(violations, hasSize(1));
     }
@@ -85,7 +82,7 @@ public class AlphaNumericTest {
     public void defaultSettingsShouldNotValidateAlphabeticNumericStringWithSpaces() throws Exception {
         alphaNumBean.alphaNum = "ab cd 1234";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNum");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
 
         assertThat(violations, hasSize(1));
     }
@@ -94,7 +91,7 @@ public class AlphaNumericTest {
     public void allowSpacesSettingsShouldValidateAlphabeticString() throws Exception {
         alphaNumBean.alphaNumSpace = "abcd";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNumSpace");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
 
         assertThat(violations, is(empty()));
     }
@@ -103,7 +100,7 @@ public class AlphaNumericTest {
     public void allowSpacesSettingsShouldValidateAlphabeticNumericString() throws Exception {
         alphaNumBean.alphaNumSpace = "abcd1234";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNumSpace");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
 
         assertThat(violations, is(empty()));
     }
@@ -112,7 +109,7 @@ public class AlphaNumericTest {
     public void allowSpacesSettingsShouldNotValidateNonAlphabeticString() throws Exception {
         alphaNumBean.alphaNumSpace = "abcd123?";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNumSpace");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
 
         assertThat(violations, hasSize(1));
         ConstraintViolation<AlphaNumericBean> violation = getLast(violations);
@@ -123,7 +120,7 @@ public class AlphaNumericTest {
     public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() throws Exception {
         alphaNumBean.alphaNumSpace = "ab cd";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNumSpace");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
 
         assertThat(violations, is(empty()));
     }
@@ -132,13 +129,9 @@ public class AlphaNumericTest {
     public void allowSpacesSettingsShouldValidateAlphabeticNumericStringWithSpaces() throws Exception {
         alphaNumBean.alphaNumSpace = "ab cd 1234";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validate("alphaNumSpace");
+        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
 
         assertThat(violations, is(empty()));
-    }
-
-    private Set<ConstraintViolation<AlphaNumericBean>> validate(String property) {
-        return validator.validateProperty(alphaNumBean, property);
     }
 
     private static class AlphaNumericBean {
