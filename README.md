@@ -132,6 +132,22 @@ be thrown.
     private String alphaNum;
 ```
 
+### ASCII
+
+```java
+    /**
+     * valid:
+     *      "abcd"
+     *      "abcd1234"
+     *      "ab cd"
+     *
+     * invalid:
+     *      "äöü"
+     */
+    @ASCII
+    private String ascii;
+```
+
 ### Blank
 
 The opposite of `org.hibernate.validator.constraints.NotBlank`.
