@@ -23,31 +23,28 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ASCIITest {
 
     private ASCIIBean asciiBean;
-    private Validator validator;
+    private ValidationWrapper<ASCIIBean> validator;
 
     @Before
     public void setUp() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
         asciiBean = new ASCIIBean();
+        validator = new ValidationWrapper<>(asciiBean);
     }
 
     @Test
     public void shouldValidateNullString() throws Exception {
         asciiBean.ascii = null;
 
-        Set<ConstraintViolation<ASCIIBean>> violations = validate("ascii");
+        Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
 
         assertThat(violations, is(empty()));
     }
@@ -56,7 +53,7 @@ public class ASCIITest {
     public void shouldValidateBlankString() throws Exception {
         asciiBean.ascii = " ";
 
-        Set<ConstraintViolation<ASCIIBean>> violations = validate("ascii");
+        Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
 
         assertThat(violations, is(empty()));
     }
@@ -65,7 +62,7 @@ public class ASCIITest {
     public void shouldValidateAscii() throws Exception {
         asciiBean.ascii = "abcd";
 
-        Set<ConstraintViolation<ASCIIBean>> violations = validate("ascii");
+        Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
 
         assertThat(violations, is(empty()));
     }
@@ -74,15 +71,11 @@ public class ASCIITest {
     public void shouldNotValidateNonAscii() throws Exception {
         asciiBean.ascii = "äöü";
 
-        Set<ConstraintViolation<ASCIIBean>> violations = validate("ascii");
+        Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
         
         assertThat(violations, hasSize(1));
         ConstraintViolation<ASCIIBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is(equalTo("must be ASCII printable")));
-    }
-
-    private Set<ConstraintViolation<ASCIIBean>> validate(String property) {
-        return validator.validateProperty(asciiBean, property);
     }
 
     private static final class ASCIIBean {
