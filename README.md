@@ -268,6 +268,20 @@ Makes sure a string contains a valid Java number.
     private File dir;
 ```
 
+### Not Directory
+
+```java
+    /**
+     * valid:
+     *      dir.isDirectory() == false
+     *
+     * invalid:
+     *      dir.isDirectory() == true
+     */
+    @NotDirectory
+    private File dir;
+```
+
 ## Net
 
 ### Domain
