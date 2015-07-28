@@ -282,6 +282,20 @@ Makes sure a string contains a valid Java number.
     private File dir;
 ```
 
+### Readable
+
+```java
+    /**
+     * valid:
+     *      file.canRead() == true
+     *
+     * invalid:
+     *      dir.canRead() == false
+     */
+    @Readable
+    private File file;
+```
+
 ## Net
 
 ### Domain
