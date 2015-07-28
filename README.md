@@ -296,6 +296,20 @@ Makes sure a string contains a valid Java number.
     private File file;
 ```
 
+### Writable
+
+```java
+    /**
+     * valid:
+     *      file.canWrite() == true
+     *
+     * invalid:
+     *      dir.canWrite() == false
+     */
+    @Writable
+    private File file;
+```
+
 ## Net
 
 ### Domain
