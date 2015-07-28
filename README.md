@@ -324,6 +324,20 @@ Makes sure a string contains a valid Java number.
     private File file;
 ```
 
+### Not Readable
+
+```java
+    /**
+     * valid:
+     *      file.canRead() == false
+     *
+     * invalid:
+     *      dir.canRead() == true
+     */
+    @NotReadable
+    private File file;
+```
+
 ### Writable
 
 ```java
