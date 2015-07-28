@@ -252,6 +252,22 @@ Makes sure a string contains a valid Java number.
     private String numeric;
 ```
 
+## Files
+
+### Directory
+
+```java
+    /**
+     * valid:
+     *      dir.isDirectory() == true
+     *
+     * invalid:
+     *      dir.isDirectory() == false
+     */
+    @Directory
+    private File dir;
+```
+
 ## Net
 
 ### Domain
