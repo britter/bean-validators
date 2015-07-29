@@ -296,6 +296,20 @@ Makes sure a string contains a valid Java number.
     private File file;
 ```
 
+### Not Hidden
+
+```java
+    /**
+     * valid:
+     *      file.isHidden() == false
+     *
+     * invalid:
+     *      file.isHidden() == true
+     */
+    @NotHidden
+    private File file;
+```
+
 ### Executable
 
 ```java
