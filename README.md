@@ -304,7 +304,7 @@ Makes sure a string contains a valid Java number.
      *      file.canExecute() == true
      *
      * invalid:
-     *      dir.canExecute() == false
+     *      file.canExecute() == false
      */
     @Executable
     private File file;
@@ -318,7 +318,7 @@ Makes sure a string contains a valid Java number.
      *      file.canExecute() == false
      *
      * invalid:
-     *      dir.canExecute() == true
+     *      file.canExecute() == true
      */
     @NotExecutable
     private File file;
@@ -332,7 +332,7 @@ Makes sure a string contains a valid Java number.
      *      file.canRead() == true
      *
      * invalid:
-     *      dir.canRead() == false
+     *      file.canRead() == false
      */
     @Readable
     private File file;
@@ -346,7 +346,7 @@ Makes sure a string contains a valid Java number.
      *      file.canRead() == false
      *
      * invalid:
-     *      dir.canRead() == true
+     *      file.canRead() == true
      */
     @NotReadable
     private File file;
@@ -360,7 +360,7 @@ Makes sure a string contains a valid Java number.
      *      file.canWrite() == true
      *
      * invalid:
-     *      dir.canWrite() == false
+     *      file.canWrite() == false
      */
     @Writable
     private File file;
@@ -374,7 +374,7 @@ Makes sure a string contains a valid Java number.
      *      file.canWrite() == false
      *
      * invalid:
-     *      dir.canWrite() == true
+     *      file.canWrite() == true
      */
     @NotWritable
     private File file;
