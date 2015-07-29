@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Existing {
 
-    String message() default "{com.github.britter.beanvalidators.io.Existing.message}";
+    String message() default "{com.github.britter.beanvalidators.file.Existing.message}";
 
     Class<?>[] groups() default {};
 

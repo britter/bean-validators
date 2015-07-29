@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface NotWritable {
 
-    String message() default "{com.github.britter.beanvalidators.io.NotWritable.message}";
+    String message() default "{com.github.britter.beanvalidators.file.NotWritable.message}";
 
     Class<?>[] groups() default {};
 

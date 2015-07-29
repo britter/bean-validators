@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Executable {
 
-    String message() default "{com.github.britter.beanvalidators.io.Executable.message}";
+    String message() default "{com.github.britter.beanvalidators.file.Executable.message}";
 
     Class<?>[] groups() default {};
 

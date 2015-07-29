@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Writable {
 
-    String message() default "{com.github.britter.beanvalidators.io.Writable.message}";
+    String message() default "{com.github.britter.beanvalidators.file.Writable.message}";
 
     Class<?>[] groups() default {};
 

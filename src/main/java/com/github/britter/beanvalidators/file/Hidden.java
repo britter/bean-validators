@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Hidden {
 
-    String message() default "{com.github.britter.beanvalidators.io.Hidden.message}";
+    String message() default "{com.github.britter.beanvalidators.file.Hidden.message}";
 
     Class<?>[] groups() default {};
 

@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface NotReadable {
 
-    String message() default "{com.github.britter.beanvalidators.io.NotReadable.message}";
+    String message() default "{com.github.britter.beanvalidators.file.NotReadable.message}";
 
     Class<?>[] groups() default {};
 

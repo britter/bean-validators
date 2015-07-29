@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface NotDirectory {
 
-    String message() default "{com.github.britter.beanvalidators.io.NotDirectory.message}";
+    String message() default "{com.github.britter.beanvalidators.file.NotDirectory.message}";
 
     Class<?>[] groups() default {};
 

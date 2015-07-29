@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface NotExecutable {
 
-    String message() default "{com.github.britter.beanvalidators.io.NotExecutable.message}";
+    String message() default "{com.github.britter.beanvalidators.file.NotExecutable.message}";
 
     Class<?>[] groups() default {};
 

@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Directory {
 
-    String message() default "{com.github.britter.beanvalidators.io.Directory.message}";
+    String message() default "{com.github.britter.beanvalidators.file.Directory.message}";
 
     Class<?>[] groups() default {};
 

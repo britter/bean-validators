@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface NotHidden {
 
-    String message() default "{com.github.britter.beanvalidators.io.NotHidden.message}";
+    String message() default "{com.github.britter.beanvalidators.file.NotHidden.message}";
 
     Class<?>[] groups() default {};
 
