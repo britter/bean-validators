@@ -254,6 +254,20 @@ Makes sure a string contains a valid Java number.
 
 ## Files
 
+### Absolute
+
+```java
+    /**
+     * valid:
+     *      file.isAbsolute() == true
+     *
+     * invalid:
+     *      dir.isAbsolute() == false
+     */
+    @Absolute
+    private File file;
+```
+
 ### Directory
 
 ```java
