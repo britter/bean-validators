@@ -252,6 +252,232 @@ Makes sure a string contains a valid Java number.
     private String numeric;
 ```
 
+## Files
+
+### Absolute
+
+```java
+    /**
+     * valid:
+     *      file.isAbsolute() == true
+     *
+     * invalid:
+     *      dir.isAbsolute() == false
+     */
+    @Absolute
+    private File file;
+```
+
+### Not Absolute
+
+```java
+    /**
+     * valid:
+     *      file.isAbsolute() == false
+     *
+     * invalid:
+     *      dir.isAbsolute() == true
+     */
+    @NotAbsolute
+    private File file;
+```
+
+### Directory
+
+```java
+    /**
+     * valid:
+     *      dir.isDirectory() == true
+     *
+     * invalid:
+     *      dir.isDirectory() == false
+     */
+    @Directory
+    private File dir;
+```
+
+### Not Directory
+
+```java
+    /**
+     * valid:
+     *      dir.isDirectory() == false
+     *
+     * invalid:
+     *      dir.isDirectory() == true
+     */
+    @NotDirectory
+    private File dir;
+```
+
+### Existing
+
+```java
+    /**
+     * valid:
+     *      file.exists() == true
+     *
+     * invalid:
+     *      file.exists() == false
+     */
+    @Existing
+    private File file;
+```
+
+### Not Existing
+
+```java
+    /**
+     * valid:
+     *      file.exists() == false
+     *
+     * invalid:
+     *      file.exists() == true
+     */
+    @NotExisting
+    private File file;
+```
+
+### File
+
+```java
+    /**
+     * valid:
+     *      file.isFile() == true
+     *
+     * invalid:
+     *      file.isFile() == false
+     */
+    @com.github.britter.beanvalidators.file.File
+    private File file;
+```
+
+### Not File
+
+```java
+    /**
+     * valid:
+     *      file.isFile() == false
+     *
+     * invalid:
+     *      file.isFile() == true
+     */
+    @NotFile
+    private File file;
+```
+
+### Hidden
+
+```java
+    /**
+     * valid:
+     *      file.isHidden() == true
+     *
+     * invalid:
+     *      file.isHidden() == false
+     */
+    @Hidden
+    private File file;
+```
+
+### Not Hidden
+
+```java
+    /**
+     * valid:
+     *      file.isHidden() == false
+     *
+     * invalid:
+     *      file.isHidden() == true
+     */
+    @NotHidden
+    private File file;
+```
+
+### Executable
+
+```java
+    /**
+     * valid:
+     *      file.canExecute() == true
+     *
+     * invalid:
+     *      file.canExecute() == false
+     */
+    @Executable
+    private File file;
+```
+
+### Not Executable
+
+```java
+    /**
+     * valid:
+     *      file.canExecute() == false
+     *
+     * invalid:
+     *      file.canExecute() == true
+     */
+    @NotExecutable
+    private File file;
+```
+
+### Readable
+
+```java
+    /**
+     * valid:
+     *      file.canRead() == true
+     *
+     * invalid:
+     *      file.canRead() == false
+     */
+    @Readable
+    private File file;
+```
+
+### Not Readable
+
+```java
+    /**
+     * valid:
+     *      file.canRead() == false
+     *
+     * invalid:
+     *      file.canRead() == true
+     */
+    @NotReadable
+    private File file;
+```
+
+### Writable
+
+```java
+    /**
+     * valid:
+     *      file.canWrite() == true
+     *
+     * invalid:
+     *      file.canWrite() == false
+     */
+    @Writable
+    private File file;
+```
+
+### Not Writable
+
+```java
+    /**
+     * valid:
+     *      file.canWrite() == false
+     *
+     * invalid:
+     *      file.canWrite() == true
+     */
+    @NotWritable
+    private File file;
+```
+
 ## Net
 
 ### Domain
