@@ -338,6 +338,20 @@ Makes sure a string contains a valid Java number.
     private File file;
 ```
 
+### File
+
+```java
+    /**
+     * valid:
+     *      file.isFile() == true
+     *
+     * invalid:
+     *      file.isFile() == false
+     */
+    @com.github.britter.beanvalidators.file.File
+    private File file;
+```
+
 ### Hidden
 
 ```java
