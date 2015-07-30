@@ -352,6 +352,20 @@ Makes sure a string contains a valid Java number.
     private File file;
 ```
 
+### Not File
+
+```java
+    /**
+     * valid:
+     *      file.isFile() == false
+     *
+     * invalid:
+     *      file.isFile() == true
+     */
+    @NotFile
+    private File file;
+```
+
 ### Hidden
 
 ```java
