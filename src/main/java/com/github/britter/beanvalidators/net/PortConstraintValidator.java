@@ -43,7 +43,7 @@ public class PortConstraintValidator implements ConstraintValidator<Port, Object
             throw new ValidationException("@Port can not be applied to objects of type " + value.getClass().getName());
         }
     }
-    
+
     private boolean isValidPort(String port) {
         if (StringUtils.isBlank(port)) {
             return true;

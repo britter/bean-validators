@@ -167,6 +167,7 @@ public class ISBNTest {
 
         assertThat(violations, is(empty()));
     }
+
     @Test
     public void isbn13SettingShouldValidateBlankValue() throws Exception {
         isbnBean.isbn13 = " ";

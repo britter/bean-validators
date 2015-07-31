@@ -34,11 +34,10 @@ import org.junit.rules.TemporaryFolder;
 
 public class NotExecutableTest {
 
-    private FileBean fileBean;
-    private ValidationWrapper<FileBean> validator;
-
     @Rule
     public TemporaryFolder tmpFolder = new TemporaryFolder();
+    private FileBean fileBean;
+    private ValidationWrapper<FileBean> validator;
 
     @Before
     public void setUp() {
@@ -64,7 +63,7 @@ public class NotExecutableTest {
 
         assertThat(violations, is(empty()));
     }
-    
+
     @Test
     public void shouldNotValidateExecutableDirectory() throws Exception {
         fileBean.file = tmpFolder.newFolder();

@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
 public @interface IP {
 
     IPType type() default IPType.ALL;
-    
+
     String message() default "{com.github.britter.beanvalidators.net.IP.message}";
 
     Class<?>[] groups() default {};

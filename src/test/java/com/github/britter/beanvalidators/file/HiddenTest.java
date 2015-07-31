@@ -24,10 +24,6 @@ import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Set;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -38,11 +34,10 @@ import org.junit.rules.TemporaryFolder;
 
 public class HiddenTest {
 
-    private FileBean fileBean;
-    private ValidationWrapper<FileBean> validator;
-
     @Rule
     public TemporaryFolder tmpFolder = new TemporaryFolder();
+    private FileBean fileBean;
+    private ValidationWrapper<FileBean> validator;
 
     @Before
     public void setUp() {

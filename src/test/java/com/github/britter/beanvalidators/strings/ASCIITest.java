@@ -72,7 +72,7 @@ public class ASCIITest {
         asciiBean.ascii = "äöü";
 
         Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
-        
+
         assertThat(violations, hasSize(1));
         ConstraintViolation<ASCIIBean> violation = getLast(violations);
         assertThat(violation.getMessage(), is(equalTo("must be ASCII printable")));

@@ -35,11 +35,14 @@ public class IPConstraintValidator implements ConstraintValidator<IP, String> {
         if (StringUtils.isBlank(value)) {
             return true;
         }
-        
-        switch(type) {
-            case IP_V4: return InetAddressValidator.getInstance().isValidInet4Address(value);
-            case IP_V6: return InetAddressValidator.getInstance().isValidInet6Address(value);
-            default: return InetAddressValidator.getInstance().isValid(value); 
+
+        switch (type) {
+            case IP_V4:
+                return InetAddressValidator.getInstance().isValidInet4Address(value);
+            case IP_V6:
+                return InetAddressValidator.getInstance().isValidInet6Address(value);
+            default:
+                return InetAddressValidator.getInstance().isValid(value);
         }
     }
 

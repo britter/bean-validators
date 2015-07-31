@@ -34,11 +34,10 @@ import org.junit.rules.TemporaryFolder;
 
 public class NotDirectoryTest {
 
-    private FileBean fileBean;
-    private ValidationWrapper<FileBean> validator;
-
     @Rule
     public TemporaryFolder tmpFolder = new TemporaryFolder();
+    private FileBean fileBean;
+    private ValidationWrapper<FileBean> validator;
 
     @Before
     public void setUp() {
