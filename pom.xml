@@ -24,7 +24,7 @@
 
   <name>bean-validators</name>
   <description>Additional validator implementations for javax.validation.</description>
-  <url>https://github.com/britter/bean-validators</url>
+  <url>https://britter.github.io/bean-validators</url>
 
   <properties>
     <java.version>1.7</java.version>
