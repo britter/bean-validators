@@ -262,7 +262,8 @@ Makes sure a String only contains digits.
 ## Files
 
 Constraints validating all properties of `java.io.File` objects. There is an annotation for each property as well as one
-for the negation of each property.
+for the negation of each property. All annotations can also be applied to Strings. The validators will construct a new
+File instance using `new File(String)` and use that instance for validation.
 
 ### @Absolute
 
