@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -71,8 +72,52 @@ public class NotHiddenTest {
         validator.assertViolation("file");
     }
 
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.validate("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingFile() throws Exception {
+        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingHiddenDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder(".hidden").getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingHiddenFile() throws Exception {
+        fileBean.path = tmpFolder.newFile(".hidden").getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @NotHidden
         private File file;
+        @NotHidden
+        private String path;
+        @NotHidden
+        private Object object = new Object();
     }
 }
