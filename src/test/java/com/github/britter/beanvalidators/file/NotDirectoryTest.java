@@ -15,16 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
 import java.io.File;
-import java.util.Set;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
@@ -42,7 +33,7 @@ public class NotDirectoryTest {
     @Before
     public void setUp() {
         fileBean = new FileBean();
-        validator = new ValidationWrapper<>(fileBean);
+        validator = new ValidationWrapper<>(fileBean, "must not be a directory");
     }
 
     @Test
@@ -56,11 +47,7 @@ public class NotDirectoryTest {
     public void shouldNotValidateDirectory() throws Exception {
         fileBean.dir = tmpFolder.newFolder();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("dir");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<FileBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must not be a directory")));
+        validator.assertViolation("dir");
     }
 
     @Test

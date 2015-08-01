@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -36,7 +35,7 @@ public class NumericTest {
     @Before
     public void setUp() {
         numericBean = new NumericBean();
-        validator = new ValidationWrapper<>(numericBean);
+        validator = new ValidationWrapper<>(numericBean, null);
     }
 
     @Test

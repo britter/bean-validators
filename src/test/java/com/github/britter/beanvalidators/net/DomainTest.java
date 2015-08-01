@@ -15,16 +15,6 @@
  */
 package com.github.britter.beanvalidators.net;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +27,7 @@ public class DomainTest {
     @Before
     public void setUp() throws Exception {
         domainBean = new DomainBean();
-        validator = new ValidationWrapper<>(domainBean);
+        validator = new ValidationWrapper<>(domainBean, "must be a domain");
     }
 
     @Test
@@ -65,11 +55,7 @@ public class DomainTest {
     public void shouldNotValidateRandomString() throws Exception {
         domainBean.domain = "abcd";
 
-        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<DomainBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be a domain")));
+        validator.assertViolation("domain");
     }
 
     private static final class DomainBean {

@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -37,7 +36,7 @@ public class ISBNTest {
     @Before
     public void setUp() {
         isbnBean = new ISBNBean();
-        validator = new ValidationWrapper<>(isbnBean);
+        validator = new ValidationWrapper<>(isbnBean, null);
     }
 
     @Test

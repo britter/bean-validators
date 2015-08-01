@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -37,7 +36,7 @@ public class ASCIITest {
     @Before
     public void setUp() {
         asciiBean = new ASCIIBean();
-        validator = new ValidationWrapper<>(asciiBean);
+        validator = new ValidationWrapper<>(asciiBean, null);
     }
 
     @Test

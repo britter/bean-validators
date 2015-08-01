@@ -15,16 +15,6 @@
  */
 package com.github.britter.beanvalidators.net;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +27,7 @@ public class IPTest {
     @Before
     public void setUp() throws Exception {
         ipBean = new IPBean();
-        validator = new ValidationWrapper<>(ipBean);
+        validator = new ValidationWrapper<>(ipBean, "must be an IP");
     }
 
     @Test
@@ -72,29 +62,21 @@ public class IPTest {
     public void defaultSettingShouldNotValidateRandomString() throws Exception {
         ipBean.ip = "abcd";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ip");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<IPBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is((equalTo("must be an IP"))));
+        validator.assertViolation("ip");
     }
 
     @Test
     public void defaultSettingShouldNotValidateInvalidIPv4() throws Exception {
         ipBean.ip = "999.168.0.1";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ip");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ip");
     }
 
     @Test
     public void defaultSettingShouldNotValidateInvalidIPv6() throws Exception {
         ipBean.ip = "ge99::8a1f:a1ff:fe11:9326";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ip");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ip");
     }
 
     // IPv4
@@ -110,9 +92,7 @@ public class IPTest {
     public void ipv4SettingShouldNotValidateIPv6() throws Exception {
         ipBean.ipv4 = "fe80::8a1f:a1ff:fe11:9326";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv4");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv4");
     }
 
     @Test
@@ -133,27 +113,21 @@ public class IPTest {
     public void ipv4SettingShouldNotValidateRandomString() throws Exception {
         ipBean.ipv4 = "abcd";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv4");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv4");
     }
 
     @Test
     public void ipv4SettingShouldNotValidateInvalidIPv4() throws Exception {
         ipBean.ipv4 = "999.168.0.1";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv4");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv4");
     }
 
     @Test
     public void ipv4SettingShouldNotValidateInvalidIPv6() throws Exception {
         ipBean.ipv4 = "ge99::8a1f:a1ff:fe11:9326";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv4");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv4");
     }
 
     // IPv6
@@ -162,9 +136,7 @@ public class IPTest {
     public void ipv6SettingShouldNotValidateIPv4() throws Exception {
         ipBean.ipv6 = "192.168.0.1";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv6");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv6");
     }
 
     @Test
@@ -192,27 +164,21 @@ public class IPTest {
     public void ipv6SettingShouldNotValidateRandomString() throws Exception {
         ipBean.ipv6 = "abcd";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv6");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv6");
     }
 
     @Test
     public void ipv6SettingShouldNotValidateInvalidIPv4() throws Exception {
         ipBean.ipv6 = "999.168.0.1";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv6");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv6");
     }
 
     @Test
     public void ipv6SettingShouldNotValidateInvalidIPv6() throws Exception {
         ipBean.ipv6 = "ge99::8a1f:a1ff:fe11:9326";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv6");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("ipv6");
     }
 
     private static final class IPBean {

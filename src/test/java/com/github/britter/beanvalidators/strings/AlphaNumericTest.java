@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -37,7 +36,7 @@ public class AlphaNumericTest {
     @Before
     public void setUp() {
         alphaNumBean = new AlphaNumericBean();
-        validator = new ValidationWrapper<>(alphaNumBean);
+        validator = new ValidationWrapper<>(alphaNumBean, null);
     }
 
     @Test
