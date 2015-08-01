@@ -58,7 +58,7 @@ public class NotAbsoluteTest {
     }
 
     @Test
-    public void shouldNotValidateNonExistingFile() throws Exception {
+    public void shouldValidateNonExistingFile() throws Exception {
         fileBean.file = new File("is/not/absolute");
 
         validator.assertNoViolations("file");
