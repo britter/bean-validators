@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -57,8 +58,38 @@ public class NotDirectoryTest {
         validator.assertNoViolations("dir");
     }
 
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingFile() throws Exception {
+        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenOtherTypeisAnnotated() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @NotDirectory
         private File dir;
+        @NotDirectory
+        private String path;
+        @NotDirectory
+        private Object object = new Object();
     }
 }
