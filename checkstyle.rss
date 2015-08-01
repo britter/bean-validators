@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2015</copyright>
     <item>
-      <title>File: 57,
-             Errors: 342,
+      <title>File: 58,
+             Errors: 369,
              Warnings: 0,
              Infos: 0
       </title>
@@ -116,6 +116,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://britter.github.io/bean-validators/checkstyle.html#com.github.britter.beanvalidators.file.AbstractFileConstraintValidator.java">com/github/britter/beanvalidators/file/AbstractFileConstraintValidator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://britter.github.io/bean-validators/checkstyle.html#com.github.britter.beanvalidators.strings.ISBNType.java">com/github/britter/beanvalidators/strings/ISBNType.java</a>
                 </td>
                 <td>
@@ -153,7 +167,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -181,7 +195,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -195,7 +209,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -307,7 +321,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -335,7 +349,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -349,7 +363,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -363,7 +377,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -377,7 +391,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -419,7 +433,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -587,7 +601,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -657,7 +671,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -713,7 +727,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -727,7 +741,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  8
                 </td>
               </tr>
                           <tr>
@@ -755,7 +769,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -769,7 +783,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -825,7 +839,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
