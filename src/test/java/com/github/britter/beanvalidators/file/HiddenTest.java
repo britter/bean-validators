@@ -19,6 +19,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.ValidationException;
 import java.io.File;
 import java.util.Set;
 
@@ -78,8 +79,52 @@ public class HiddenTest {
         validator.assertNoViolations("file");
     }
 
+    @Test
+    public void shouldNotValidateStringRepresendingUnhiddenFile() throws Exception {
+        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingUnhiddenDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingHiddenFile() throws Exception {
+        fileBean.path = tmpFolder.newFile(".hidden").getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingHiddenDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder(".hidde").getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @Hidden
         private File file;
+        @Hidden
+        private String path;
+        @Hidden
+        private Object object = new Object();
     }
 }

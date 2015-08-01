@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -64,8 +65,31 @@ public class AbsoluteTest {
         validator.assertViolation("file");
     }
 
+    @Test
+    public void shouldValidateAbsolutePathString() throws Exception {
+        fileBean.path = "/absolute/path";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldNotValidateRelativePathString() throws Exception {
+        fileBean.path = "is/not/absolute";
+
+        validator.assertViolation("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenWrongTypeIsAnnotated() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @Absolute
         private File file;
+        @Absolute
+        private String path;
+        @Absolute
+        private Object object = new Object();
     }
 }

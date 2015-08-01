@@ -15,14 +15,14 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotAbsoluteConstraintValidator implements ConstraintValidator<NotAbsolute, File> {
+public class NotAbsoluteConstraintValidator extends AbstractFileConstraintValidator<NotAbsolute> {
 
     @Override
     public void initialize(NotAbsolute constraintAnnotation) {
+        super.initialize(constraintAnnotation);
     }
 
     @Override

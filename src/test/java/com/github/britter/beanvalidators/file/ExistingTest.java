@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -64,8 +65,45 @@ public class ExistingTest {
         validator.assertViolation("file");
     }
 
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingExistingFile() throws Exception {
+        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingExistingDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldNotValidateNonExistingPath() throws Exception {
+        fileBean.path = "/should/not/exist";
+
+        validator.assertViolation("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @Existing
         private File file;
+        @Existing
+        private String path;
+        @Existing
+        private Object object = new Object();
     }
 }

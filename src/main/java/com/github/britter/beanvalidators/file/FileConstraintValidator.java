@@ -15,13 +15,13 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class FileConstraintValidator implements ConstraintValidator<File, java.io.File> {
+public class FileConstraintValidator extends AbstractFileConstraintValidator<File> {
 
     @Override
     public void initialize(File constraintAnnotation) {
+        super.initialize(constraintAnnotation);
     }
 
     @Override

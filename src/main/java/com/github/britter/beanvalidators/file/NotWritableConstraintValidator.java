@@ -15,14 +15,14 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotWritableConstraintValidator implements ConstraintValidator<NotWritable, File> {
+public class NotWritableConstraintValidator extends AbstractFileConstraintValidator<NotWritable> {
 
     @Override
     public void initialize(NotWritable constraintAnnotation) {
+        super.initialize(constraintAnnotation);
     }
 
     @Override

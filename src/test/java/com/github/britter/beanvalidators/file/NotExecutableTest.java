@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -81,8 +82,56 @@ public class NotExecutableTest {
         validator.assertNoViolations("file");
     }
 
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.validate("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingExecutableDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingExecutableFile() throws Exception {
+        File file = tmpFolder.newFile();
+        file.setExecutable(true);
+        fileBean.path = file.getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingNonExecutableFile() throws Exception {
+        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingNonExecutableDirectory() throws Exception {
+        File dir = tmpFolder.newFolder();
+        dir.setExecutable(false);
+        fileBean.path = dir.getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @NotExecutable
         private File file;
+        @NotExecutable
+        private String path;
+        @NotExecutable
+        private Object object = new Object();
     }
 }

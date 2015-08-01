@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -64,9 +65,45 @@ public class NotWritableTest {
         validator.assertViolation("file");
     }
 
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingUnwritableFile() throws Exception {
+        fileBean.path = "/should/not/exist";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingWritableDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingWritableFile() throws Exception {
+        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenOtherTypeIsAnnotated() throws Exception {
+        validator.validate("object");
+    }
 
     private static final class FileBean {
         @NotWritable
         private File file;
+        @NotWritable
+        private String path;
+        @NotWritable
+        private Object object = new Object();
     }
 }

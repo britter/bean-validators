@@ -15,14 +15,14 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class HiddenConstraintValidator implements ConstraintValidator<Hidden, File> {
+public class HiddenConstraintValidator extends AbstractFileConstraintValidator<Hidden> {
 
     @Override
     public void initialize(Hidden constraintAnnotation) {
+        super.initialize(constraintAnnotation);
     }
 
     @Override
