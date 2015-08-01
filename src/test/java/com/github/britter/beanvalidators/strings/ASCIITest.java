@@ -44,27 +44,21 @@ public class ASCIITest {
     public void shouldValidateNullString() throws Exception {
         asciiBean.ascii = null;
 
-        Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ascii");
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
         asciiBean.ascii = " ";
 
-        Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ascii");
     }
 
     @Test
     public void shouldValidateAscii() throws Exception {
         asciiBean.ascii = "abcd";
 
-        Set<ConstraintViolation<ASCIIBean>> violations = validator.validate("ascii");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ascii");
     }
 
     @Test

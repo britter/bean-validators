@@ -49,18 +49,14 @@ public class NotFileTest {
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
     public void shouldValidateDirectory() throws Exception {
         fileBean.file = tmpFolder.newFolder();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -78,9 +74,7 @@ public class NotFileTest {
     public void shouldValidateNonExistingFile() throws Exception {
         fileBean.file = new File("/should/not/exist");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     private static final class FileBean {

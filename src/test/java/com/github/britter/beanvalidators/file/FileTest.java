@@ -49,9 +49,7 @@ public class FileTest {
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -69,9 +67,7 @@ public class FileTest {
     public void shouldValidateFile() throws Exception {
         fileBean.file = tmpFolder.newFile();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test

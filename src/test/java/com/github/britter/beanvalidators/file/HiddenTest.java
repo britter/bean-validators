@@ -49,9 +49,7 @@ public class HiddenTest {
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -78,18 +76,14 @@ public class HiddenTest {
     public void shouldValidateHiddenDirectory() throws Exception {
         fileBean.file = tmpFolder.newFolder(".hidden");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
     public void shouldValidateHiddenFile() throws Exception {
         fileBean.file = tmpFolder.newFile(".hidden");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     private static final class FileBean {

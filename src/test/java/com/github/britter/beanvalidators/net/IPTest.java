@@ -44,36 +44,28 @@ public class IPTest {
     public void defaultSettingShouldValidateIPv4() throws Exception {
         ipBean.ip = "192.168.0.1";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ip");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ip");
     }
 
     @Test
     public void defaultSettingShouldValidateIPv6() throws Exception {
         ipBean.ip = "fe80::8a1f:a1ff:fe11:9326";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ip");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ip");
     }
 
     @Test
     public void defaultSettingShouldValidateNullString() throws Exception {
         ipBean.ip = null;
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ip");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ip");
     }
 
     @Test
     public void defaultSettingShouldValidateBlankString() throws Exception {
         ipBean.ip = " ";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ip");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ip");
     }
 
     @Test
@@ -111,9 +103,7 @@ public class IPTest {
     public void ipv4SettingShouldValidateIPv4() throws Exception {
         ipBean.ipv4 = "192.168.0.1";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv4");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ipv4");
     }
 
     @Test
@@ -129,18 +119,14 @@ public class IPTest {
     public void ipv4SettingShouldValidateNullString() throws Exception {
         ipBean.ipv4 = null;
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv4");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ipv4");
     }
 
     @Test
     public void ipv4SettingShouldValidateBlankString() throws Exception {
         ipBean.ipv4 = " ";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv4");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ipv4");
     }
 
     @Test
@@ -185,27 +171,21 @@ public class IPTest {
     public void ipv6SettingShouldNotValidateIPv6() throws Exception {
         ipBean.ipv6 = "fe80::8a1f:a1ff:fe11:9326";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv6");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ipv6");
     }
 
     @Test
     public void ipv6SettingShouldValidateNullString() throws Exception {
         ipBean.ipv6 = null;
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv6");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ipv6");
     }
 
     @Test
     public void ipv6SettingShouldValidateBlankString() throws Exception {
         ipBean.ipv6 = " ";
 
-        Set<ConstraintViolation<IPBean>> violations = validator.validate("ipv6");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("ipv6");
     }
 
     @Test

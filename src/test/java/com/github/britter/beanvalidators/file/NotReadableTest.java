@@ -49,9 +49,7 @@ public class NotReadableTest {
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
 
@@ -59,9 +57,7 @@ public class NotReadableTest {
     public void shouldValidateUnreadableFile() throws Exception {
         fileBean.file = new File("/should/not/exist");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test

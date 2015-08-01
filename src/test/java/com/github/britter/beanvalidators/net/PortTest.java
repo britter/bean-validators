@@ -47,18 +47,14 @@ public class PortTest {
     public void shouldValidateNullString() throws Exception {
         portBean.portString = null;
 
-        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("portString");
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
         portBean.portString = " ";
 
-        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("portString");
     }
 
     @Test
@@ -76,9 +72,7 @@ public class PortTest {
     public void shouldValidateValidPortString() throws Exception {
         portBean.portString = "8080";
 
-        Set<ConstraintViolation<PortBean>> violations = validator.validate("portString");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("portString");
     }
 
     @Test
@@ -105,9 +99,7 @@ public class PortTest {
     public void shouldValidateValidPortInt() throws Exception {
         portBean.portInt = 8080;
 
-        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInt");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("portInt");
     }
 
     @Test
@@ -133,9 +125,7 @@ public class PortTest {
     public void shouldValidateNullPortInteger() throws Exception {
         portBean.portInteger = null;
 
-        Set<ConstraintViolation<PortBean>> violations = validator.validate("portInteger");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("portInteger");
     }
 
     @Test

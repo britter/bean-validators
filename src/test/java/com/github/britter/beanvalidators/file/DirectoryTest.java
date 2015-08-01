@@ -49,18 +49,14 @@ public class DirectoryTest {
     public void shouldValidateNull() throws Exception {
         fileBean.dir = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("dir");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("dir");
     }
 
     @Test
     public void shouldValidateDirectory() throws Exception {
         fileBean.dir = tmpFolder.newFolder();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("dir");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("dir");
     }
 
     @Test

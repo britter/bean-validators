@@ -44,27 +44,21 @@ public class DomainTest {
     public void shouldValidateNullString() throws Exception {
         domainBean.domain = null;
 
-        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("domain");
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
         domainBean.domain = " ";
 
-        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("domain");
     }
 
     @Test
     public void shouldValidateDomain() throws Exception {
         domainBean.domain = "www.example.com";
 
-        Set<ConstraintViolation<DomainBean>> violations = validator.validate("domain");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("domain");
     }
 
     @Test

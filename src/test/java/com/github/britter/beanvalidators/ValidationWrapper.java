@@ -15,6 +15,10 @@
  */
 package com.github.britter.beanvalidators;
 
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -31,5 +35,10 @@ public class ValidationWrapper<T> {
 
     public Set<ConstraintViolation<T>> validate(String property) {
         return VALIDATOR.validateProperty(bean, property);
+    }
+    
+    public void assertNoViolations(String property) {
+        Set<ConstraintViolation<T>> violations = validate(property);
+        assertThat("Expected no violations, but got some", violations, is(empty()));
     }
 }

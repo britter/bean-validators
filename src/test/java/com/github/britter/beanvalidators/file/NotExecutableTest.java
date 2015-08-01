@@ -49,9 +49,7 @@ public class NotExecutableTest {
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -59,9 +57,7 @@ public class NotExecutableTest {
         fileBean.file = tmpFolder.newFolder();
         fileBean.file.setExecutable(false);
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -80,9 +76,7 @@ public class NotExecutableTest {
         fileBean.file = tmpFolder.newFile();
         fileBean.file.setExecutable(false);
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -99,9 +93,7 @@ public class NotExecutableTest {
     public void shouldValidateUnexecutableNonExistingFile() throws Exception {
         fileBean.file = new File("/should/not/exist");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     private static final class FileBean {

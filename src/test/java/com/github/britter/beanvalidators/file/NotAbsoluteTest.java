@@ -49,9 +49,7 @@ public class NotAbsoluteTest {
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -78,9 +76,7 @@ public class NotAbsoluteTest {
     public void shouldNotValidateNonExistingFile() throws Exception {
         fileBean.file = new File("is/not/absolute");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     private static final class FileBean {

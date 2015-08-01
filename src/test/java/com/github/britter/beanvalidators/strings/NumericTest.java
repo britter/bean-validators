@@ -43,27 +43,21 @@ public class NumericTest {
     public void shouldValidateNumericString() throws Exception {
         numericBean.numeric = "123456";
 
-        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("numeric");
     }
 
     @Test
     public void shouldValidateNullString() throws Exception {
         numericBean.numeric = null;
 
-        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("numeric");
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
         numericBean.numeric = " ";
 
-        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("numeric");
     }
 
     @Test

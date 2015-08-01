@@ -49,9 +49,7 @@ public class NotDirectoryTest {
     public void shouldValidateNull() throws Exception {
         fileBean.dir = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("dir");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("dir");
     }
 
     @Test
@@ -69,9 +67,7 @@ public class NotDirectoryTest {
     public void shouldValidateFile() throws Exception {
         fileBean.dir = tmpFolder.newFile();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("dir");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("dir");
     }
 
     private static final class FileBean {

@@ -44,27 +44,21 @@ public class BlankTest {
     public void shouldValidateEmptyString() throws Exception {
         blankBean.blank = "";
 
-        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("blank");
     }
 
     @Test
     public void shouldValidateNullString() throws Exception {
         blankBean.blank = null;
 
-        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("blank");
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
         blankBean.blank = "  ";
 
-        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("blank");
     }
 
     @Test

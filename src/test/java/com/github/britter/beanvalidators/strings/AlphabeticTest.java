@@ -44,9 +44,7 @@ public class AlphabeticTest {
     public void defaultSettingsShouldValidateAlphabeticString() throws Exception {
         alphabeticBean.alphabetic = "abcd";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabetic");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphabetic");
     }
 
     @Test
@@ -73,9 +71,7 @@ public class AlphabeticTest {
     public void allowSpacesSettingsShouldValidateAlphabeticString() throws Exception {
         alphabeticBean.alphabeticSpace = "abcd";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabeticSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphabeticSpace");
     }
 
     @Test
@@ -93,9 +89,7 @@ public class AlphabeticTest {
     public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() throws Exception {
         alphabeticBean.alphabeticSpace = "ab cd";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabeticSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphabeticSpace");
     }
 
     private static class AlphabeticBean {
