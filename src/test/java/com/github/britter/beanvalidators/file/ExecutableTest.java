@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -65,8 +66,49 @@ public class ExecutableTest {
         validator.assertViolation("file");
     }
 
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingExecutableDirectory() throws Exception {
+        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingExecutableFile() throws Exception {
+        File file = tmpFolder.newFile();
+        file.setExecutable(true);
+        fileBean.path = file.getAbsolutePath();
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingNonExecutableFile() throws Exception {
+        File file = tmpFolder.newFile();
+        file.setExecutable(false);
+        fileBean.path = file.getAbsolutePath();
+
+        validator.assertViolation("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenOtherTypeIsAnnotated() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @Executable
         private File file;
+        @Executable
+        private String path;
+        @Executable
+        private Object object = new Object();
     }
 }
