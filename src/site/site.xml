@@ -38,6 +38,7 @@
     
     <menu name="Overview">
       <item name="Home" href="/index.html" />
+      <item name="Examples" href="/examples.html" />
       <item name="JavaDocs" href="apidocs/index.html" />
     </menu>
     <menu ref="reports" inherit="bottom"/>
