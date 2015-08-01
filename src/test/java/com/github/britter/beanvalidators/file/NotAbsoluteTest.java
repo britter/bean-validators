@@ -15,6 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
@@ -64,8 +65,38 @@ public class NotAbsoluteTest {
         validator.assertNoViolations("file");
     }
 
+    @Test
+    public void shouldValidateBlankString() throws Exception {
+        fileBean.path = " ";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldValidateStringRepresentingNonAbsolutePath() throws Exception {
+        fileBean.path = "is/not/absolute";
+
+        validator.assertNoViolations("path");
+    }
+
+    @Test
+    public void shouldNotValidateStringRepresentingAbsolutePath() throws Exception {
+        fileBean.path = "/is/absolute";
+
+        validator.assertViolation("path");
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
+        validator.validate("object");
+    }
+
     private static final class FileBean {
         @NotAbsolute
         private File file;
+        @NotAbsolute
+        private String path;
+        @NotAbsolute
+        private Object object = new Object();
     }
 }
