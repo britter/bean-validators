@@ -6,6 +6,23 @@
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 Additional validator implementations for [javax.validation](http://beanvalidation.org/).
+
+There are annotations available for various basic Java types such as:
+
+- Strings
+    - @Blank
+    - @Alphabetic
+- Files
+    - @Readable
+    - @Writable
+    - @Directory
+- Networking
+    - @Domain
+    - @IP
+    - @Port
+- Misc
+    - @Empty
+
 Most validators use [Apache Commons Lang3](http://commons.apache.org/lang/) and 
 [Apache Commons Validator](http://commons.apache.org/validator/) functionality to implement various validation routines.
 
