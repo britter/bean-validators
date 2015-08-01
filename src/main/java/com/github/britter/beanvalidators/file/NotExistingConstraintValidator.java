@@ -15,14 +15,14 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotExistingConstraintValidator implements ConstraintValidator<NotExisting, File> {
+public class NotExistingConstraintValidator extends AbstractFileConstraintValidator<NotExisting> {
 
     @Override
     public void initialize(NotExisting constraintAnnotation) {
+        super.initialize(constraintAnnotation);
     }
 
     @Override
