@@ -15,16 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
 import java.io.File;
-import java.util.Set;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
@@ -42,16 +33,14 @@ public class NotExecutableTest {
     @Before
     public void setUp() {
         fileBean = new FileBean();
-        validator = new ValidationWrapper<>(fileBean);
+        validator = new ValidationWrapper<>(fileBean, "must not be executable");
     }
 
     @Test
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -59,20 +48,14 @@ public class NotExecutableTest {
         fileBean.file = tmpFolder.newFolder();
         fileBean.file.setExecutable(false);
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
     public void shouldNotValidateExecutableDirectory() throws Exception {
         fileBean.file = tmpFolder.newFolder();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<FileBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must not be executable")));
+        validator.assertViolation("file");
     }
 
     @Test
@@ -80,9 +63,7 @@ public class NotExecutableTest {
         fileBean.file = tmpFolder.newFile();
         fileBean.file.setExecutable(false);
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
@@ -90,18 +71,14 @@ public class NotExecutableTest {
         fileBean.file = tmpFolder.newFile();
         fileBean.file.setExecutable(true);
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("file");
     }
 
     @Test
     public void shouldValidateUnexecutableNonExistingFile() throws Exception {
         fileBean.file = new File("/should/not/exist");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     private static final class FileBean {

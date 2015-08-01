@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -37,16 +36,14 @@ public class AlphabeticTest {
     @Before
     public void setUp() {
         alphabeticBean = new AlphabeticBean();
-        validator = new ValidationWrapper<>(alphabeticBean);
+        validator = new ValidationWrapper<>(alphabeticBean, null);
     }
 
     @Test
     public void defaultSettingsShouldValidateAlphabeticString() throws Exception {
         alphabeticBean.alphabetic = "abcd";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabetic");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphabetic");
     }
 
     @Test
@@ -73,9 +70,7 @@ public class AlphabeticTest {
     public void allowSpacesSettingsShouldValidateAlphabeticString() throws Exception {
         alphabeticBean.alphabeticSpace = "abcd";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabeticSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphabeticSpace");
     }
 
     @Test
@@ -93,9 +88,7 @@ public class AlphabeticTest {
     public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() throws Exception {
         alphabeticBean.alphabeticSpace = "ab cd";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabeticSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphabeticSpace");
     }
 
     private static class AlphabeticBean {

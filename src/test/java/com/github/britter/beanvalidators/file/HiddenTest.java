@@ -15,11 +15,7 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.validation.ConstraintViolation;
@@ -42,27 +38,21 @@ public class HiddenTest {
     @Before
     public void setUp() {
         fileBean = new FileBean();
-        validator = new ValidationWrapper<>(fileBean);
+        validator = new ValidationWrapper<>(fileBean, "must be hidden");
     }
 
     @Test
     public void shouldValidateNull() throws Exception {
         fileBean.file = null;
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
     public void shouldNotValidateUnhiddenDirectory() throws Exception {
         fileBean.file = tmpFolder.newFolder();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<FileBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be hidden")));
+        validator.assertViolation("file");
     }
 
     @Test
@@ -78,18 +68,14 @@ public class HiddenTest {
     public void shouldValidateHiddenDirectory() throws Exception {
         fileBean.file = tmpFolder.newFolder(".hidden");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     @Test
     public void shouldValidateHiddenFile() throws Exception {
         fileBean.file = tmpFolder.newFile(".hidden");
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("file");
     }
 
     private static final class FileBean {

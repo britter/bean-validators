@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -37,43 +36,35 @@ public class JavaNumberTest {
     @Before
     public void setUp() throws Exception {
         numBean = new JavaNumberBean();
-        validator = new ValidationWrapper<>(numBean);
+        validator = new ValidationWrapper<>(numBean, null);
     }
 
     @Test
     public void shouldValidateNullString() throws Exception {
         numBean.javaNum = null;
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
         numBean.javaNum = " ";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test
     public void shouldValidateNumber() throws Exception {
         numBean.javaNum = "1234";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test
     public void shouldValidateNegativeNumber() throws Exception {
         numBean.javaNum = "-1234";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
 
@@ -81,45 +72,35 @@ public class JavaNumberTest {
     public void shouldValidateNumberWithTypeQualifier() throws Exception {
         numBean.javaNum = "1234L";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test
     public void shouldValidateHexNumberLowerCaseX() throws Exception {
         numBean.javaNum = "0x1A";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test
     public void shouldValidateHexNumberUpperCaseX() throws Exception {
         numBean.javaNum = "0X1A";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test
     public void shouldValidateOctalNumber() throws Exception {
         numBean.javaNum = "017";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test
     public void shouldValidateDecimalNumber() throws Exception {
         numBean.javaNum = "0.19";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("javaNum");
     }
 
     @Test

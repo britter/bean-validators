@@ -15,19 +15,10 @@
  */
 package com.github.britter.beanvalidators;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
 import javax.validation.ValidationException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +31,7 @@ public class EmptyTest {
     @Before
     public void setUp() throws Exception {
         emptyBean = new EmptyBean();
-        validator = new ValidationWrapper<>(emptyBean);
+        validator = new ValidationWrapper<>(emptyBean, "must be empty");
     }
 
     // Strings
@@ -49,40 +40,28 @@ public class EmptyTest {
     public void shouldValidateEmptyString() throws Exception {
         emptyBean.string = "";
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("string");
     }
 
     @Test
     public void shouldValidateNullString() throws Exception {
         emptyBean.string = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("string");
     }
 
     @Test
     public void shouldNotValidateBlankString() throws Exception {
         emptyBean.string = "  ";
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<EmptyBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be empty")));
+        validator.assertViolation("string");
     }
 
     @Test
     public void shouldNotValidateString() throws Exception {
         emptyBean.string = "abcd";
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("string");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<EmptyBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be empty")));
+        validator.assertViolation("string");
     }
 
     // Collections
@@ -91,27 +70,21 @@ public class EmptyTest {
     public void shouldValidateNullCollection() throws Exception {
         emptyBean.col = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("col");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("col");
     }
 
     @Test
     public void shouldValidateEmptyCollection() throws Exception {
         emptyBean.col = Collections.emptyList();
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("col");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("col");
     }
 
     @Test
     public void shouldNotValidateFilledCollection() throws Exception {
         emptyBean.col = Collections.singleton("abcd");
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("col");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("col");
     }
 
     // Maps
@@ -120,27 +93,21 @@ public class EmptyTest {
     public void shouldValidateNullMap() throws Exception {
         emptyBean.map = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("map");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("map");
     }
 
     @Test
     public void shouldValidateEmptyMap() throws Exception {
         emptyBean.map = Collections.emptyMap();
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("map");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("map");
     }
 
     @Test
     public void shouldNotValidateFilledMap() throws Exception {
         emptyBean.map = Collections.singletonMap("key", "value");
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("map");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("map");
     }
 
     // Arrays
@@ -149,27 +116,21 @@ public class EmptyTest {
     public void shouldValidateNullArray() throws Exception {
         emptyBean.array = null;
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("array");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("array");
     }
 
     @Test
     public void shouldValidateEmptyArray() throws Exception {
         emptyBean.array = new String[0];
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("array");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("array");
     }
 
     @Test
     public void shouldNotValidateNonEmptyArray() throws Exception {
         emptyBean.array = new String[1];
 
-        Set<ConstraintViolation<EmptyBean>> violations = validator.validate("array");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("array");
     }
 
     // Other

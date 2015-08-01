@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -37,25 +36,21 @@ public class AlphaNumericTest {
     @Before
     public void setUp() {
         alphaNumBean = new AlphaNumericBean();
-        validator = new ValidationWrapper<>(alphaNumBean);
+        validator = new ValidationWrapper<>(alphaNumBean, null);
     }
 
     @Test
     public void defaultSettingsShouldValidateAlphabeticString() throws Exception {
         alphaNumBean.alphaNum = "abcd";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphaNum");
     }
 
     @Test
     public void defaultSettingsShouldValidateAlphabeticNumericString() throws Exception {
         alphaNumBean.alphaNum = "abcd1234";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphaNum");
     }
 
     @Test
@@ -91,18 +86,14 @@ public class AlphaNumericTest {
     public void allowSpacesSettingsShouldValidateAlphabeticString() throws Exception {
         alphaNumBean.alphaNumSpace = "abcd";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphaNumSpace");
     }
 
     @Test
     public void allowSpacesSettingsShouldValidateAlphabeticNumericString() throws Exception {
         alphaNumBean.alphaNumSpace = "abcd1234";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphaNumSpace");
     }
 
     @Test
@@ -120,18 +111,14 @@ public class AlphaNumericTest {
     public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() throws Exception {
         alphaNumBean.alphaNumSpace = "ab cd";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphaNumSpace");
     }
 
     @Test
     public void allowSpacesSettingsShouldValidateAlphabeticNumericStringWithSpaces() throws Exception {
         alphaNumBean.alphaNumSpace = "ab cd 1234";
 
-        Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNumSpace");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("alphaNumSpace");
     }
 
     private static class AlphaNumericBean {

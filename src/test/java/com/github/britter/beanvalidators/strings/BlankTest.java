@@ -16,7 +16,6 @@
 package com.github.britter.beanvalidators.strings;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -37,34 +36,28 @@ public class BlankTest {
     @Before
     public void setUp() {
         blankBean = new BlankBean();
-        validator = new ValidationWrapper<>(blankBean);
+        validator = new ValidationWrapper<>(blankBean, null);
     }
 
     @Test
     public void shouldValidateEmptyString() throws Exception {
         blankBean.blank = "";
 
-        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("blank");
     }
 
     @Test
     public void shouldValidateNullString() throws Exception {
         blankBean.blank = null;
 
-        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("blank");
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
         blankBean.blank = "  ";
 
-        Set<ConstraintViolation<BlankBean>> violations = validator.validate("blank");
-
-        assertThat(violations, is(empty()));
+        validator.assertNoViolations("blank");
     }
 
     @Test
