@@ -27,7 +27,7 @@ public class NotFileConstraintValidator extends AbstractFileConstraintValidator<
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || !value.isFile();
+        return !value.isFile();
     }
 
 }

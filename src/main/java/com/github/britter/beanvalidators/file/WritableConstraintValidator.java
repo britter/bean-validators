@@ -27,7 +27,7 @@ public class WritableConstraintValidator extends AbstractFileConstraintValidator
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || value.canWrite();
+        return value.canWrite();
     }
 
 }

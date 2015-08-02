@@ -27,7 +27,7 @@ public class NotReadableConstraintValidator extends AbstractFileConstraintValida
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || !value.canRead();
+        return !value.canRead();
     }
 
 }

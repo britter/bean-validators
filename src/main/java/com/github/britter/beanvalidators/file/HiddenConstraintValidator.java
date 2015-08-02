@@ -27,7 +27,7 @@ public class HiddenConstraintValidator extends AbstractFileConstraintValidator<H
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || value.isHidden();
+        return value.isHidden();
     }
 
 }

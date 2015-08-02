@@ -27,7 +27,7 @@ public class NotExecutableConstraintValidator extends AbstractFileConstraintVali
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || !value.canExecute();
+        return !value.canExecute();
     }
 
 }

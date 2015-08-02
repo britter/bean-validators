@@ -27,7 +27,7 @@ public class NotAbsoluteConstraintValidator extends AbstractFileConstraintValida
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || !value.isAbsolute();
+        return !value.isAbsolute();
     }
 
 }

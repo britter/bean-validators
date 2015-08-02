@@ -27,7 +27,7 @@ public class NotExistingConstraintValidator extends AbstractFileConstraintValida
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || !value.exists();
+        return !value.exists();
     }
 
 }

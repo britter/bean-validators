@@ -27,7 +27,7 @@ public class NotDirectoryConstraintValidator extends AbstractFileConstraintValid
 
     @Override
     public boolean isValid(File value, ConstraintValidatorContext context) {
-        return value == null || !value.isDirectory();
+        return !value.isDirectory();
     }
 
 }
