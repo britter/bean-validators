@@ -47,6 +47,11 @@
     <tag>HEAD</tag>
   </scm>
 
+  <ciManagement>
+    <system>Travis CI</system>
+    <url>https://travis-ci.org/britter/bean-validators</url>
+  </ciManagement>
+
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
