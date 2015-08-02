@@ -26,6 +26,12 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure the validated file or path represents a file in the file system.
+ *
+ * @see java.io.File#isFile()
+ * @since 0.5.0
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = FileConstraintValidator.class)

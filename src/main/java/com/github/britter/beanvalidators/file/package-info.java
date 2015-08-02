@@ -21,5 +21,7 @@
  * All annotations can also be applied to Strings. The validators will construct a new File instance using
  * {@link java.io.File#File(java.lang.String)} and use that instance for validation.
  * </p>
+ *
+ * @since 0.5.0
  */
 package com.github.britter.beanvalidators.file;

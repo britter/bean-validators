@@ -17,6 +17,11 @@ package com.github.britter.beanvalidators.file;
 
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * Validator for {@link File @File}.
+ *
+ * @since 0.5.0
+ */
 public class FileConstraintValidator extends AbstractFileConstraintValidator<File> {
 
     @Override

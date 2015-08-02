@@ -26,6 +26,12 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure the validated file or path does not exist.
+ *
+ * @see java.io.File#exists()
+ * @since 0.5.0
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = NotExistingConstraintValidator.class)

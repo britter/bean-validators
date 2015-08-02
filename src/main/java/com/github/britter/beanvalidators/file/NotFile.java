@@ -26,6 +26,17 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure the validated file or path does not represent a file in the file system. 
+ *
+ * <p>
+ * Note that both {@link java.io.File#isFile()} and {@link java.io.File#isDirectory()} can return false, for example for
+ * file objects representing sockets, mounts or pipes.
+ * </p>
+ *
+ * @see java.io.File#isFile()
+ * @since 0.5.0
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = NotFileConstraintValidator.class)
