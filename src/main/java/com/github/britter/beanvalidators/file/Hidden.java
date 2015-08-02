@@ -26,6 +26,18 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure the validated file or path is hidden. 
+ *
+ * <p>
+ * Note that the definition of a hidden files various between operating systems. For examples in an UNIX-like OS, all
+ * files and directories starting with a dot are considered to be hidden, whereas on Windows the hidden attribute of the
+ * file has to be set to true.
+ * </p>
+ *
+ * @see java.io.File#isHidden()
+ * @since 0.5.0
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = HiddenConstraintValidator.class)

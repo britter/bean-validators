@@ -18,15 +18,20 @@ package com.github.britter.beanvalidators.file;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
+/**
+ * Validator for {@link NotWritable @NotWritable}.
+ *
+ * @since 0.5.0
+ */
 public class NotWritableConstraintValidator extends AbstractFileConstraintValidator<NotWritable> {
 
     @Override
-    public void initialize(NotWritable constraintAnnotation) {
+    public void initialize(final NotWritable constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return !value.canWrite();
     }
 

@@ -26,12 +26,12 @@ public class ISBNConstraintValidator implements ConstraintValidator<ISBN, String
     private ISBNType type;
 
     @Override
-    public void initialize(ISBN constraintAnnotation) {
+    public void initialize(final ISBN constraintAnnotation) {
         this.type = constraintAnnotation.type();
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
         if (StringUtils.isBlank(value)) {
             return true;

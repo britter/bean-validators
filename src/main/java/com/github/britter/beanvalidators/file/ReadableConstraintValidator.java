@@ -18,15 +18,20 @@ package com.github.britter.beanvalidators.file;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
+/**
+ * Validator for {@link Readable @Readable}.
+ *
+ * @since 0.5.0
+ */
 public class ReadableConstraintValidator extends AbstractFileConstraintValidator<Readable> {
 
     @Override
-    public void initialize(Readable constraintAnnotation) {
+    public void initialize(final Readable constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return value.canRead();
     }
 

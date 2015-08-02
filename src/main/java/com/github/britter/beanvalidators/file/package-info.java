@@ -13,26 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators.file;
-
-import javax.validation.ConstraintValidatorContext;
-import java.io.File;
-
 /**
- * Validator for {@link Executable @Executable}.
+ * Constraints for validating all properties of {@link java.io.File} objects.
+ *
+ * <p>
+ * There is an annotation for each property as well as one for the negation of each property.
+ * All annotations can also be applied to Strings. The validators will construct a new File instance using
+ * {@link java.io.File#File(java.lang.String)} and use that instance for validation.
+ * </p>
  *
  * @since 0.5.0
  */
-public class ExecutableConstraintValidator extends AbstractFileConstraintValidator<Executable> {
-
-    @Override
-    public void initialize(final Executable constraintAnnotation) {
-        super.initialize(constraintAnnotation);
-    }
-
-    @Override
-    public boolean isValid(final File value, final ConstraintValidatorContext context) {
-        return value.canExecute();
-    }
-
-}
+package com.github.britter.beanvalidators.file;

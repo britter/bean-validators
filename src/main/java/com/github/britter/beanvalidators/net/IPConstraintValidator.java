@@ -26,12 +26,12 @@ public class IPConstraintValidator implements ConstraintValidator<IP, String> {
     private IPType type;
 
     @Override
-    public void initialize(IP constraintAnnotation) {
+    public void initialize(final IP constraintAnnotation) {
         this.type = constraintAnnotation.type();
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         if (StringUtils.isBlank(value)) {
             return true;
         }

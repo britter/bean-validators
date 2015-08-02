@@ -18,15 +18,20 @@ package com.github.britter.beanvalidators.file;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
+/**
+ * Validator for {@link Existing @Existing}.
+ *
+ * @since 0.5.0
+ */
 public class ExistingConstraintValidator extends AbstractFileConstraintValidator<Existing> {
 
     @Override
-    public void initialize(Existing constraintAnnotation) {
+    public void initialize(final Existing constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return value.exists();
     }
 

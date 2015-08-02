@@ -18,15 +18,20 @@ package com.github.britter.beanvalidators.file;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
+/**
+ * Validator for {@link NotFile @NotFile}.
+ *
+ * @since 0.5.0
+ */
 public class NotFileConstraintValidator extends AbstractFileConstraintValidator<NotFile> {
 
     @Override
-    public void initialize(NotFile constraintAnnotation) {
+    public void initialize(final NotFile constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return !value.isFile();
     }
 

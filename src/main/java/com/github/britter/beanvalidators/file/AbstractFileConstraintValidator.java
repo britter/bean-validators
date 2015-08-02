@@ -10,15 +10,15 @@ import org.apache.commons.lang3.StringUtils;
 
 abstract class AbstractFileConstraintValidator<A extends Annotation> implements ConstraintValidator<A, Object> {
 
-    private Class<? extends Annotation> constraintAnnotation;
+    private Class<? extends Annotation> annotationType;
 
     @Override
-    public void initialize(A constraintAnnotation) {
-        this.constraintAnnotation = constraintAnnotation.annotationType();
+    public void initialize(final A constraintAnnotation) {
+        this.annotationType = constraintAnnotation.annotationType();
     }
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }
@@ -28,10 +28,10 @@ abstract class AbstractFileConstraintValidator<A extends Annotation> implements 
             String str = (String) value;
             return StringUtils.isBlank(str) || isValid(new File(str), context);
         } else {
-            throw new ValidationException("@" + constraintAnnotation.getSimpleName()
+            throw new ValidationException("@" + annotationType.getSimpleName()
                     + " can not be applied to instances of " + value.getClass());
         }
     }
 
-    public abstract boolean isValid(File value, ConstraintValidatorContext context);
+    public abstract boolean isValid(final File value, final ConstraintValidatorContext context);
 }

@@ -13,26 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators.file;
-
-import javax.validation.ConstraintValidatorContext;
-import java.io.File;
-
 /**
- * Validator for {@link Executable @Executable}.
+ * Various constraints which can be applied to instance of {@link java.lang.String}.
  *
- * @since 0.5.0
+ * <p>
+ * All validators treat blank strings as valid. If you need a non empty/non blank String, you annotations such as
+ * {@code org.hibernate.validator.constraints.NotEmpty} or {@code org.hibernate.validator.constraints.NotBlank} in
+ * addition.
+ * </p>
  */
-public class ExecutableConstraintValidator extends AbstractFileConstraintValidator<Executable> {
-
-    @Override
-    public void initialize(final Executable constraintAnnotation) {
-        super.initialize(constraintAnnotation);
-    }
-
-    @Override
-    public boolean isValid(final File value, final ConstraintValidatorContext context) {
-        return value.canExecute();
-    }
-
-}
+package com.github.britter.beanvalidators.strings;

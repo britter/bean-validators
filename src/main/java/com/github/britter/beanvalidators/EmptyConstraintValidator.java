@@ -27,11 +27,11 @@ import org.apache.commons.lang3.StringUtils;
 public class EmptyConstraintValidator implements ConstraintValidator<Empty, Object> {
 
     @Override
-    public void initialize(Empty constraintAnnotation) {
+    public void initialize(final Empty constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         } else if (value instanceof String) {

@@ -25,12 +25,12 @@ public class AlphaNumericConstraintValidator implements ConstraintValidator<Alph
     private boolean allowSpaces;
 
     @Override
-    public void initialize(AlphaNumeric constraintAnnotation) {
+    public void initialize(final AlphaNumeric constraintAnnotation) {
         this.allowSpaces = constraintAnnotation.allowSpaces();
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
         return StringUtils.isBlank(value) || allowSpaces ? StringUtils.isAlphanumericSpace(value) : StringUtils.isAlphanumeric(value);
     }

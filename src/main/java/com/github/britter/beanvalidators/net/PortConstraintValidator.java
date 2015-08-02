@@ -28,11 +28,11 @@ public class PortConstraintValidator implements ConstraintValidator<Port, Object
     public static final int PORT_MAX_VALUE = 65536;
 
     @Override
-    public void initialize(Port constraintAnnotation) {
+    public void initialize(final Port constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         } else if (value instanceof String) {
@@ -44,7 +44,7 @@ public class PortConstraintValidator implements ConstraintValidator<Port, Object
         }
     }
 
-    private boolean isValidPort(String port) {
+    private boolean isValidPort(final String port) {
         if (StringUtils.isBlank(port)) {
             return true;
         } else if (NumberUtils.isDigits(port)) {
@@ -54,7 +54,7 @@ public class PortConstraintValidator implements ConstraintValidator<Port, Object
         }
     }
 
-    private boolean isValidPort(Integer port) {
+    private boolean isValidPort(final Integer port) {
         return port >= PORT_MIN_VALUE && port <= PORT_MAX_VALUE;
     }
 }

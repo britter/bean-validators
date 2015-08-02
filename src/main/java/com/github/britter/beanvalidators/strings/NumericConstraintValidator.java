@@ -23,11 +23,11 @@ import org.apache.commons.lang3.StringUtils;
 public class NumericConstraintValidator implements ConstraintValidator<Numeric, String> {
 
     @Override
-    public void initialize(Numeric constraintAnnotation) {
+    public void initialize(final Numeric constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
         return StringUtils.isBlank(value) || StringUtils.isNumeric(value);
     }

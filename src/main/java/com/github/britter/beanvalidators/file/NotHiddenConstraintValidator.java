@@ -18,15 +18,20 @@ package com.github.britter.beanvalidators.file;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
+/**
+ * Validator for {@link NotHidden @NotHidden}.
+ *
+ * @since 0.5.0
+ */
 public class NotHiddenConstraintValidator extends AbstractFileConstraintValidator<NotHidden> {
 
     @Override
-    public void initialize(NotHidden constraintAnnotation) {
+    public void initialize(final NotHidden constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return !value.isHidden();
     }
 

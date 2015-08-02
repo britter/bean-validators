@@ -24,11 +24,11 @@ import org.apache.commons.validator.routines.DomainValidator;
 public class DomainConstraintValidator implements ConstraintValidator<Domain, String> {
 
     @Override
-    public void initialize(Domain constraintAnnotation) {
+    public void initialize(final Domain constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         return StringUtils.isBlank(value) || DomainValidator.getInstance().isValid(value);
     }
 
