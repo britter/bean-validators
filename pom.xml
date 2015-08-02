@@ -52,6 +52,11 @@
     <url>https://travis-ci.org/britter/bean-validators</url>
   </ciManagement>
 
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/britter/bean-validators/issues</url>
+  </issueManagement>
+
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
