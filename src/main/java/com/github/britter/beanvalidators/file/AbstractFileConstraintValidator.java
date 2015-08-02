@@ -10,11 +10,11 @@ import org.apache.commons.lang3.StringUtils;
 
 abstract class AbstractFileConstraintValidator<A extends Annotation> implements ConstraintValidator<A, Object> {
 
-    private Class<? extends Annotation> constraintAnnotation;
+    private Class<? extends Annotation> annotationType;
 
     @Override
     public void initialize(A constraintAnnotation) {
-        this.constraintAnnotation = constraintAnnotation.annotationType();
+        this.annotationType = constraintAnnotation.annotationType();
     }
 
     @Override
@@ -28,7 +28,7 @@ abstract class AbstractFileConstraintValidator<A extends Annotation> implements 
             String str = (String) value;
             return StringUtils.isBlank(str) || isValid(new File(str), context);
         } else {
-            throw new ValidationException("@" + constraintAnnotation.getSimpleName()
+            throw new ValidationException("@" + annotationType.getSimpleName()
                     + " can not be applied to instances of " + value.getClass());
         }
     }
