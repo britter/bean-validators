@@ -13,12 +13,12 @@ abstract class AbstractFileConstraintValidator<A extends Annotation> implements 
     private Class<? extends Annotation> annotationType;
 
     @Override
-    public void initialize(A constraintAnnotation) {
+    public void initialize(final A constraintAnnotation) {
         this.annotationType = constraintAnnotation.annotationType();
     }
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }
@@ -33,5 +33,5 @@ abstract class AbstractFileConstraintValidator<A extends Annotation> implements 
         }
     }
 
-    public abstract boolean isValid(File value, ConstraintValidatorContext context);
+    public abstract boolean isValid(final File value, final ConstraintValidatorContext context);
 }

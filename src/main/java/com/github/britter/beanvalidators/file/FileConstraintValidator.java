@@ -20,12 +20,12 @@ import javax.validation.ConstraintValidatorContext;
 public class FileConstraintValidator extends AbstractFileConstraintValidator<File> {
 
     @Override
-    public void initialize(File constraintAnnotation) {
+    public void initialize(final File constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(java.io.File value, ConstraintValidatorContext context) {
+    public boolean isValid(final java.io.File value, final ConstraintValidatorContext context) {
         return value.isFile();
     }
 

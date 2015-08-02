@@ -23,11 +23,11 @@ import org.apache.commons.lang3.StringUtils;
 public class BlankConstraintValidator implements ConstraintValidator<Blank, String> {
 
     @Override
-    public void initialize(Blank constraintAnnotation) {
+    public void initialize(final Blank constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         return StringUtils.isBlank(value);
     }
 

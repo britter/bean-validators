@@ -21,12 +21,12 @@ import java.io.File;
 public class NotExistingConstraintValidator extends AbstractFileConstraintValidator<NotExisting> {
 
     @Override
-    public void initialize(NotExisting constraintAnnotation) {
+    public void initialize(final NotExisting constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return !value.exists();
     }
 

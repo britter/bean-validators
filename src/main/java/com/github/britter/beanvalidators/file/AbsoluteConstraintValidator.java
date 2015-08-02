@@ -21,12 +21,12 @@ import java.io.File;
 public class AbsoluteConstraintValidator extends AbstractFileConstraintValidator<Absolute> {
 
     @Override
-    public void initialize(Absolute constraintAnnotation) {
+    public void initialize(final Absolute constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return value.isAbsolute();
     }
 

@@ -24,11 +24,11 @@ import org.apache.commons.lang3.math.NumberUtils;
 public class JavaNumberConstraintValidator implements ConstraintValidator<JavaNumber, String> {
 
     @Override
-    public void initialize(JavaNumber constraintAnnotation) {
+    public void initialize(final JavaNumber constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
         return StringUtils.isBlank(value) || NumberUtils.isNumber(value);
     }

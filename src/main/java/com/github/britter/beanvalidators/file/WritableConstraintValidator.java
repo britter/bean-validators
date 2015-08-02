@@ -21,12 +21,12 @@ import java.io.File;
 public class WritableConstraintValidator extends AbstractFileConstraintValidator<Writable> {
 
     @Override
-    public void initialize(Writable constraintAnnotation) {
+    public void initialize(final Writable constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return value.canWrite();
     }
 

@@ -23,11 +23,11 @@ import org.apache.commons.lang3.StringUtils;
 public class ASCIIConstraintValidator implements ConstraintValidator<ASCII, String> {
 
     @Override
-    public void initialize(ASCII constraintAnnotation) {
+    public void initialize(final ASCII constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, final ConstraintValidatorContext context) {
         return value == null || StringUtils.isAsciiPrintable(value);
     }
 

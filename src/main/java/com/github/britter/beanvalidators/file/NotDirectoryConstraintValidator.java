@@ -21,12 +21,12 @@ import java.io.File;
 public class NotDirectoryConstraintValidator extends AbstractFileConstraintValidator<NotDirectory> {
 
     @Override
-    public void initialize(NotDirectory constraintAnnotation) {
+    public void initialize(final NotDirectory constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return !value.isDirectory();
     }
 

@@ -21,12 +21,12 @@ import java.io.File;
 public class ExecutableConstraintValidator extends AbstractFileConstraintValidator<Executable> {
 
     @Override
-    public void initialize(Executable constraintAnnotation) {
+    public void initialize(final Executable constraintAnnotation) {
         super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(File value, ConstraintValidatorContext context) {
+    public boolean isValid(final File value, final ConstraintValidatorContext context) {
         return value.canExecute();
     }
 
