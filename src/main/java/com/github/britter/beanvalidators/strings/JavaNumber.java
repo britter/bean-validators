@@ -27,6 +27,14 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure a String contains a valid Java number. Note that this doesn't mean the given String can be parsed by the
+ * various {@code parse} and {@code valueOf} methods defined on {@link Integer} etc. It just means, that the String
+ * could be used to define a number in Java code. For more information see
+ * <a href="http://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html">{@code org.apache.commons.lang3.math.NumberUtils.isNumber(String)}</a>].
+ *
+ * @since 0.4
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = JavaNumberConstraintValidator.class)

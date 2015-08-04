@@ -27,6 +27,11 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure a String only contains ASCII printable characters (all characters have to be in the range 32 to 126).
+ *
+ * @since 0.4
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = ASCIIConstraintValidator.class)
