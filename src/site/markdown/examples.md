@@ -551,7 +551,7 @@ are acutally valid reported as invalid, because the Apache Commons Validator TLP
 
 Makes sure a String represents a valid [Internet Protocol (IP) address](https://en.wikipedia.org/wiki/IP_address). There
 are two kinds of IP addresses: IPv4 and the newer IPv6. The default is to validate against both versions. The behavior
-can be controlled by the `com.github.britter.beanvalidators.net.IPType` annotation.
+can be controlled by the `com.github.britter.beanvalidators.net.IPType` enum.
 
 ```java
     /**
