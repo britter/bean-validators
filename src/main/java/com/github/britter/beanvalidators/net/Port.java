@@ -27,6 +27,15 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure a String, int or Integer represents a valid <a href="https://en.wikipedia.org/wiki/Port_(computer_networking)">port</a>
+ * number. 
+ * 
+ * <p>A port number is a 16-bit unsigned integer, thus ranging from 0 to 65535. {@code @Port} can be applied to String,
+ * ints and Integers. When applied to any other type, a {@link javax.validation.ValidationException} will be thrown.</p>
+ *
+ * @since 0.3
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = PortConstraintValidator.class)

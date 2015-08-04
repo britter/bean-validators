@@ -26,6 +26,16 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure a string represents a valid domain. 
+ * 
+ * <p>Note that the list of valid top level domains is changes frequently. Since
+ * this validator uses <a href="http://commons.apache.org/proper/commons-validator/apidocs/index.html">{@code org.apache.commons.validator.routines.DomainValidator}</a>
+ * under the hood, there may be domains which
+ * are actually valid reported as invalid, because the Apache Commons Validator TLP list is not up to date.</p>
+ *
+ * @since 0.3
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = DomainConstraintValidator.class)

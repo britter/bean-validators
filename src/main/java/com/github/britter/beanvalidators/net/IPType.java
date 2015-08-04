@@ -15,8 +15,23 @@
  */
 package com.github.britter.beanvalidators.net;
 
+/**
+ * Enum controlling the behavior of {@link IP @IP}.
+ *
+ * @since 0.3
+ */
 public enum IPType {
+
+    /**
+     * Only validate IPv4 addresses. These are addresses of the kind: {@çode 192.168.0.1}.
+     */
     IP_V4,
+    /**
+     * Only validate IPv6 addresses. These are addresses of the kind: {@çode fe80::8a1f:a1ff:fe11:9326}.
+     */
     IP_V6,
+    /**
+     * Validate both, IPv4 and IPv6 addresses.
+     */
     ALL
 }

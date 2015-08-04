@@ -26,6 +26,14 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Makes sure a String represents a valid <a href="https://en.wikipedia.org/wiki/IP_address">Internet Protocol (IP) address</a>.
+ * 
+ * <p>There are two kinds of IP addresses: IPv4 and the newer IPv6. The default is to validate against both versions.
+ * This behavior can be controlled by the {@link IPType} enum.</p>
+ *
+ * @since 0.3
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = IPConstraintValidator.class)
