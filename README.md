@@ -25,9 +25,9 @@ Add the following to your Maven dependency list:
 
 ## How to release
 
-`mvn -Prelease release:prepare -Darguments=-Dgpg.keyname=<key to use>`
+`./mvnw -Prelease release:prepare -Darguments=-Dgpg.keyname=<key to use>`
 
-`mvn -Prelease release:perform -Darguments=-Dgpg.keyname=<key to use>`
+`./mvnw -Prelease release:perform -Darguments=-Dgpg.keyname=<key to use>`
 
 ## License
 
