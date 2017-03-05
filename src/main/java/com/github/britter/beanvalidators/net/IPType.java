@@ -23,11 +23,11 @@ package com.github.britter.beanvalidators.net;
 public enum IPType {
 
     /**
-     * Only validate IPv4 addresses. These are addresses of the kind: {@çode 192.168.0.1}.
+     * Only validate IPv4 addresses. These are addresses of the kind: {@code 192.168.0.1}.
      */
     IP_V4,
     /**
-     * Only validate IPv6 addresses. These are addresses of the kind: {@çode fe80::8a1f:a1ff:fe11:9326}.
+     * Only validate IPv6 addresses. These are addresses of the kind: {@code fe80::8a1f:a1ff:fe11:9326}.
      */
     IP_V6,
     /**
