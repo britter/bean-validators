@@ -32,7 +32,7 @@ public class AlphaNumericConstraintValidator implements ConstraintValidator<Alph
     @Override
     public boolean isValid(final String value, final ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
-        return StringUtils.isBlank(value) || allowSpaces ? StringUtils.isAlphanumericSpace(value) : StringUtils.isAlphanumeric(value);
+        return StringUtils.isBlank(value) || (allowSpaces ? StringUtils.isAlphanumericSpace(value) : StringUtils.isAlphanumeric(value));
     }
 
 }
