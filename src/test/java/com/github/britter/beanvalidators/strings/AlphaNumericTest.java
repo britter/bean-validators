@@ -54,6 +54,21 @@ public class AlphaNumericTest {
     }
 
     @Test
+    public void defaultSettingsShouldValidateNull() throws Exception {
+        alphaNumBean.alphaNum = null;
+
+        validator.assertNoViolations("alphaNum");
+    }
+
+    @Test
+    public void defaultSettingsShouldValidateBlankString() throws Exception {
+        alphaNumBean.alphaNum = "";
+
+        validator.assertNoViolations("alphaNum");
+    }
+
+
+    @Test
     public void defaultSettingsShouldNotValidateNonAlphabeticString() throws Exception {
         alphaNumBean.alphaNum = "abcd?";
 
@@ -81,6 +96,7 @@ public class AlphaNumericTest {
 
         assertThat(violations, hasSize(1));
     }
+
 
     @Test
     public void allowSpacesSettingsShouldValidateAlphabeticString() throws Exception {

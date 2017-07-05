@@ -47,6 +47,20 @@ public class AlphabeticTest {
     }
 
     @Test
+    public void defaultSettingsShouldValidateNull() throws Exception {
+        alphabeticBean.alphabetic = null;
+
+        validator.assertNoViolations("alphabetic");
+    }
+
+    @Test
+    public void defaultSettingsShouldValidateBlankString() throws Exception {
+        alphabeticBean.alphabetic = "";
+
+        validator.assertNoViolations("alphabetic");
+    }
+
+    @Test
     public void defaultSettingsShouldNotValidateNonAlphabeticString() throws Exception {
         alphabeticBean.alphabetic = "abcd123";
 
