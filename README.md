@@ -20,7 +20,7 @@ Add the following to your Maven dependency list:
 <dependency>
   <groupId>com.github.britter</groupId>
   <artifactId>bean-validators</artifactId>
-  <version>0.6.1</version>
+  <version>0.6.3</version>
 </dependency>
 ```
 
