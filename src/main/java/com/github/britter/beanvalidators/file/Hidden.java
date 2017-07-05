@@ -27,7 +27,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Makes sure the validated file or path is hidden. 
+ * Makes sure the validated file or path is hidden.
  *
  * <p>
  * Note that the definition of a hidden files various between operating systems. For examples in an UNIX-like OS, all

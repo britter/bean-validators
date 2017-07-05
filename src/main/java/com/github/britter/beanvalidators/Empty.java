@@ -29,7 +29,7 @@ import java.lang.annotation.Target;
 /**
  * Opposite of {@code org.hibernate.validator.constraints.NotEmpty}
  *
- * <p>Works on String, Collections, Maps and arrays. If any other type is annotated with @Empty 
+ * <p>Works on String, Collections, Maps and arrays. If any other type is annotated with @Empty
  * a {@link javax.validation.ValidationException} will be thrown.</p>
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})

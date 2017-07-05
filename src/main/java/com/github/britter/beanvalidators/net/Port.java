@@ -29,8 +29,8 @@ import java.lang.annotation.Target;
 
 /**
  * Makes sure a String, int or Integer represents a valid <a href="https://en.wikipedia.org/wiki/Port_(computer_networking)">port</a>
- * number. 
- * 
+ * number.
+ *
  * <p>A port number is a 16-bit unsigned integer, thus ranging from 0 to 65535. {@code @Port} can be applied to String,
  * ints and Integers. When applied to any other type, a {@link javax.validation.ValidationException} will be thrown.</p>
  *
