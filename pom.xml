@@ -20,14 +20,14 @@
   <groupId>com.github.britter</groupId>
   <artifactId>bean-validators</artifactId>
   <packaging>jar</packaging>
-  <version>0.6.4-SNAPSHOT</version>
+  <version>0.7.0-SNAPSHOT</version>
 
   <name>bean-validators</name>
   <description>Additional validator implementations for javax.validation.</description>
   <url>https://britter.github.io/bean-validators</url>
 
   <properties>
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
     <maven.javadoc.version>2.10.3</maven.javadoc.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
