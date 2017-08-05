@@ -20,7 +20,7 @@
   <groupId>com.github.britter</groupId>
   <artifactId>bean-validators</artifactId>
   <packaging>jar</packaging>
-  <version>0.7.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>bean-validators</name>
   <description>Additional validator implementations for javax.validation.</description>
