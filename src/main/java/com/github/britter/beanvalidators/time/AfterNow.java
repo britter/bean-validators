@@ -30,8 +30,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * Makes sure the validated temporal unit is after now.
  *
  * <p>
- * Can be applied to {@link java.time.LocalDate}, {@link java.time.LocalDateTime}, {@link java.time.LocalTime},
- * {@link java.time.OffsetDateTime}, {@link java.time.OffsetTime}, and {@link java.time.Instant}.
+ * Can be applied to {@link java.time.Instant}, {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+ * {@link java.time.LocalTime}, {@link java.time.OffsetDateTime}, {@link java.time.OffsetTime},
+ * and {@link java.time.ZonedDateTime}.
  * </p>
  *
  * @since 1.0.0
@@ -43,7 +44,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
         AfterNowLocalDateTimeConstraintValidator.class,
         AfterNowLocalTimeConstraintValidator.class,
         AfterNowInstantConstraintValidator.class,
-        AfterNowOffsetDateTimeConstraintValidator.class
+        AfterNowOffsetDateTimeConstraintValidator.class,
+        AfterNowOffsetTimeConstraintValidator.class,
+        AfterNowZonedDateTimeConstraintValidator.class,
 })
 @Documented
 public @interface AfterNow {

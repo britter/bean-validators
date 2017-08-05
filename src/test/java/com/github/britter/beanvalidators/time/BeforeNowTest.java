@@ -156,6 +156,54 @@ public class BeforeNowTest {
         validator.assertViolation("offsetDateTime");
     }
 
+    @Test
+    public void shouldValidateOffsetTimeBeforeNow() throws Exception {
+        beforeNowBean.offsetTime = OffsetTime.now().minusHours(1);
+
+        validator.assertNoViolations("offsetTime");
+    }
+
+    @Test
+    public void shouldNotValidateOffsetTimeNow() throws Exception {
+        OffsetTime now = OffsetTime.now();
+        BeforeNowOffsetTimeConstraintValidator.now = Optional.of(now);
+
+        beforeNowBean.offsetTime = now;
+
+        validator.assertViolation("offsetTime");
+    }
+
+    @Test
+    public void shouldNotValidateOffsetTimeAfterNow() throws Exception {
+        beforeNowBean.offsetTime = OffsetTime.now().plusHours(1);
+
+        validator.assertViolation("offsetTime");
+    }
+
+    @Test
+    public void shouldValidateZonedDateTimeBeforeNow() throws Exception {
+        beforeNowBean.zonedDateTime = ZonedDateTime.now().minusHours(1);
+
+        validator.assertNoViolations("zonedDateTime");
+    }
+
+    @Test
+    public void shouldNotValidateZonedDateTimeNow() throws Exception {
+        ZonedDateTime now = ZonedDateTime.now();
+        BeforeNowZonedDateTimeConstraintValidator.now = Optional.of(now);
+
+        beforeNowBean.zonedDateTime = now;
+
+        validator.assertViolation("zonedDateTime");
+    }
+
+    @Test
+    public void shouldNotValidateZonedDateTimeAfterNow() throws Exception {
+        beforeNowBean.zonedDateTime = ZonedDateTime.now().plusHours(1);
+
+        validator.assertViolation("zonedDateTime");
+    }
+
     private static class BeforeNowBean {
         @BeforeNow
         private LocalDate localDate;

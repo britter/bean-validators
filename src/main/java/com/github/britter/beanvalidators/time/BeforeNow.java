@@ -43,7 +43,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
         BeforeNowLocalDateTimeConstraintValidator.class,
         BeforeNowLocalTimeConstraintValidator.class,
         BeforeNowInstantConstraintValidator.class,
-        BeforeNowOffsetDateTimeConstraintValidator.class
+        BeforeNowOffsetDateTimeConstraintValidator.class,
+        BeforeNowOffsetTimeConstraintValidator.class,
+        BeforeNowZonedDateTimeConstraintValidator.class,
 })
 @Documented
 public @interface BeforeNow {

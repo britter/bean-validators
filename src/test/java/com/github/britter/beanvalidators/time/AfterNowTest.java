@@ -144,6 +144,48 @@ public class AfterNowTest {
         validator.assertViolation("offsetDateTime");
     }
 
+    @Test
+    public void shouldValidateOffsetTimeAfterNow() throws Exception {
+        afterNowBean.offsetTime = OffsetTime.now().plusHours(1);
+
+        validator.assertNoViolations("offsetTime");
+    }
+
+    @Test
+    public void shouldNotValidateOffsetTimeNow() throws Exception {
+        afterNowBean.offsetTime = OffsetTime.now();
+
+        validator.assertViolation("offsetTime");
+    }
+
+    @Test
+    public void shouldNotValidateOffsetTimeBeforeNow() throws Exception {
+        afterNowBean.offsetTime = OffsetTime.now().minusHours(1);
+
+        validator.assertViolation("offsetTime");
+    }
+
+    @Test
+    public void shouldValidateZonedDateTimeAfterNow() throws Exception {
+        afterNowBean.zonedDateTime = ZonedDateTime.now().plusHours(1);
+
+        validator.assertNoViolations("zonedDateTime");
+    }
+
+    @Test
+    public void shouldNotValidateZonedDateTimeNow() throws Exception {
+        afterNowBean.zonedDateTime = ZonedDateTime.now();
+
+        validator.assertViolation("zonedDateTime");
+    }
+
+    @Test
+    public void shouldNotValidateZonedDateTimeBeforeNow() throws Exception {
+        afterNowBean.zonedDateTime = ZonedDateTime.now().minusHours(1);
+
+        validator.assertViolation("zonedDateTime");
+    }
+
     private static class AfterNowBean {
         @AfterNow
         private LocalDate localDate;
