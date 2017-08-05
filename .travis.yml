@@ -4,9 +4,5 @@ sudo: false
 jdk:
   - oraclejdk8
 
-install: ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
-script: ./mvnw test
-
 after_success: ./mvnw jacoco:report coveralls:report
 
