@@ -16,7 +16,7 @@ More information can be found on the [project website](https://britter.github.io
 
 Add the following to your Maven dependency list:
 
-```
+```xml
 <dependency>
   <groupId>com.github.britter</groupId>
   <artifactId>bean-validators</artifactId>
