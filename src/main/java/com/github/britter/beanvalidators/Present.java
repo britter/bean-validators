@@ -26,11 +26,12 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+
 /**
- * Opposite of {@code org.hibernate.validator.constraints.NotEmpty}
+ * Makes sure the validated optional is present.
  *
- * <p>Works on String, Collections, Maps and arrays. If any other type is annotated with @Empty
- * a {@link javax.validation.ValidationException} will be thrown.</p>
+ * @see java.util.Optional#isPresent()
+ * @since 1.0.0
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)

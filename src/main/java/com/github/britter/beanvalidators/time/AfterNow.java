@@ -26,7 +26,16 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-
+/**
+ * Makes sure the validated temporal unit is after now.
+ *
+ * <p>
+ * Can be applied to {@link java.time.LocalDate}, {@link java.time.LocalDateTime}, {@link java.time.LocalTime},
+ * {@link java.time.OffsetDateTime}, {@link java.time.OffsetTime}, and {@link java.time.Instant}.
+ * </p>
+ *
+ * @since 1.0.0
+ */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = {
