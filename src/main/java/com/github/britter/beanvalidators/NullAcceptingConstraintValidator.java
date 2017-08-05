@@ -13,28 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.britter.beanvalidators.time;
+package com.github.britter.beanvalidators;
 
-import com.github.britter.beanvalidators.NullAcceptingConstraintValidator;
-
+import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDateTime;
-import java.util.Optional;
+import java.lang.annotation.Annotation;
 
-public class BeforeNowLocalDateTimeConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, LocalDateTime> {
-
-    /**
-     * Only for testing!
-     */
-    static Optional<LocalDateTime> now = Optional.empty();
+public interface NullAcceptingConstraintValidator<A extends Annotation, T> extends ConstraintValidator<A, T> {
 
     @Override
-    public boolean isValidNonNullValue(LocalDateTime value, ConstraintValidatorContext context) {
-        return value.isBefore(now());
+    default void initialize(final A constraintAnnotation) {
     }
 
-    private LocalDateTime now() {
-        return now.orElse(LocalDateTime.now());
+    @Override
+    default boolean isValid(final T value, final ConstraintValidatorContext context) {
+        // Don't validate null, since these are validated by @NotNull
+        return value == null || isValidNonNullValue(value, context);
     }
 
+    boolean isValidNonNullValue(final T value, final ConstraintValidatorContext context);
 }

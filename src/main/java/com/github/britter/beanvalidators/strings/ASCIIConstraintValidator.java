@@ -15,20 +15,16 @@
  */
 package com.github.britter.beanvalidators.strings;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
+import com.github.britter.beanvalidators.BlankStringAcceptingConstraintValidator;
 import org.apache.commons.lang3.StringUtils;
 
-public class ASCIIConstraintValidator implements ConstraintValidator<ASCII, String> {
+import javax.validation.ConstraintValidatorContext;
+
+public class ASCIIConstraintValidator implements BlankStringAcceptingConstraintValidator<ASCII> {
 
     @Override
-    public void initialize(final ASCII constraintAnnotation) {
-    }
-
-    @Override
-    public boolean isValid(final String value, final ConstraintValidatorContext context) {
-        return value == null || StringUtils.isAsciiPrintable(value);
+    public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {
+        return StringUtils.isAsciiPrintable(value);
     }
 
 }

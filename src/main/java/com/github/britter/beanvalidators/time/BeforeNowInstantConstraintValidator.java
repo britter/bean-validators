@@ -15,12 +15,13 @@
  */
 package com.github.britter.beanvalidators.time;
 
-import javax.validation.ConstraintValidator;
+import com.github.britter.beanvalidators.NullAcceptingConstraintValidator;
+
 import javax.validation.ConstraintValidatorContext;
 import java.time.Instant;
 import java.util.Optional;
 
-public class BeforeNowInstantConstraintValidator implements ConstraintValidator<BeforeNow, Instant> {
+public class BeforeNowInstantConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, Instant> {
 
     /**
      * Only for testing!
@@ -28,13 +29,8 @@ public class BeforeNowInstantConstraintValidator implements ConstraintValidator<
     static Optional<Instant> now = Optional.empty();
 
     @Override
-    public void initialize(final BeforeNow constraintAnnotation) {
-    }
-
-    @Override
-    public boolean isValid(final Instant value, final ConstraintValidatorContext context) {
-        // Don't validate null, since these are validated by @NotNull
-        return value == null || (value.isBefore(now()));
+    public boolean isValidNonNullValue(Instant value, ConstraintValidatorContext context) {
+        return value.isBefore(now());
     }
 
     private Instant now() {

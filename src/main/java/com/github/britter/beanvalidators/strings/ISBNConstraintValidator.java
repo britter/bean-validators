@@ -15,13 +15,12 @@
  */
 package com.github.britter.beanvalidators.strings;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
-import org.apache.commons.lang3.StringUtils;
+import com.github.britter.beanvalidators.BlankStringAcceptingConstraintValidator;
 import org.apache.commons.validator.routines.ISBNValidator;
 
-public class ISBNConstraintValidator implements ConstraintValidator<ISBN, String> {
+import javax.validation.ConstraintValidatorContext;
+
+public class ISBNConstraintValidator implements BlankStringAcceptingConstraintValidator<ISBN> {
 
     private ISBNType type;
 
@@ -31,12 +30,7 @@ public class ISBNConstraintValidator implements ConstraintValidator<ISBN, String
     }
 
     @Override
-    public boolean isValid(final String value, final ConstraintValidatorContext context) {
-        // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
-        if (StringUtils.isBlank(value)) {
-            return true;
-        }
-
+    public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {
         switch (type) {
             case ISBN_10:
                 return ISBNValidator.getInstance().isValidISBN10(value);

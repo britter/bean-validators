@@ -15,12 +15,12 @@
  */
 package com.github.britter.beanvalidators.strings;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
+import com.github.britter.beanvalidators.BlankStringAcceptingConstraintValidator;
 import org.apache.commons.lang3.StringUtils;
 
-public class AlphaNumericConstraintValidator implements ConstraintValidator<AlphaNumeric, String> {
+import javax.validation.ConstraintValidatorContext;
+
+public class AlphaNumericConstraintValidator implements BlankStringAcceptingConstraintValidator<AlphaNumeric> {
 
     private boolean allowSpaces;
 
@@ -30,9 +30,8 @@ public class AlphaNumericConstraintValidator implements ConstraintValidator<Alph
     }
 
     @Override
-    public boolean isValid(final String value, final ConstraintValidatorContext context) {
-        // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
-        return StringUtils.isBlank(value) || (allowSpaces ? StringUtils.isAlphanumericSpace(value) : StringUtils.isAlphanumeric(value));
+    public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {
+        return allowSpaces ? StringUtils.isAlphanumericSpace(value) : StringUtils.isAlphanumeric(value);
     }
 
 }

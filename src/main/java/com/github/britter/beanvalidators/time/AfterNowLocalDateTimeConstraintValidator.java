@@ -15,21 +15,16 @@
  */
 package com.github.britter.beanvalidators.time;
 
-import javax.validation.ConstraintValidator;
+import com.github.britter.beanvalidators.NullAcceptingConstraintValidator;
+
 import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class AfterNowLocalDateTimeConstraintValidator implements ConstraintValidator<AfterNow, LocalDateTime> {
+public class AfterNowLocalDateTimeConstraintValidator implements NullAcceptingConstraintValidator<AfterNow, LocalDateTime> {
 
     @Override
-    public void initialize(final AfterNow constraintAnnotation) {
-    }
-
-    @Override
-    public boolean isValid(final LocalDateTime value, final ConstraintValidatorContext context) {
-        // Don't validate null, since these are validated by @NotNull
-        return value == null || (value.isAfter(LocalDateTime.now()));
+    public boolean isValidNonNullValue(LocalDateTime value, ConstraintValidatorContext context) {
+        return value.isAfter(LocalDateTime.now());
     }
 
 }
