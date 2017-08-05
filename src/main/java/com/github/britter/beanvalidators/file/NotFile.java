@@ -39,7 +39,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = NotFileConstraintValidator.class)
+@Constraint(validatedBy = {
+        NotFileFileConstraintValidator.class,
+        NotFileStringFileConstraintValidator.class,
+})
 @Documented
 public @interface NotFile {
 

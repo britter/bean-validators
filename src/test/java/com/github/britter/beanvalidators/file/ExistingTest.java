@@ -66,13 +66,6 @@ public class ExistingTest {
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
-        fileBean.path = " ";
-
-        validator.assertNoViolations("path");
-    }
-
-    @Test
     public void shouldValidateStringRepresentingExistingFile() throws Exception {
         fileBean.path = tmpFolder.newFile().getAbsolutePath();
 

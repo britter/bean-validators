@@ -34,7 +34,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = NotAbsoluteConstraintValidator.class)
+@Constraint(validatedBy = {
+        NotAbsoluteFileConstraintValidator.class,
+        NotAbsoluteStringFileConstraintValidator.class,
+})
 @Documented
 public @interface NotAbsolute {
 

@@ -15,24 +15,15 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.NullAcceptingConstraintValidator;
+
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-/**
- * Validator for {@link Absolute @Absolute}.
- *
- * @since 0.5.0
- */
-public class AbsoluteConstraintValidator extends AbstractFileConstraintValidator<Absolute> {
+public class NotDirectoryFileConstraintValidator implements NullAcceptingConstraintValidator<NotDirectory, File> {
 
     @Override
-    public void initialize(final Absolute constraintAnnotation) {
-        super.initialize(constraintAnnotation);
+    public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {
+        return !value.isDirectory();
     }
-
-    @Override
-    public boolean isValid(final File value, final ConstraintValidatorContext context) {
-        return value.isAbsolute();
-    }
-
 }

@@ -40,7 +40,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = NotHiddenConstraintValidator.class)
+@Constraint(validatedBy = {
+        NotHiddenFileConstraintValidator.class,
+        NotHiddenStringFileConstraintValidator.class,
+})
 @Documented
 public @interface NotHidden {
 

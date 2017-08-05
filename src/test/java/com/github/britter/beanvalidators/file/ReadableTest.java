@@ -66,13 +66,6 @@ public class ReadableTest {
     }
 
     @Test
-    public void shouldValidateBlanKString() throws Exception {
-        fileBean.path = " ";
-
-        validator.assertNoViolations("path");
-    }
-
-    @Test
     public void shouldValidateStringRepresentingReadableDirectory() throws Exception {
         fileBean.path = tmpFolder.newFolder().getAbsolutePath();
 

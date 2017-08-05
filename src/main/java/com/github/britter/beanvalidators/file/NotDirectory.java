@@ -34,7 +34,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = NotDirectoryConstraintValidator.class)
+@Constraint(validatedBy = {
+        NotDirectoryFileConstraintValidator.class,
+        NotDirectoryStringFileConstraintValidator.class,
+})
 @Documented
 public @interface NotDirectory {
 

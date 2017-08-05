@@ -34,7 +34,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = AbsoluteConstraintValidator.class)
+@Constraint(validatedBy = {
+        AbsoluteFileConstraintValidator.class,
+        AbsoluteStringFileConstraintValidator.class
+})
 @Documented
 public @interface Absolute {
 

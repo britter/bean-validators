@@ -15,24 +15,16 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.NullAcceptingConstraintValidator;
+
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-/**
- * Validator for {@link NotWritable @NotWritable}.
- *
- * @since 0.5.0
- */
-public class NotWritableConstraintValidator extends AbstractFileConstraintValidator<NotWritable> {
+public class IsFileFileConstraintValidator implements NullAcceptingConstraintValidator<IsFile, File> {
 
     @Override
-    public void initialize(final NotWritable constraintAnnotation) {
-        super.initialize(constraintAnnotation);
-    }
-
-    @Override
-    public boolean isValid(final File value, final ConstraintValidatorContext context) {
-        return !value.canWrite();
+    public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {
+        return value.isFile();
     }
 
 }

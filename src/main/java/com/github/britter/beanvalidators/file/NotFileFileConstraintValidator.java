@@ -15,24 +15,15 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.NullAcceptingConstraintValidator;
+
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-/**
- * Validator for {@link Executable @Executable}.
- *
- * @since 0.5.0
- */
-public class ExecutableConstraintValidator extends AbstractFileConstraintValidator<Executable> {
+public class NotFileFileConstraintValidator implements NullAcceptingConstraintValidator<NotFile, File> {
 
     @Override
-    public void initialize(final Executable constraintAnnotation) {
-        super.initialize(constraintAnnotation);
+    public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {
+        return !value.isFile();
     }
-
-    @Override
-    public boolean isValid(final File value, final ConstraintValidatorContext context) {
-        return value.canExecute();
-    }
-
 }

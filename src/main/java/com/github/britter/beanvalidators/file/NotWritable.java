@@ -34,7 +34,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = NotWritableConstraintValidator.class)
+@Constraint(validatedBy = {
+        NotWritableFileConstraintValidator.class,
+        NotWritableStringFileConstraintValidator.class,
+})
 @Documented
 public @interface NotWritable {
 

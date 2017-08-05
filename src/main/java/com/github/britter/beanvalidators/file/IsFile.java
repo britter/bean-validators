@@ -34,11 +34,14 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = FileConstraintValidator.class)
+@Constraint(validatedBy = {
+        IsFileFileConstraintValidator.class,
+        IsFileStringFileConstraintValidator.class
+})
 @Documented
-public @interface File {
+public @interface IsFile {
 
-    String message() default "{com.github.britter.beanvalidators.file.File.message}";
+    String message() default "{com.github.britter.beanvalidators.file.IsFile.message}";
 
     Class<?>[] groups() default {};
 

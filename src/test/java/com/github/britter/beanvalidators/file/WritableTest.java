@@ -66,13 +66,6 @@ public class WritableTest {
     }
 
     @Test
-    public void shouldValidateBlankStrings() throws Exception {
-        fileBean.path = " ";
-
-        validator.assertNoViolations("path");
-    }
-
-    @Test
     public void shouldValidateStringRepresentingWritableDirectory() throws Exception {
         fileBean.path = tmpFolder.newFolder().getAbsolutePath();
 

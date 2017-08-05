@@ -87,13 +87,6 @@ public class HiddenTest {
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
-        fileBean.path = " ";
-
-        validator.assertNoViolations("path");
-    }
-
-    @Test
     public void shouldValidateStringRepresentingHiddenFile() throws Exception {
         fileBean.path = tmpFolder.newFile(".hidden").getAbsolutePath();
 

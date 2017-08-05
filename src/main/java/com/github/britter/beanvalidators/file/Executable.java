@@ -34,7 +34,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = ExecutableConstraintValidator.class)
+@Constraint(validatedBy = {
+        ExecutableFileConstraintValidator.class,
+        ExecutableStringFileConstraintValidator.class,
+})
 @Documented
 public @interface Executable {
 

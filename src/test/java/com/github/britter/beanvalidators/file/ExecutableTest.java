@@ -67,13 +67,6 @@ public class ExecutableTest {
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
-        fileBean.path = " ";
-
-        validator.assertNoViolations("path");
-    }
-
-    @Test
     public void shouldValidateStringRepresentingExecutableDirectory() throws Exception {
         fileBean.path = tmpFolder.newFolder().getAbsolutePath();
 

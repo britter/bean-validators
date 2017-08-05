@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Benedikt Ritter
+ * Copyright 2017 Benedikt Ritter
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,21 +18,10 @@ package com.github.britter.beanvalidators.file;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-/**
- * Validator for {@link NotFile @NotFile}.
- *
- * @since 0.5.0
- */
-public class NotFileConstraintValidator extends AbstractFileConstraintValidator<NotFile> {
+public class ReadableStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<Readable> {
 
     @Override
-    public void initialize(final NotFile constraintAnnotation) {
-        super.initialize(constraintAnnotation);
+    public boolean isValidNonNullFile(File file, ConstraintValidatorContext context) {
+        return file.canRead();
     }
-
-    @Override
-    public boolean isValid(final File value, final ConstraintValidatorContext context) {
-        return !value.isFile();
-    }
-
 }

@@ -15,24 +15,16 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.NullAcceptingConstraintValidator;
+
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-/**
- * Validator for {@link Directory @Directory}.
- *
- * @since 0.5.0
- */
-public class DirectoryConstraintValidator extends AbstractFileConstraintValidator<Directory> {
+public class ExecutableFileConstraintValidator implements NullAcceptingConstraintValidator<Executable, File> {
 
     @Override
-    public void initialize(final Directory constraintAnnotation) {
-        super.initialize(constraintAnnotation);
-    }
-
-    @Override
-    public boolean isValid(final File value, final ConstraintValidatorContext context) {
-        return value.isDirectory();
+    public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {
+        return value.canExecute();
     }
 
 }

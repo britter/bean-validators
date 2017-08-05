@@ -24,7 +24,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-public class FileTest {
+public class IsFileTest {
 
     @Rule
     public TemporaryFolder tmpFolder = new TemporaryFolder();
@@ -92,11 +92,11 @@ public class FileTest {
     }
 
     private static final class FileBean {
-        @com.github.britter.beanvalidators.file.File
+        @IsFile
         private File file;
-        @com.github.britter.beanvalidators.file.File
+        @IsFile
         private String path;
-        @com.github.britter.beanvalidators.file.File
+        @IsFile
         private Object object = new Object();
     }
 }

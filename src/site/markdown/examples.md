@@ -405,7 +405,7 @@ Makes sure a file represents a file in the file system.
      * invalid:
      *      file.isFile() == false
      */
-    @com.github.britter.beanvalidators.file.File
+    @com.github.britter.beanvalidators.file.IsFile
     private File file;
 ```
 

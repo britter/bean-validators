@@ -34,7 +34,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = DirectoryConstraintValidator.class)
+@Constraint(validatedBy = {
+        DirectoryFileConstraintValidator.class,
+        DirectoryStringFileConstraintValidator.class,
+})
 @Documented
 public @interface Directory {
 

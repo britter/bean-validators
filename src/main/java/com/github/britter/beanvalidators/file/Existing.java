@@ -34,7 +34,10 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = ExistingConstraintValidator.class)
+@Constraint(validatedBy = {
+        ExistingFileConstraintValidator.class,
+        ExistingStringFileConstraintValidator.class,
+})
 @Documented
 public @interface Existing {
 
