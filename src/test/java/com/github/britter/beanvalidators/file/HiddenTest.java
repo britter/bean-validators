@@ -15,19 +15,14 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ValidationException;
-import java.io.File;
-import java.util.Set;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+
+import javax.validation.ValidationException;
+import java.io.File;
 
 public class HiddenTest {
 
@@ -60,9 +55,7 @@ public class HiddenTest {
     public void shouldNotValidateUnhiddenFile() throws Exception {
         fileBean.file = tmpFolder.newFile();
 
-        Set<ConstraintViolation<FileBean>> violations = validator.validate("file");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("file");
     }
 
     @Test

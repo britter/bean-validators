@@ -15,15 +15,6 @@
  */
 package com.github.britter.beanvalidators.strings;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +27,7 @@ public class AlphabeticTest {
     @Before
     public void setUp() {
         alphabeticBean = new AlphabeticBean();
-        validator = new ValidationWrapper<>(alphabeticBean, null);
+        validator = new ValidationWrapper<>(alphabeticBean, "must be alphabetic");
     }
 
     @Test
@@ -64,20 +55,14 @@ public class AlphabeticTest {
     public void defaultSettingsShouldNotValidateNonAlphabeticString() throws Exception {
         alphabeticBean.alphabetic = "abcd123";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabetic");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<AlphabeticBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be alphabetic")));
+        validator.assertViolation("alphabetic");
     }
 
     @Test
     public void defaultSettingsShouldNotValidateAlphabeticStringWithSpaces() throws Exception {
         alphabeticBean.alphabetic = "ab cd";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabetic");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("alphabetic");
     }
 
     @Test
@@ -91,11 +76,7 @@ public class AlphabeticTest {
     public void allowSpacesSettingsShouldNotValidateNonAlphabeticString() throws Exception {
         alphabeticBean.alphabeticSpace = "abcd123";
 
-        Set<ConstraintViolation<AlphabeticBean>> violations = validator.validate("alphabeticSpace");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<AlphabeticBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be alphabetic")));
+        validator.assertViolation("alphabeticSpace");
     }
 
     @Test

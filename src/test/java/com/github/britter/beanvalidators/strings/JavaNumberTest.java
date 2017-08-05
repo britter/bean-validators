@@ -15,15 +15,6 @@
  */
 package com.github.britter.beanvalidators.strings;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +27,7 @@ public class JavaNumberTest {
     @Before
     public void setUp() throws Exception {
         numBean = new JavaNumberBean();
-        validator = new ValidationWrapper<>(numBean, null);
+        validator = new ValidationWrapper<>(numBean, "must be a valid Java number");
     }
 
     @Test
@@ -107,11 +98,7 @@ public class JavaNumberTest {
     public void shouldNotValidateRandomString() throws Exception {
         numBean.javaNum = "abcd";
 
-        Set<ConstraintViolation<JavaNumberBean>> violations = validator.validate("javaNum");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<JavaNumberBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be a valid Java number")));
+        validator.assertViolation("javaNum");
     }
 
     private static final class JavaNumberBean {

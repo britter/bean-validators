@@ -15,11 +15,6 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
-
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
 import java.io.File;
@@ -30,6 +25,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AbstractFileConstraintValidatorTest {
 
@@ -49,7 +46,7 @@ public class AbstractFileConstraintValidatorTest {
 
     @Test
     public void shouldValidateNull() throws Exception {
-        assertThat(validator.isValid((Object) null, null), is(true));
+        assertThat(validator.isValid((Object) null, null)).isTrue();
     }
 
     @Test
@@ -57,26 +54,26 @@ public class AbstractFileConstraintValidatorTest {
         File file = tmpFolder.newFile();
         validator.isValid(((Object) file), null);
 
-        assertThat(validator.validatedFile, is(equalTo(file)));
+        assertThat(validator.validatedFile).isEqualTo(file);
     }
 
     @Test
     public void shouldValidateBlankString() throws Exception {
-        assertThat(validator.isValid(" ", null), is(true));
+        assertThat(validator.isValid(" ", null)).isTrue();
     }
 
     @Test
     public void shouldNotPassAnythingToSubclassForBlankString() throws Exception {
         validator.isValid(" ", null);
 
-        assertThat(validator.validatedFile, is(nullValue()));
+        assertThat(validator.validatedFile).isNull();
     }
 
     @Test
     public void shouldConstructFileInstanceFromString() throws Exception {
         validator.isValid("/test/file", null);
 
-        assertThat(validator.validatedFile.getAbsolutePath(), is("/test/file"));
+        assertThat(validator.validatedFile.getAbsolutePath()).isEqualTo("/test/file");
     }
 
     @Test

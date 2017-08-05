@@ -15,14 +15,6 @@
  */
 package com.github.britter.beanvalidators.strings;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +27,7 @@ public class NumericTest {
     @Before
     public void setUp() {
         numericBean = new NumericBean();
-        validator = new ValidationWrapper<>(numericBean, null);
+        validator = new ValidationWrapper<>(numericBean, "must be numeric");
     }
 
     @Test
@@ -63,11 +55,7 @@ public class NumericTest {
     public void shouldNotValidateNonNumericString() throws Exception {
         numericBean.numeric = "abc";
 
-        Set<ConstraintViolation<NumericBean>> violations = validator.validate("numeric");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<NumericBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is("must be numeric"));
+        validator.assertViolation("numeric");
     }
 
     private static final class NumericBean {

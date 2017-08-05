@@ -15,15 +15,6 @@
  */
 package com.github.britter.beanvalidators.strings;
 
-import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +27,7 @@ public class ISBNTest {
     @Before
     public void setUp() {
         isbnBean = new ISBNBean();
-        validator = new ValidationWrapper<>(isbnBean, null);
+        validator = new ValidationWrapper<>(isbnBean, "must be an ISBN");
     }
 
     @Test
@@ -57,11 +48,7 @@ public class ISBNTest {
     public void defaultSettingShouldNotValidateInvalidISBN() throws Exception {
         isbnBean.isbn = "abc";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn");
-
-        assertThat(violations, hasSize(1));
-        ConstraintViolation<ISBNBean> violation = getLast(violations);
-        assertThat(violation.getMessage(), is(equalTo("must be an ISBN")));
+        validator.assertViolation("isbn");
     }
 
     @Test
@@ -89,18 +76,14 @@ public class ISBNTest {
     public void isbn10SettingShouldNotValidateISBN13() throws Exception {
         isbnBean.isbn10 = "978-3-55155-167-2";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn10");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("isbn10");
     }
 
     @Test
     public void isbn10SettingShouldNotValidateInvalidISBN() throws Exception {
         isbnBean.isbn10 = "abc";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn10");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("isbn10");
     }
 
     @Test
@@ -121,9 +104,7 @@ public class ISBNTest {
     public void isbn13SettingShouldNotValidateISBN10() throws Exception {
         isbnBean.isbn13 = "3551551677";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn13");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("isbn13");
     }
 
     @Test
@@ -137,9 +118,7 @@ public class ISBNTest {
     public void isbn13SettingShouldNotValidateInvalidISBN() throws Exception {
         isbnBean.isbn13 = "abc";
 
-        Set<ConstraintViolation<ISBNBean>> violations = validator.validate("isbn13");
-
-        assertThat(violations, hasSize(1));
+        validator.assertViolation("isbn13");
     }
 
     @Test

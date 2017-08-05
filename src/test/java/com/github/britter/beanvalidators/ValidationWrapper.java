@@ -16,11 +16,7 @@
 package com.github.britter.beanvalidators;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -44,14 +40,21 @@ public class ValidationWrapper<T> {
 
     public void assertNoViolations(String property) {
         Set<ConstraintViolation<T>> violations = validate(property);
-        assertThat("Expected no violations, but got some", violations, is(empty()));
+
+        assertThat(violations)
+                .as("Expected no violations, but got some")
+                .isEmpty();
     }
 
     public void assertViolation(String property) {
         Set<ConstraintViolation<T>> violations = validate(property);
-        assertThat("Wrong violations count", violations, hasSize(1));
+        assertThat(violations)
+                .as("Wrong violations count")
+                .hasSize(1);
 
         ConstraintViolation<T> violation = getLast(violations);
-        assertThat("Wrong violation message", violation.getMessage(), is(equalTo(defaultMessage)));
+        assertThat(violation.getMessage())
+                .as("Wrong violation message")
+                .isEqualTo(defaultMessage);
     }
 }
