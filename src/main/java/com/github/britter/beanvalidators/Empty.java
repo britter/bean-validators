@@ -34,7 +34,12 @@ import java.lang.annotation.Target;
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = EmptyConstraintValidator.class)
+@Constraint(validatedBy = {
+        EmptyArrayConstraintValidator.class,
+        EmptyCollectionConstraintValidator.class,
+        EmptyMapConstraintValidator.class,
+        EmptyStringConstraintValidator.class
+})
 @Documented
 public @interface Empty {
 

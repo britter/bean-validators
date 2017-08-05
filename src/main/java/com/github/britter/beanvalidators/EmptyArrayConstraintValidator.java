@@ -15,32 +15,15 @@
  */
 package com.github.britter.beanvalidators;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
 import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-
-public class EmptyConstraintValidator implements ConstraintValidator<Empty, Object> {
+public class EmptyArrayConstraintValidator implements NullAcceptingConstraintValidator<Empty, Object> {
 
     @Override
-    public void initialize(final Empty constraintAnnotation) {
-    }
-
-    @Override
-    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
-        if (value == null) {
-            return true;
-        } else if (value instanceof String) {
-            return StringUtils.isEmpty((String) value);
-        } else if (value instanceof Collection) {
-            return ((Collection) value).isEmpty();
-        } else if (value instanceof Map) {
-            return ((Map) value).isEmpty();
-        } else if (value.getClass().isArray()) {
+    public boolean isValidNonNullValue(Object value, ConstraintValidatorContext context) {
+        if (value.getClass().isArray()) {
             return Array.getLength(value) == 0;
         } else {
             // Is this the correct behavior?
