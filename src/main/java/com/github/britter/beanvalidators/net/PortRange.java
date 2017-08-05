@@ -15,16 +15,15 @@
  */
 package com.github.britter.beanvalidators.net;
 
-import com.github.britter.beanvalidators.BlankStringAcceptingConstraintValidator;
-import org.apache.commons.validator.routines.DomainValidator;
+final class PortRange {
 
-import javax.validation.ConstraintValidatorContext;
+    private static final int PORT_MIN_VALUE = 0;
+    private static final int PORT_MAX_VALUE = 65536;
 
-public class DomainConstraintValidator implements BlankStringAcceptingConstraintValidator<Domain> {
-
-    @Override
-    public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {
-        return DomainValidator.getInstance().isValid(value);
+    private PortRange() {
     }
 
+    static boolean isContained(int value) {
+        return value >= PORT_MIN_VALUE && value <= PORT_MAX_VALUE;
+    }
 }

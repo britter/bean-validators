@@ -15,13 +15,12 @@
  */
 package com.github.britter.beanvalidators.net;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
-import org.apache.commons.lang3.StringUtils;
+import com.github.britter.beanvalidators.BlankStringAcceptingConstraintValidator;
 import org.apache.commons.validator.routines.InetAddressValidator;
 
-public class IPConstraintValidator implements ConstraintValidator<IP, String> {
+import javax.validation.ConstraintValidatorContext;
+
+public class IPConstraintValidator implements BlankStringAcceptingConstraintValidator<IP> {
 
     private IPType type;
 
@@ -31,11 +30,7 @@ public class IPConstraintValidator implements ConstraintValidator<IP, String> {
     }
 
     @Override
-    public boolean isValid(final String value, final ConstraintValidatorContext context) {
-        if (StringUtils.isBlank(value)) {
-            return true;
-        }
-
+    public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {
         switch (type) {
             case IP_V4:
                 return InetAddressValidator.getInstance().isValidInet4Address(value);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Benedikt Ritter
+ * Copyright 2017 Benedikt Ritter
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,19 @@
 package com.github.britter.beanvalidators.net;
 
 import com.github.britter.beanvalidators.BlankStringAcceptingConstraintValidator;
-import org.apache.commons.validator.routines.DomainValidator;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class DomainConstraintValidator implements BlankStringAcceptingConstraintValidator<Domain> {
+public class PortStringConstraintValidator implements BlankStringAcceptingConstraintValidator<Port> {
 
     @Override
     public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {
-        return DomainValidator.getInstance().isValid(value);
+        if (NumberUtils.isDigits(value)) {
+            return PortRange.isContained(Integer.parseInt(value));
+        } else {
+            return false;
+        }
     }
 
 }
