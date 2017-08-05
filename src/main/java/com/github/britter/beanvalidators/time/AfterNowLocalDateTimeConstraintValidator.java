@@ -18,17 +18,18 @@ package com.github.britter.beanvalidators.time;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class AfterNowConstraintValidator implements ConstraintValidator<AfterNow, LocalDate> {
+public class AfterNowLocalDateTimeConstraintValidator implements ConstraintValidator<AfterNow, LocalDateTime> {
 
     @Override
     public void initialize(final AfterNow constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(final LocalDate value, final ConstraintValidatorContext context) {
+    public boolean isValid(final LocalDateTime value, final ConstraintValidatorContext context) {
         // Don't validate null, since these are validated by @NotNull
-        return value == null || (value.isAfter(LocalDate.now()));
+        return value == null || (value.isAfter(LocalDateTime.now()));
     }
 
 }

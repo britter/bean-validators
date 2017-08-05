@@ -29,7 +29,13 @@ import javax.validation.Payload;
 
 @Target({METHOD, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = AfterNowConstraintValidator.class)
+@Constraint(validatedBy = {
+        AfterNowLocalDateConstraintValidator.class,
+        AfterNowLocalDateTimeConstraintValidator.class,
+        AfterNowLocalTimeConstraintValidator.class,
+        AfterNowInstantConstraintValidator.class,
+        AfterNowOffsetDateTimeConstraintValidator.class
+})
 @Documented
 public @interface AfterNow {
 
