@@ -16,7 +16,7 @@
 package com.github.britter.beanvalidators;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.github.britter.beanvalidators.BeanValidatorsAsserts.assertThat;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -53,8 +53,8 @@ public class ValidationWrapper<T> {
                 .hasSize(1);
 
         ConstraintViolation<T> violation = getLast(violations);
-        assertThat(violation.getMessage())
+        assertThat(violation)
                 .as("Wrong violation message")
-                .isEqualTo(defaultMessage);
+                .hasMessage(defaultMessage);
     }
 }

@@ -15,28 +15,13 @@
  */
 package com.github.britter.beanvalidators;
 
-import org.assertj.core.api.AbstractAssert;
+import org.assertj.core.api.Assertions;
 
 import javax.validation.ConstraintViolation;
-import java.util.Objects;
 
-public class ConstraintViolationAssert<T> extends AbstractAssert<ConstraintViolationAssert<T>, ConstraintViolation<T>> {
-
-    public ConstraintViolationAssert(ConstraintViolation<T> actual) {
-        super(actual, ConstraintViolationAssert.class);
-    }
+public class BeanValidatorsAsserts extends Assertions {
 
     public static <T> ConstraintViolationAssert<T> assertThat(ConstraintViolation<T> actual) {
         return new ConstraintViolationAssert<T>(actual);
-    }
-
-    public ConstraintViolationAssert<T> hasMessage(String message) {
-        isNotNull();
-
-        if (!Objects.equals(actual.getMessage(), message)) {
-            failWithMessage("Expected violation's message to be <%s> but was <%s>", message, actual.getMessage());
-        }
-
-        return this;
     }
 }
