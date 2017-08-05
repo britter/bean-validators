@@ -19,6 +19,7 @@ import javax.validation.ValidationException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -133,6 +134,29 @@ public class EmptyTest {
         validator.assertViolation("array");
     }
 
+    // Optional
+
+    @Test
+    public void shouldValidateNullOptional() throws Exception {
+        emptyBean.optional = null;
+
+        validator.assertNoViolations("optional");
+    }
+
+    @Test
+    public void shouldValidateEmptyOptional() throws Exception {
+        emptyBean.optional = Optional.empty();
+
+        validator.assertNoViolations("optional");
+    }
+
+    @Test
+    public void shouldNotValidateNonEmptyOptional() throws Exception {
+        emptyBean.optional = Optional.of("some");
+
+        validator.assertViolation("optional");
+    }
+
     // Other
     @Test(expected = ValidationException.class)
     public void shouldName() throws Exception {
@@ -152,5 +176,7 @@ public class EmptyTest {
         private String[] array;
         @Empty
         private Integer integer;
+        @Empty
+        private Optional<String> optional;
     }
 }
