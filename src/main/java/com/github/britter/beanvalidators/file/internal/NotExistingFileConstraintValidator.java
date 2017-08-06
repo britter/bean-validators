@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.file.NotExisting;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotExistingFileConstraintValidator implements NullAcceptingConstraintValidator<NotExisting, File> {
+public final class NotExistingFileConstraintValidator implements NullAcceptingConstraintValidator<NotExisting, File> {
 
     @Override
     public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {

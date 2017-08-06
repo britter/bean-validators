@@ -29,7 +29,7 @@ import java.time.OffsetTime;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
-public class BeforeNowTest {
+public final class BeforeNowTest {
 
     private BeforeNowBean beforeNowBean;
     private ValidationWrapper<BeforeNowBean> validator;

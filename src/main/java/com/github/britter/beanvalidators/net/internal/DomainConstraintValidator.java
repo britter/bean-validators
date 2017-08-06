@@ -21,7 +21,7 @@ import org.apache.commons.validator.routines.DomainValidator;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class DomainConstraintValidator implements BlankStringAcceptingConstraintValidator<Domain> {
+public final class DomainConstraintValidator implements BlankStringAcceptingConstraintValidator<Domain> {
 
     @Override
     public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {

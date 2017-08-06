@@ -19,7 +19,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ASCIITest {
+public final class ASCIITest {
 
     private ASCIIBean asciiBean;
     private ValidationWrapper<ASCIIBean> validator;

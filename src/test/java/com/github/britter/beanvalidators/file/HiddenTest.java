@@ -24,7 +24,7 @@ import org.junit.rules.TemporaryFolder;
 import javax.validation.ValidationException;
 import java.io.File;
 
-public class HiddenTest {
+public final class HiddenTest {
 
     @Rule
     public TemporaryFolder tmpFolder = new TemporaryFolder();

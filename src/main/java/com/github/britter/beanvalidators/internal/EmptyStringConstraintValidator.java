@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class EmptyStringConstraintValidator implements NullAcceptingConstraintValidator<Empty, String> {
+public final class EmptyStringConstraintValidator implements NullAcceptingConstraintValidator<Empty, String> {
 
     @Override
     public boolean isValidNonNullValue(String value, ConstraintValidatorContext context) {

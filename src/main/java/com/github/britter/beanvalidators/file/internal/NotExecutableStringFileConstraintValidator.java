@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.file.NotExecutable;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotExecutableStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<NotExecutable> {
+public final class NotExecutableStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<NotExecutable> {
 
     @Override
     public boolean isValidNonNullFile(File file, ConstraintValidatorContext context) {

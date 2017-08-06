@@ -19,7 +19,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JavaNumberTest {
+public final class JavaNumberTest {
 
     private JavaNumberBean numBean;
     private ValidationWrapper<JavaNumberBean> validator;

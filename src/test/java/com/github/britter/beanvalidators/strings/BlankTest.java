@@ -19,7 +19,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BlankTest {
+public final class BlankTest {
 
     private BlankBean blankBean;
     private ValidationWrapper<BlankBean> validator;

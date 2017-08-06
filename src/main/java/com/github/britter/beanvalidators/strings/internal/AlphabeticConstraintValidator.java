@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class AlphabeticConstraintValidator implements BlankStringAcceptingConstraintValidator<Alphabetic> {
+public final class AlphabeticConstraintValidator implements BlankStringAcceptingConstraintValidator<Alphabetic> {
 
     private boolean allowSpaces;
 

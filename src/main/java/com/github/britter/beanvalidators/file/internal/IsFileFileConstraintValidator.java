@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.file.IsFile;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class IsFileFileConstraintValidator implements NullAcceptingConstraintValidator<IsFile, File> {
+public final class IsFileFileConstraintValidator implements NullAcceptingConstraintValidator<IsFile, File> {
 
     @Override
     public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {

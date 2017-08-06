@@ -21,7 +21,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class PortStringConstraintValidator implements BlankStringAcceptingConstraintValidator<Port> {
+public final class PortStringConstraintValidator implements BlankStringAcceptingConstraintValidator<Port> {
 
     @Override
     public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {

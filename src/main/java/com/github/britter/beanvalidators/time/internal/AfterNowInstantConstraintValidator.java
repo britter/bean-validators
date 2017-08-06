@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.time.AfterNow;
 import javax.validation.ConstraintValidatorContext;
 import java.time.Instant;
 
-public class AfterNowInstantConstraintValidator implements NullAcceptingConstraintValidator<AfterNow, Instant> {
+public final class AfterNowInstantConstraintValidator implements NullAcceptingConstraintValidator<AfterNow, Instant> {
 
     @Override
     public boolean isValidNonNullValue(Instant value, ConstraintValidatorContext context) {

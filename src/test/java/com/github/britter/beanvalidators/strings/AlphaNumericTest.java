@@ -22,7 +22,7 @@ import org.junit.Test;
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
-public class AlphaNumericTest {
+public final class AlphaNumericTest {
 
     private AlphaNumericBean alphaNumBean;
     private ValidationWrapper<AlphaNumericBean> validator;

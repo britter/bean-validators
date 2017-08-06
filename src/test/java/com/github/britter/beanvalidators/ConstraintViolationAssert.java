@@ -20,7 +20,7 @@ import org.assertj.core.api.AbstractAssert;
 import javax.validation.ConstraintViolation;
 import java.util.Objects;
 
-public class ConstraintViolationAssert<T> extends AbstractAssert<ConstraintViolationAssert<T>, ConstraintViolation<T>> {
+public final class ConstraintViolationAssert<T> extends AbstractAssert<ConstraintViolationAssert<T>, ConstraintViolation<T>> {
 
     public ConstraintViolationAssert(ConstraintViolation<T> actual) {
         super(actual, ConstraintViolationAssert.class);

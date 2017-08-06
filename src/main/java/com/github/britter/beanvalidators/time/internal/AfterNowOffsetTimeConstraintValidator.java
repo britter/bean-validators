@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.time.AfterNow;
 import javax.validation.ConstraintValidatorContext;
 import java.time.OffsetTime;
 
-public class AfterNowOffsetTimeConstraintValidator implements NullAcceptingConstraintValidator<AfterNow, OffsetTime> {
+public final class AfterNowOffsetTimeConstraintValidator implements NullAcceptingConstraintValidator<AfterNow, OffsetTime> {
 
     @Override
     public boolean isValidNonNullValue(OffsetTime value, ConstraintValidatorContext context) {

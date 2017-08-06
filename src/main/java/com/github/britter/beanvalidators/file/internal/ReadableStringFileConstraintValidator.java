@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.file.Readable;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class ReadableStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<Readable> {
+public final class ReadableStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<Readable> {
 
     @Override
     public boolean isValidNonNullFile(File file, ConstraintValidatorContext context) {

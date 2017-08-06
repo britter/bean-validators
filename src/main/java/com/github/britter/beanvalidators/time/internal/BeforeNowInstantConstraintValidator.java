@@ -22,7 +22,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.time.Instant;
 import java.util.Optional;
 
-public class BeforeNowInstantConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, Instant> {
+public final class BeforeNowInstantConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, Instant> {
 
     /**
      * Only for testing!

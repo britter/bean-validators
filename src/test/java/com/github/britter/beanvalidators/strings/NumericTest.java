@@ -19,7 +19,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class NumericTest {
+public final class NumericTest {
 
     private ValidationWrapper<NumericBean> validator;
     private NumericBean numericBean;

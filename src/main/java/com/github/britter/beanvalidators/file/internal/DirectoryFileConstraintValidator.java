@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.file.Directory;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class DirectoryFileConstraintValidator implements NullAcceptingConstraintValidator<Directory, File> {
+public final class DirectoryFileConstraintValidator implements NullAcceptingConstraintValidator<Directory, File> {
 
     @Override
     public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {

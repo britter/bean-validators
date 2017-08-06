@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.net.Port;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class PortIntegerConstraintValidator implements NullAcceptingConstraintValidator<Port, Integer> {
+public final class PortIntegerConstraintValidator implements NullAcceptingConstraintValidator<Port, Integer> {
 
     @Override
     public boolean isValidNonNullValue(Integer value, ConstraintValidatorContext context) {

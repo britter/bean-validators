@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PortTest {
+public final class PortTest {
 
     private ValidationWrapper<PortBean> validator;
     private PortBean portBean;

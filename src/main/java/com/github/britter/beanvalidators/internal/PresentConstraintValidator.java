@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.Present;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Optional;
 
-public class PresentConstraintValidator implements NullAcceptingConstraintValidator<Present, Optional<?>> {
+public final class PresentConstraintValidator implements NullAcceptingConstraintValidator<Present, Optional<?>> {
 
     @Override
     public boolean isValidNonNullValue(Optional<?> value, ConstraintValidatorContext context) {

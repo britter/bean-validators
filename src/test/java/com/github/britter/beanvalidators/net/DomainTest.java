@@ -19,7 +19,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DomainTest {
+public final class DomainTest {
 
     private ValidationWrapper<DomainBean> validator;
     private DomainBean domainBean;

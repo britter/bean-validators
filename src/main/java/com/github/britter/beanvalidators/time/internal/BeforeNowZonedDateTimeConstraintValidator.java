@@ -22,7 +22,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
-public class BeforeNowZonedDateTimeConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, ZonedDateTime> {
+public final class BeforeNowZonedDateTimeConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, ZonedDateTime> {
 
     /**
      * Only for testing!

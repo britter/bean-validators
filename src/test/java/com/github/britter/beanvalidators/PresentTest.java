@@ -20,7 +20,7 @@ import org.junit.Test;
 
 import java.util.Optional;
 
-public class PresentTest {
+public final class PresentTest {
 
     private PresentBean presentBean;
     private ValidationWrapper<PresentBean> validator;

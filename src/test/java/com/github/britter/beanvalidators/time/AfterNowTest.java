@@ -28,7 +28,7 @@ import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.ZonedDateTime;
 
-public class AfterNowTest {
+public final class AfterNowTest {
 
     private AfterNowBean afterNowBean;
     private ValidationWrapper<AfterNowBean> validator;

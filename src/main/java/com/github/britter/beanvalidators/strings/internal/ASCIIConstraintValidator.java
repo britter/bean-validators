@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class ASCIIConstraintValidator implements BlankStringAcceptingConstraintValidator<ASCII> {
+public final class ASCIIConstraintValidator implements BlankStringAcceptingConstraintValidator<ASCII> {
 
     @Override
     public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {

@@ -21,7 +21,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class JavaNumberConstraintValidator implements BlankStringAcceptingConstraintValidator<JavaNumber> {
+public final class JavaNumberConstraintValidator implements BlankStringAcceptingConstraintValidator<JavaNumber> {
 
     @Override
     public boolean isValidNonBlankValue(String value, ConstraintValidatorContext context) {

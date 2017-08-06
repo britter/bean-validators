@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.file.NotExecutable;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotExecutableFileConstraintValidator implements NullAcceptingConstraintValidator<NotExecutable, File> {
+public final class NotExecutableFileConstraintValidator implements NullAcceptingConstraintValidator<NotExecutable, File> {
 
     @Override
     public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {

@@ -22,7 +22,7 @@ import org.apache.commons.validator.routines.ISBNValidator;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class ISBNConstraintValidator implements BlankStringAcceptingConstraintValidator<ISBN> {
+public final class ISBNConstraintValidator implements BlankStringAcceptingConstraintValidator<ISBN> {
 
     private ISBNType type;
 

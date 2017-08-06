@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.file.NotHidden;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotHiddenStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<NotHidden> {
+public final class NotHiddenStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<NotHidden> {
 
     @Override
     public boolean isValidNonNullFile(File file, ConstraintValidatorContext context) {

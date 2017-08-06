@@ -23,7 +23,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
 
-public class ValidationWrapper<T> {
+public final class ValidationWrapper<T> {
 
     private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
     private T bean;

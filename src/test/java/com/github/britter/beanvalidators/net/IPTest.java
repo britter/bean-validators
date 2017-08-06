@@ -19,7 +19,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class IPTest {
+public final class IPTest {
 
     private IPBean ipBean;
     private ValidationWrapper<IPBean> validator;

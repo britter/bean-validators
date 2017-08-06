@@ -22,7 +22,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class BeforeNowOffsetDateTimeConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, OffsetDateTime> {
+public final class BeforeNowOffsetDateTimeConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, OffsetDateTime> {
 
     /**
      * Only for testing!

@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.file.Absolute;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class AbsoluteFileConstraintValidator implements NullAcceptingConstraintValidator<Absolute, File> {
+public final class AbsoluteFileConstraintValidator implements NullAcceptingConstraintValidator<Absolute, File> {
 
     @Override
     public boolean isValidNonNullValue(File value, ConstraintValidatorContext context) {

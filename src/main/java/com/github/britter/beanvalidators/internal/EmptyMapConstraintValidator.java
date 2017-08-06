@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.Empty;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Map;
 
-public class EmptyMapConstraintValidator implements NullAcceptingConstraintValidator<Empty, Map<?, ?>> {
+public final class EmptyMapConstraintValidator implements NullAcceptingConstraintValidator<Empty, Map<?, ?>> {
 
     @Override
     public boolean isValidNonNullValue(Map<?, ?> value, ConstraintValidatorContext context) {

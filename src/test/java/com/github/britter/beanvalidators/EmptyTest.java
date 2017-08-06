@@ -24,7 +24,7 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
-public class EmptyTest {
+public final class EmptyTest {
 
     private EmptyBean emptyBean;
     private ValidationWrapper<EmptyBean> validator;

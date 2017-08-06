@@ -24,7 +24,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-public class NotFileTest {
+public final class NotFileTest {
 
     @Rule
     public TemporaryFolder tmpFolder = new TemporaryFolder();

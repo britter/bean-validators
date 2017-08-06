@@ -19,7 +19,7 @@ import org.assertj.core.api.Assertions;
 
 import javax.validation.ConstraintViolation;
 
-public class BeanValidatorsAsserts extends Assertions {
+public final class BeanValidatorsAsserts extends Assertions {
 
     public static <T> ConstraintViolationAssert<T> assertThat(ConstraintViolation<T> actual) {
         return new ConstraintViolationAssert<T>(actual);

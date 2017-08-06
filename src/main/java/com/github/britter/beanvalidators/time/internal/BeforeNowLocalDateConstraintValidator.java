@@ -21,7 +21,7 @@ import com.github.britter.beanvalidators.time.BeforeNow;
 import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
 
-public class BeforeNowLocalDateConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, LocalDate> {
+public final class BeforeNowLocalDateConstraintValidator implements NullAcceptingConstraintValidator<BeforeNow, LocalDate> {
 
     @Override
     public boolean isValidNonNullValue(LocalDate value, ConstraintValidatorContext context) {

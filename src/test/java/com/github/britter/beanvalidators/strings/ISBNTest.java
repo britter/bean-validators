@@ -19,7 +19,7 @@ import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ISBNTest {
+public final class ISBNTest {
 
     private ValidationWrapper<ISBNBean> validator;
     private ISBNBean isbnBean;

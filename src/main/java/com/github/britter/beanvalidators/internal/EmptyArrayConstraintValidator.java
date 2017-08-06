@@ -21,7 +21,7 @@ import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
 import java.lang.reflect.Array;
 
-public class EmptyArrayConstraintValidator implements NullAcceptingConstraintValidator<Empty, Object> {
+public final class EmptyArrayConstraintValidator implements NullAcceptingConstraintValidator<Empty, Object> {
 
     @Override
     public boolean isValidNonNullValue(Object value, ConstraintValidatorContext context) {

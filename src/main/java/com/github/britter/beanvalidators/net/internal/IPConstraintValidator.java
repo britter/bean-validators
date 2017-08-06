@@ -22,7 +22,7 @@ import org.apache.commons.validator.routines.InetAddressValidator;
 
 import javax.validation.ConstraintValidatorContext;
 
-public class IPConstraintValidator implements BlankStringAcceptingConstraintValidator<IP> {
+public final class IPConstraintValidator implements BlankStringAcceptingConstraintValidator<IP> {
 
     private IPType type;
 

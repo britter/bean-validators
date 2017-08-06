@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.Empty;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Collection;
 
-public class EmptyCollectionConstraintValidator implements NullAcceptingConstraintValidator<Empty, Collection<?>> {
+public final class EmptyCollectionConstraintValidator implements NullAcceptingConstraintValidator<Empty, Collection<?>> {
 
     @Override
     public boolean isValidNonNullValue(Collection<?> value, ConstraintValidatorContext context) {

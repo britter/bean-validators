@@ -20,7 +20,7 @@ import com.github.britter.beanvalidators.file.NotDirectory;
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;
 
-public class NotDirectoryStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<NotDirectory> {
+public final class NotDirectoryStringFileConstraintValidator implements StringToFileConvertingConstraintValidator<NotDirectory> {
 
     @Override
     public boolean isValidNonNullFile(File file, ConstraintValidatorContext context) {

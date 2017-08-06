@@ -21,7 +21,7 @@ import javax.validation.ConstraintValidatorContext;
 import com.github.britter.beanvalidators.strings.Blank;
 import org.apache.commons.lang3.StringUtils;
 
-public class BlankConstraintValidator implements ConstraintValidator<Blank, String> {
+public final class BlankConstraintValidator implements ConstraintValidator<Blank, String> {
 
     @Override
     public void initialize(final Blank constraintAnnotation) {
