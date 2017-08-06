@@ -16,6 +16,9 @@
 package com.github.britter.beanvalidators.net;
 
 
+import com.github.britter.beanvalidators.net.internal.PortIntegerConstraintValidator;
+import com.github.britter.beanvalidators.net.internal.PortStringConstraintValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;

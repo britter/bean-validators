@@ -15,6 +15,8 @@
  */
 package com.github.britter.beanvalidators.net;
 
+import com.github.britter.beanvalidators.net.internal.DomainConstraintValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;

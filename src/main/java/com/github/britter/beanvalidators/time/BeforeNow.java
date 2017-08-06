@@ -15,6 +15,14 @@
  */
 package com.github.britter.beanvalidators.time;
 
+import com.github.britter.beanvalidators.time.internal.BeforeNowInstantConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowLocalDateConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowLocalDateTimeConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowLocalTimeConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowOffsetDateTimeConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowOffsetTimeConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowZonedDateTimeConstraintValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;

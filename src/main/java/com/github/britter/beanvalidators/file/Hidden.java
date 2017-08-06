@@ -15,6 +15,9 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.file.internal.HiddenFileConstraintValidator;
+import com.github.britter.beanvalidators.file.internal.HiddenStringFileConstraintValidator;
+
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

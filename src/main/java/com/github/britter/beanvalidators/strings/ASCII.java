@@ -16,6 +16,8 @@
 package com.github.britter.beanvalidators.strings;
 
 
+import com.github.britter.beanvalidators.strings.internal.ASCIIConstraintValidator;
+
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

@@ -15,6 +15,12 @@
  */
 package com.github.britter.beanvalidators;
 
+import com.github.britter.beanvalidators.internal.EmptyArrayConstraintValidator;
+import com.github.britter.beanvalidators.internal.EmptyCollectionConstraintValidator;
+import com.github.britter.beanvalidators.internal.EmptyMapConstraintValidator;
+import com.github.britter.beanvalidators.internal.EmptyOptionalConstraintValidator;
+import com.github.britter.beanvalidators.internal.EmptyStringConstraintValidator;
+
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

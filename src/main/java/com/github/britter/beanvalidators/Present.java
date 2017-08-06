@@ -15,6 +15,8 @@
  */
 package com.github.britter.beanvalidators;
 
+import com.github.britter.beanvalidators.internal.PresentConstraintValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
