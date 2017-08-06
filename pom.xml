@@ -28,7 +28,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <maven.javadoc.version>2.10.3</maven.javadoc.version>
+    <maven.javadoc.version>3.0.0-M1</maven.javadoc.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -157,6 +157,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven.javadoc.version}</version>
+        <configuration>
+          <excludePackageNames>*.internal.*</excludePackageNames>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -229,6 +232,9 @@
                 </goals>
               </execution>
             </executions>
+            <configuration>
+              <excludePackageNames>*.internal.*</excludePackageNames>
+            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
