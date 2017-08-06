@@ -26,6 +26,8 @@ import java.time.LocalTime;
 import java.time.MonthDay;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
+import java.time.Year;
+import java.time.YearMonth;
 import java.time.ZonedDateTime;
 
 public final class AfterNowTest {
@@ -186,6 +188,48 @@ public final class AfterNowTest {
         validator.assertViolation("zonedDateTime");
     }
 
+    @Test
+    public void shouldValidateYearMonthAfterNow() throws Exception {
+        afterNowBean.yearMonth = YearMonth.now().plusMonths(1);
+
+        validator.assertNoViolations("yearMonth");
+    }
+
+    @Test
+    public void shouldNotValidateYearMonthNow() throws Exception {
+        afterNowBean.yearMonth = YearMonth.now();
+
+        validator.assertViolation("yearMonth");
+    }
+
+    @Test
+    public void shouldNotValidateYearMonthBeforeNow() throws Exception {
+        afterNowBean.yearMonth = YearMonth.now().minusMonths(1);
+
+        validator.assertViolation("yearMonth");
+    }
+
+    @Test
+    public void shouldValidateYearAfterNow() throws Exception {
+        afterNowBean.year = Year.now().plusYears(1);
+
+        validator.assertNoViolations("year");
+    }
+
+    @Test
+    public void shouldNotValidateYearNow() throws Exception {
+        afterNowBean.year = Year.now();
+
+        validator.assertViolation("year");
+    }
+
+    @Test
+    public void shouldNotValidateYearBeforeNow() throws Exception {
+        afterNowBean.year = Year.now().minusYears(1);
+
+        validator.assertViolation("year");
+    }
+
     private static class AfterNowBean {
         @AfterNow
         private LocalDate localDate;
@@ -201,5 +245,9 @@ public final class AfterNowTest {
         private OffsetTime offsetTime;
         @AfterNow
         private ZonedDateTime zonedDateTime;
+        @AfterNow
+        private YearMonth yearMonth;
+        @AfterNow
+        private Year year;
     }
 }

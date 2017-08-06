@@ -21,6 +21,8 @@ import com.github.britter.beanvalidators.time.internal.AfterNowLocalDateTimeCons
 import com.github.britter.beanvalidators.time.internal.AfterNowLocalTimeConstraintValidator;
 import com.github.britter.beanvalidators.time.internal.AfterNowOffsetDateTimeConstraintValidator;
 import com.github.britter.beanvalidators.time.internal.AfterNowOffsetTimeConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.AfterNowYearConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.AfterNowYearMonthConstraintValidator;
 import com.github.britter.beanvalidators.time.internal.AfterNowZonedDateTimeConstraintValidator;
 
 import javax.validation.Constraint;
@@ -40,7 +42,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * <p>
  * Can be applied to {@link java.time.Instant}, {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
  * {@link java.time.LocalTime}, {@link java.time.OffsetDateTime}, {@link java.time.OffsetTime},
- * and {@link java.time.ZonedDateTime}.
+ * {@link java.time.ZonedDateTime}, {@link java.time.YearMonth}, and {@link java.time.Year}.
  * </p>
  *
  * @since 1.0.0
@@ -55,6 +57,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
         AfterNowOffsetDateTimeConstraintValidator.class,
         AfterNowOffsetTimeConstraintValidator.class,
         AfterNowZonedDateTimeConstraintValidator.class,
+        AfterNowYearMonthConstraintValidator.class,
+        AfterNowYearConstraintValidator.class,
 })
 @Documented
 public @interface AfterNow {

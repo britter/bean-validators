@@ -26,6 +26,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
+import java.time.Year;
+import java.time.YearMonth;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
@@ -204,6 +206,48 @@ public final class BeforeNowTest {
 
         validator.assertViolation("zonedDateTime");
     }
+    
+    @Test
+    public void shouldValidateYearMonthBeforeNow() throws Exception {
+        beforeNowBean.yearMonth = YearMonth.now().minusMonths(1);
+
+        validator.assertNoViolations("yearMonth");
+    }
+
+    @Test
+    public void shouldNotValidateYearMonthNow() throws Exception {
+        beforeNowBean.yearMonth = YearMonth.now();
+
+        validator.assertViolation("yearMonth");
+    }
+
+    @Test
+    public void shouldNotValidateYearMonthAfterNow() throws Exception {
+        beforeNowBean.yearMonth = YearMonth.now().plusMonths(1);
+
+        validator.assertViolation("yearMonth");
+    }    
+
+    @Test
+    public void shouldValidateYearBeforeNow() throws Exception {
+        beforeNowBean.year = Year.now().minusYears(1);
+
+        validator.assertNoViolations("year");
+    }
+
+    @Test
+    public void shouldNotValidateYearNow() throws Exception {
+        beforeNowBean.year = Year.now();
+
+        validator.assertViolation("year");
+    }
+
+    @Test
+    public void shouldNotValidateYearAfterNow() throws Exception {
+        beforeNowBean.year = Year.now().plusYears(1);
+
+        validator.assertViolation("year");
+    }
 
     private static class BeforeNowBean {
         @BeforeNow
@@ -220,5 +264,9 @@ public final class BeforeNowTest {
         private OffsetTime offsetTime;
         @BeforeNow
         private ZonedDateTime zonedDateTime;
+        @BeforeNow
+        private YearMonth yearMonth;
+        @BeforeNow
+        private Year year;
     }
 }

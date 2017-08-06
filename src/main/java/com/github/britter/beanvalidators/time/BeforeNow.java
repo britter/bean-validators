@@ -21,6 +21,8 @@ import com.github.britter.beanvalidators.time.internal.BeforeNowLocalDateTimeCon
 import com.github.britter.beanvalidators.time.internal.BeforeNowLocalTimeConstraintValidator;
 import com.github.britter.beanvalidators.time.internal.BeforeNowOffsetDateTimeConstraintValidator;
 import com.github.britter.beanvalidators.time.internal.BeforeNowOffsetTimeConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowYearConstraintValidator;
+import com.github.britter.beanvalidators.time.internal.BeforeNowYearMonthConstraintValidator;
 import com.github.britter.beanvalidators.time.internal.BeforeNowZonedDateTimeConstraintValidator;
 
 import javax.validation.Constraint;
@@ -38,8 +40,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * Makes sure the validated temporal unit is before now.
  *
  * <p>
- * Can be applied to {@link java.time.LocalDate}, {@link java.time.LocalDateTime}, {@link java.time.LocalTime},
- * {@link java.time.OffsetDateTime}, {@link java.time.OffsetTime}, and {@link java.time.Instant}.
+ * Can be applied to {@link java.time.Instant}, {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+ * {@link java.time.LocalTime}, {@link java.time.OffsetDateTime}, {@link java.time.OffsetTime},
+ * {@link java.time.ZonedDateTime}, {@link java.time.YearMonth}, and {@link java.time.Year}.
  * </p>
  *
  * @since 1.0.0
@@ -54,6 +57,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
         BeforeNowOffsetDateTimeConstraintValidator.class,
         BeforeNowOffsetTimeConstraintValidator.class,
         BeforeNowZonedDateTimeConstraintValidator.class,
+        BeforeNowYearMonthConstraintValidator.class,
+        BeforeNowYearConstraintValidator.class,
 })
 @Documented
 public @interface BeforeNow {
