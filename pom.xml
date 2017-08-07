@@ -30,6 +30,8 @@
     <java.version>1.8</java.version>
     <maven.javadoc.version>3.0.0-M1</maven.javadoc.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <findbugs.version>3.0.4</findbugs.version>
+    <pmd.version>3.8</pmd.version>
   </properties>
 
   <licenses>
@@ -126,7 +128,7 @@
   </dependencies>
 
   <build>
-    <defaultGoal>clean verify apache-rat:check javadoc:javadoc</defaultGoal>
+    <defaultGoal>clean verify apache-rat:check findbugs:check pmd:check javadoc:javadoc</defaultGoal>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -159,6 +161,16 @@
           </excludes>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${pmd.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>${findbugs.version}</version>
+      </plugin>
     </plugins>
   </build>
 
@@ -190,12 +202,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.5</version>
+        <version>${pmd.version}</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>${findbugs.version}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
