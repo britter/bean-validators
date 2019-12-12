@@ -16,11 +16,14 @@
 import java.nio.charset.StandardCharsets
 
 description = "Additional validator implementations for javax.validation"
+group = "com.github.britter"
+version = "0.6.4-SNAPSHOT"
 
 plugins {
     `java-library`
     jacoco
     id("com.github.kt3k.coveralls") version "2.9.0"
+    id("org.asciidoctor.convert") version "2.3.0"
 }
 
 repositories {
