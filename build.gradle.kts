@@ -19,6 +19,8 @@ description = "Additional validator implementations for javax.validation"
 
 plugins {
     `java-library`
+    jacoco
+    id("com.github.kt3k.coveralls") version "2.9.0"
 }
 
 repositories {
@@ -30,8 +32,20 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = StandardCharsets.UTF_8.name()
+tasks {
+    withType<JavaCompile> {
+        options.encoding = StandardCharsets.UTF_8.name()
+    }
+
+    val jacocoTestReport = named<JacocoReport>("jacocoTestReport") {
+        reports {
+            xml.isEnabled = true
+        }
+    }
+
+    coveralls {
+        jacocoReportPath = jacocoTestReport.map { it.reports.xml.destination }
+    }
 }
 
 dependencies {

@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# last distribution that has java 8 support
+dist: xenial
 language: java
 sudo: false
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
-script: ./mvnw
-
-after_success: ./mvnw jacoco:report coveralls:report
-
+after_success:
+  - ./gradlew jacocoTestReport coveralls
