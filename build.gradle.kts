@@ -23,7 +23,8 @@ plugins {
     `java-library`
     jacoco
     id("com.github.kt3k.coveralls") version "2.9.0"
-    id("org.asciidoctor.convert") version "2.3.0"
+    id("org.asciidoctor.jvm.convert") version "2.4.0"
+    id("org.ajoberstar.git-publish") version "2.1.3"
 }
 
 repositories {
@@ -40,6 +41,10 @@ tasks {
         options.encoding = StandardCharsets.UTF_8.name()
     }
 
+    javadoc {
+        exclude("**/internal/**")
+    }
+
     val jacocoTestReport = named<JacocoReport>("jacocoTestReport") {
         reports {
             xml.isEnabled = true
@@ -48,6 +53,12 @@ tasks {
 
     coveralls {
         jacocoReportPath = jacocoTestReport.map { it.reports.xml.destination }
+    }
+
+    asciidoctor {
+        outputOptions {
+            separateOutputDirs = false
+        }
     }
 }
 
@@ -61,4 +72,19 @@ dependencies {
     testImplementation("com.google.guava:guava:23.0")
     testImplementation("org.hibernate:hibernate-validator:5.1.3.Final")
     testImplementation("javax.el:javax.el-api:3.0.0")
+}
+
+val asciidoctor by tasks.getting
+val javadoc by tasks.getting
+
+gitPublish {
+    repoUri.set("https://github.com/britter/bean-validators")
+    branch.set("gh-pages")
+
+    contents {
+        from(asciidoctor)
+        from(javadoc) {
+            into("apidocs")
+        }
+    }
 }
