@@ -40,7 +40,38 @@ Misc::
 
 Most validators use http://commons.apache.org/lang[Apache Commons Lang3] and http://commons.apache.org/validator[Apache Commons Validator] functionality to implement various validation routines.
 
-## Documentation
+## Installation
 
-Sample usage can be found on the link:examples.html[Examples] page.
-Further more the latest link:apidocs/index.html[JavaDoc] can be browsed.
+Releases can be installed from https://search.maven.org/artifact/com.github.britter/bean-validators:[Maven Central].
+Simply add the following to your https://gradle.org:[Gradle] build file:
+
+.build.gradle.kts
+[source,java,subs="attributes+"]
+----
+dependencies {
+    implementation("{gradle-project-group}:{gradle-project-name}:{gradle-project-version}")
+}
+----
+
+NOTE: If you're using bean-validators annotations to annotate public members, the `api` configuration provided by the https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_recognizing_dependencies:[java-library plugin] is more appropriate.
+
+If you prefer https://maven.apache.org[Apache Maven] add the dependency to your `pom.xml`:
+
+.pom.xml
+[source,xml,subs="attributes+"]
+----
+<dependency>
+    <groupId>{gradle-project-group}</groupId>
+    <artifactId>{gradle-project-name}</artifactId>
+    <version>{gradle-project-version}</version>
+</dependency>
+----
+
+## Javadoc
+
+The latest link:apidocs/index.html[JavaDoc] can be browsed.
+
+## Examples
+
+include::{includedir}/examples.adoc[leveloffset=+2]
+

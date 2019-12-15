@@ -13,12 +13,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 ////
-= Examples
-
 All Validators will treat null and blank input strings as valid. If you want to make sure fields are not null/blank
 you have to use `@NotNull` or `@NotBlank` in addition.
 
-== @Empty
+# @Empty
 
 The `@Empty` annotation is the opposite of `org.hibernate.validator.constraints.NotEmpty` and works on String, 
 Collections, Maps and arrays. If any other type is annotated with `@Empty` a `javax.validation.ValidationException` will
@@ -72,12 +70,12 @@ be thrown.
     private T[] empty;
 ----
 
-== Strings
+# Strings
 
 Various constraints which can be applied to instance of `java.lang.String`. All validators treat blank strings as valid.
 If you need a non empty/non blank String, you annotations such as `@NotEmpty` or `@NotBlank` in addition. 
 
-=== @Alphabetic
+## @Alphabetic
 
 Makes sure a String only contains letters. Can be configured to allow spaces as well.
 
@@ -110,7 +108,7 @@ Makes sure a String only contains letters. Can be configured to allow spaces as 
     private String alphabetic;
 ----
 
-=== @AlphaNumeric
+## @AlphaNumeric
 
 Makes sure a String only contains letters and digits. Can be configured to allow spaces as well.
 
@@ -146,7 +144,7 @@ Makes sure a String only contains letters and digits. Can be configured to allow
     private String alphaNum;
 ----
 
-=== @ASCII
+## @ASCII
 
 Makes sure a String ony contains ASCII printable characters. ASCII printable characters are all charaters in the range
 32 thru 126.
@@ -166,7 +164,7 @@ Makes sure a String ony contains ASCII printable characters. ASCII printable cha
     private String ascii;
 ----
 
-=== @Blank
+## @Blank
 
 The opposite of `org.hibernate.validator.constraints.NotBlank`.
 
@@ -185,7 +183,7 @@ The opposite of `org.hibernate.validator.constraints.NotBlank`.
     private String blank;
 ----
 
-=== @ISBN
+## @ISBN
 
 Makes sure a String represents an [International Standard Book Number (ISBN)](https://en.wikipedia.org/wiki/International_Standard_Book_Number).
 There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will allow both. The
@@ -233,7 +231,7 @@ There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will all
     private String isbn13;
 ----
 
-=== @JavaNumber
+## @JavaNumber
 
 Makes sure a String contains a valid Java number. Note that this doesn't mean the given String can be parsed by the 
 various `parse` and `valueOf` methods defined on `Integer` etc. It just means, that the String could be used to define
@@ -261,7 +259,7 @@ an number in Java code. For more information see [NumberUtils.isNumber(String)](
     private String javaNum;
 ----
 
-=== @Numeric
+## @Numeric
 
 Makes sure a String only contains digits.
 
@@ -282,13 +280,13 @@ Makes sure a String only contains digits.
     private String numeric;
 ----
 
-## Files
+# Files
 
 Constraints validating all properties of `java.io.File` objects. There is an annotation for each property as well as one
 for the negation of each property. All annotations can also be applied to Strings. The validators will construct a new
 File instance using `new File(String)` and use that instance for validation.
 
-=== @Absolute
+## @Absolute
 
 Makes sure a file represents an absolute path in the file system.
 
@@ -305,7 +303,7 @@ Makes sure a file represents an absolute path in the file system.
     private File file;
 ----
 
-=== @NotAbsolute
+## @NotAbsolute
 
 Makes sure a file does not represent an absolute path in the file system.
 
@@ -322,7 +320,7 @@ Makes sure a file does not represent an absolute path in the file system.
     private File file;
 ----
 
-=== @Directory
+## @Directory
 
 Makes sure a file represents a directory.
 
@@ -339,7 +337,7 @@ Makes sure a file represents a directory.
     private File dir;
 ----
 
-=== @NotDirectory
+## @NotDirectory
 
 Makes sure a file does not represent a directory.
 
@@ -356,7 +354,7 @@ Makes sure a file does not represent a directory.
     private File dir;
 ----
 
-=== @Executable
+## @Executable
 
 Makes sure a file has executable permission in the file system.
 
@@ -373,7 +371,7 @@ Makes sure a file has executable permission in the file system.
     private File file;
 ----
 
-=== @NotExecutable
+## @NotExecutable
 
 Makes sure a file does not have executable permission in the file system.
 
@@ -390,7 +388,7 @@ Makes sure a file does not have executable permission in the file system.
     private File file;
 ----
 
-=== @Existing
+## @Existing
 
 Makes sure a file exists.
 
@@ -407,7 +405,7 @@ Makes sure a file exists.
     private File file;
 ----
 
-=== @NotExisting
+## @NotExisting
 
 Makes sure a file does not exist.
 
@@ -424,7 +422,7 @@ Makes sure a file does not exist.
     private File file;
 ----
 
-=== @File
+## @File
 
 Makes sure a file represents a file in the file system.
 
@@ -441,7 +439,7 @@ Makes sure a file represents a file in the file system.
     private File file;
 ----
 
-=== @NotFile
+## @NotFile
 
 Makes sure a file does not represent a file in the file system. Note that both `File.isFile()` and `File.isDirectory()`
 can return false, for example for sockets, mounts or pipes.
@@ -459,7 +457,7 @@ can return false, for example for sockets, mounts or pipes.
     private File file;
 ----
 
-=== @Hidden
+## @Hidden
 
 Makes sure a file is hidden. Note that the definition of a hidden files various between operating systems. For examples
 in an UNIX-like OS, all files and directories starting with a dot are considered to be hidden, where as on Windows the
@@ -478,7 +476,7 @@ hidden attribute of the file has to be set to true.
     private File file;
 ----
 
-=== @NotHidden
+## @NotHidden
 
 Makes sure a file is not hidden.
 
@@ -495,7 +493,7 @@ Makes sure a file is not hidden.
     private File file;
 ----
 
-=== @Readable
+## @Readable
 
 Makes sure a file is readable.
 
@@ -512,7 +510,7 @@ Makes sure a file is readable.
     private File file;
 ----
 
-=== @NotReadable
+## @NotReadable
 
 Makes sure a file is not readable. There is probably no real use case for this annotation, but it has been added for completeness
 
@@ -529,7 +527,7 @@ Makes sure a file is not readable. There is probably no real use case for this a
     private File file;
 ----
 
-=== @Writable
+## @Writable
 
 Makes sure a file is writable.
 
@@ -546,7 +544,7 @@ Makes sure a file is writable.
     private File file;
 ----
 
-=== @NotWritable
+## @NotWritable
 
 Makes sure a file is not writeable.
 
@@ -563,11 +561,11 @@ Makes sure a file is not writeable.
     private File file;
 ----
 
-## Net
+# Net
 
 Constraints dealing with networking.
 
-=== @Domain
+## @Domain
 
 Makes sure a string represents a valid domain. Note that the list of valid top level domains is changes frequently. Since
 this validator uses `org.apache.commons.validator.routines.DomainValidator` under the hood, there may be domains which
@@ -587,7 +585,7 @@ are acutally valid reported as invalid, because the Apache Commons Validator TLP
     private String domain;
 ----
 
-=== @IP
+## @IP
 
 Makes sure a String represents a valid [Internet Protocol (IP) address](https://en.wikipedia.org/wiki/IP_address). There
 are two kinds of IP addresses: IPv4 and the newer IPv6. The default is to validate against both versions. The behavior
@@ -635,7 +633,7 @@ can be controlled by the `com.github.britter.beanvalidators.net.IPType` enum.
     private String ipv6;
 ----
 
-=== @Port
+## @Port
 
 Makes sure a String, int or Integer represents a valid [port](https://en.wikipedia.org/wiki/Port_(computer_networking))
 number. A port number is a 16-bit unsigned integer, thus ranging from 0 to 65535. `@Port` can be applied to String, ints

@@ -59,6 +59,17 @@ tasks {
         outputOptions {
             separateOutputDirs = false
         }
+
+        attributes(mapOf(
+                "source-highlighter" to "coderay",
+                "tabsize" to "4",
+                "toc" to "left",
+                "toclevels" to "4",
+                "icons" to "font",
+                "sectanchors" to true,
+                "idprefix" to "",
+                "idseparator" to "-"
+        ))
     }
 }
 
