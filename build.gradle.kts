@@ -22,6 +22,9 @@ version = "0.6.4-SNAPSHOT"
 plugins {
     `java-library`
     jacoco
+    `maven-publish`
+    signing
+    id("de.marcphilipp.nexus-publish") version "0.3.0"
     id("com.github.kt3k.coveralls") version "2.9.0"
     id("org.asciidoctor.jvm.convert") version "2.4.0"
     id("org.ajoberstar.git-publish") version "2.1.3"
@@ -34,6 +37,8 @@ repositories {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
 }
 
 tasks {
@@ -98,4 +103,46 @@ gitPublish {
             into("apidocs")
         }
     }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+
+            pom {
+                description.set(project.description)
+                url.set("https://britter.github.io/bean-validators")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("britter")
+                        name.set("Benedikt Ritter")
+                        email.set("beneritter@gmail.com")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/britter/bean-validators.git")
+                    developerConnection.set("scm:git:ssh://git@github.com/britter/bean-validators.git")
+                    url.set("https://github.com/britter/bean-validators")
+                }
+            }
+        }
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype()
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign(publishing.publications["maven"])
 }
