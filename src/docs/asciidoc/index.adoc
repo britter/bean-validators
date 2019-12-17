@@ -1,0 +1,77 @@
+////
+ Copyright 2019 Benedikt Ritter
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+////
+# bean-validators
+
+image:https://travis-ci.org/britter/bean-validators.svg?branch=master["Build Status", link="https://travis-ci.org/britter/bean-validators"]
+image:https://coveralls.io/repos/britter/bean-validators/badge.svg["Coverage Status", link="https://coveralls.io/r/britter/bean-validators"]
+image:https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/badge.svg["Maven Central", link="https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/"]
+image:http://img.shields.io/:license-apache-blue.svg["License", link="http://www.apache.org/licenses/LICENSE-2.0.html"]
+
+Additional validator implementations for http://beanvalidation.org/[javax.validation].
+
+There are annotations available for various basic Java types such as:
+
+Strings::
+* `@Blank`
+* `@Alphabetic`
+Files::
+* `@Readable`
+* `@Writable`
+* `@Directory`
+Networking::
+* `@Domain`
+* `@IP`
+* `@Port`
+Misc::
+* `@Empty`
+
+Most validators use http://commons.apache.org/lang[Apache Commons Lang3] and http://commons.apache.org/validator[Apache Commons Validator] functionality to implement various validation routines.
+
+## Installation
+
+Releases can be installed from https://search.maven.org/artifact/com.github.britter/bean-validators:[Maven Central].
+Simply add the following to your https://gradle.org:[Gradle] build file:
+
+.build.gradle.kts
+[source,java,subs="attributes+"]
+----
+dependencies {
+    implementation("{gradle-project-group}:{gradle-project-name}:{gradle-project-version}")
+}
+----
+
+NOTE: If you're using bean-validators annotations to annotate public members, the `api` configuration provided by the https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_recognizing_dependencies:[java-library plugin] is more appropriate.
+
+If you prefer https://maven.apache.org[Apache Maven] add the dependency to your `pom.xml`:
+
+.pom.xml
+[source,xml,subs="attributes+"]
+----
+<dependency>
+    <groupId>{gradle-project-group}</groupId>
+    <artifactId>{gradle-project-name}</artifactId>
+    <version>{gradle-project-version}</version>
+</dependency>
+----
+
+## Javadoc
+
+The latest link:apidocs/index.html[JavaDoc] can be browsed.
+
+## Examples
+
+include::{includedir}/examples.adoc[leveloffset=+2]
+

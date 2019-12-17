@@ -1,5 +1,5 @@
-<!---
- Copyright 2015 Benedikt Ritter
+////
+ Copyright 2019 Benedikt Ritter
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -12,19 +12,18 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
--->
-# Examples
-
+////
 All Validators will treat null and blank input strings as valid. If you want to make sure fields are not null/blank
 you have to use `@NotNull` or `@NotBlank` in addition.
 
-## @Empty
+# @Empty
 
 The `@Empty` annotation is the opposite of `org.hibernate.validator.constraints.NotEmpty` and works on String, 
 Collections, Maps and arrays. If any other type is annotated with `@Empty` a `javax.validation.ValidationException` will
 be thrown. 
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      null
@@ -69,18 +68,19 @@ be thrown.
      */
     @Empty
     private T[] empty;
-```
+----
 
-## Strings
+# Strings
 
 Various constraints which can be applied to instance of `java.lang.String`. All validators treat blank strings as valid.
 If you need a non empty/non blank String, you annotations such as `@NotEmpty` or `@NotBlank` in addition. 
 
-### @Alphabetic
+## @Alphabetic
 
 Makes sure a String only contains letters. Can be configured to allow spaces as well.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "abcd"
@@ -106,13 +106,14 @@ Makes sure a String only contains letters. Can be configured to allow spaces as 
      */
     @Alphabetic(allowSpaces = true)
     private String alphabetic;
-```
+----
 
-### @AlphaNumeric
+## @AlphaNumeric
 
 Makes sure a String only contains letters and digits. Can be configured to allow spaces as well.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "abcd"
@@ -141,14 +142,15 @@ Makes sure a String only contains letters and digits. Can be configured to allow
      */
     @AlphaNumeric(allowSpaces = true)
     private String alphaNum;
-```
+----
 
-### @ASCII
+## @ASCII
 
 Makes sure a String ony contains ASCII printable characters. ASCII printable characters are all charaters in the range
 32 thru 126.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "abcd"
@@ -160,13 +162,14 @@ Makes sure a String ony contains ASCII printable characters. ASCII printable cha
      */
     @ASCII
     private String ascii;
-```
+----
 
-### @Blank
+## @Blank
 
 The opposite of `org.hibernate.validator.constraints.NotBlank`.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      null
@@ -178,15 +181,16 @@ The opposite of `org.hibernate.validator.constraints.NotBlank`.
      */
     @Blank
     private String blank;
-```
+----
 
-### @ISBN
+## @ISBN
 
 Makes sure a String represents an [International Standard Book Number (ISBN)](https://en.wikipedia.org/wiki/International_Standard_Book_Number).
 There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will allow both. The
 `com.github.britter.beanvalidators.strings.ISBNType` enum can be used to control this behavior.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "3551551677"
@@ -225,15 +229,16 @@ There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will all
      */
     @ISBN(type = ISBNType.ISBN_13)
     private String isbn13;
-```
+----
 
-### @JavaNumber
+## @JavaNumber
 
 Makes sure a String contains a valid Java number. Note that this doesn't mean the given String can be parsed by the 
 various `parse` and `valueOf` methods defined on `Integer` etc. It just means, that the String could be used to define
 an number in Java code. For more information see [NumberUtils.isNumber(String)](http://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html).
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "1234"
@@ -252,13 +257,14 @@ an number in Java code. For more information see [NumberUtils.isNumber(String)](
      */
     @JavaNumber
     private String javaNum;
-```
+----
 
-### @Numeric
+## @Numeric
 
 Makes sure a String only contains digits.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "1234"
@@ -272,19 +278,20 @@ Makes sure a String only contains digits.
      */
     @Numeric
     private String numeric;
-```
+----
 
-## Files
+# Files
 
 Constraints validating all properties of `java.io.File` objects. There is an annotation for each property as well as one
 for the negation of each property. All annotations can also be applied to Strings. The validators will construct a new
 File instance using `new File(String)` and use that instance for validation.
 
-### @Absolute
+## @Absolute
 
 Makes sure a file represents an absolute path in the file system.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.isAbsolute() == true
@@ -294,13 +301,14 @@ Makes sure a file represents an absolute path in the file system.
      */
     @Absolute
     private File file;
-```
+----
 
-### @NotAbsolute
+## @NotAbsolute
 
 Makes sure a file does not represent an absolute path in the file system.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.isAbsolute() == false
@@ -310,13 +318,14 @@ Makes sure a file does not represent an absolute path in the file system.
      */
     @NotAbsolute
     private File file;
-```
+----
 
-### @Directory
+## @Directory
 
 Makes sure a file represents a directory.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      dir.isDirectory() == true
@@ -326,13 +335,14 @@ Makes sure a file represents a directory.
      */
     @Directory
     private File dir;
-```
+----
 
-### @NotDirectory
+## @NotDirectory
 
 Makes sure a file does not represent a directory.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      dir.isDirectory() == false
@@ -342,13 +352,14 @@ Makes sure a file does not represent a directory.
      */
     @NotDirectory
     private File dir;
-```
+----
 
-### @Executable
+## @Executable
 
 Makes sure a file has executable permission in the file system.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.canExecute() == true
@@ -358,13 +369,14 @@ Makes sure a file has executable permission in the file system.
      */
     @Executable
     private File file;
-```
+----
 
-### @NotExecutable
+## @NotExecutable
 
 Makes sure a file does not have executable permission in the file system.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.canExecute() == false
@@ -374,13 +386,14 @@ Makes sure a file does not have executable permission in the file system.
      */
     @NotExecutable
     private File file;
-```
+----
 
-### @Existing
+## @Existing
 
 Makes sure a file exists.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.exists() == true
@@ -390,13 +403,14 @@ Makes sure a file exists.
      */
     @Existing
     private File file;
-```
+----
 
-### @NotExisting
+## @NotExisting
 
 Makes sure a file does not exist.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.exists() == false
@@ -406,13 +420,14 @@ Makes sure a file does not exist.
      */
     @NotExisting
     private File file;
-```
+----
 
-### @File
+## @File
 
 Makes sure a file represents a file in the file system.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.isFile() == true
@@ -422,14 +437,15 @@ Makes sure a file represents a file in the file system.
      */
     @com.github.britter.beanvalidators.file.IsFile
     private File file;
-```
+----
 
-### @NotFile
+## @NotFile
 
 Makes sure a file does not represent a file in the file system. Note that both `File.isFile()` and `File.isDirectory()`
 can return false, for example for sockets, mounts or pipes.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.isFile() == false
@@ -439,15 +455,16 @@ can return false, for example for sockets, mounts or pipes.
      */
     @NotFile
     private File file;
-```
+----
 
-### @Hidden
+## @Hidden
 
 Makes sure a file is hidden. Note that the definition of a hidden files various between operating systems. For examples
 in an UNIX-like OS, all files and directories starting with a dot are considered to be hidden, where as on Windows the
 hidden attribute of the file has to be set to true.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.isHidden() == true
@@ -457,13 +474,14 @@ hidden attribute of the file has to be set to true.
      */
     @Hidden
     private File file;
-```
+----
 
-### @NotHidden
+## @NotHidden
 
 Makes sure a file is not hidden.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.isHidden() == false
@@ -473,13 +491,14 @@ Makes sure a file is not hidden.
      */
     @NotHidden
     private File file;
-```
+----
 
-### @Readable
+## @Readable
 
 Makes sure a file is readable.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.canRead() == true
@@ -489,13 +508,14 @@ Makes sure a file is readable.
      */
     @Readable
     private File file;
-```
+----
 
-### @NotReadable
+## @NotReadable
 
 Makes sure a file is not readable. There is probably no real use case for this annotation, but it has been added for completeness
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.canRead() == false
@@ -505,13 +525,14 @@ Makes sure a file is not readable. There is probably no real use case for this a
      */
     @NotReadable
     private File file;
-```
+----
 
-### @Writable
+## @Writable
 
 Makes sure a file is writable.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.canWrite() == true
@@ -521,13 +542,14 @@ Makes sure a file is writable.
      */
     @Writable
     private File file;
-```
+----
 
-### @NotWritable
+## @NotWritable
 
 Makes sure a file is not writeable.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      file.canWrite() == false
@@ -537,19 +559,20 @@ Makes sure a file is not writeable.
      */
     @NotWritable
     private File file;
-```
+----
 
-## Net
+# Net
 
 Constraints dealing with networking.
 
-### @Domain
+## @Domain
 
 Makes sure a string represents a valid domain. Note that the list of valid top level domains is changes frequently. Since
 this validator uses `org.apache.commons.validator.routines.DomainValidator` under the hood, there may be domains which
 are acutally valid reported as invalid, because the Apache Commons Validator TLP list is not up to date.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "www.example.com"
@@ -560,15 +583,16 @@ are acutally valid reported as invalid, because the Apache Commons Validator TLP
      */
     @Domain
     private String domain;
-```
+----
 
-### @IP
+## @IP
 
 Makes sure a String represents a valid [Internet Protocol (IP) address](https://en.wikipedia.org/wiki/IP_address). There
 are two kinds of IP addresses: IPv4 and the newer IPv6. The default is to validate against both versions. The behavior
 can be controlled by the `com.github.britter.beanvalidators.net.IPType` enum.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "192.168.0.1"
@@ -607,15 +631,16 @@ can be controlled by the `com.github.britter.beanvalidators.net.IPType` enum.
      */
     @IP(type = IPType.IP_V6)
     private String ipv6;
-```
+----
 
-### @Port
+## @Port
 
 Makes sure a String, int or Integer represents a valid [port](https://en.wikipedia.org/wiki/Port_(computer_networking))
 number. A port number is a 16-bit unsigned integer, thus ranging from 0 to 65535. `@Port` can be applied to String, ints
 and Integers. If `@Port` is applied to any other type, a ValidationException will be thrown.
 
-```java
+[source,java]
+----
     /**
      * valid:
      *      "8080"
@@ -649,4 +674,4 @@ and Integers. If `@Port` is applied to any other type, a ValidationException wil
      */
     @Port
     private Integer portInteger;
-```
+----
