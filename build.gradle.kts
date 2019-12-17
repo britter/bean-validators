@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.nio.charset.StandardCharsets
-
 description = "Additional validator implementations for javax.validation"
 group = "com.github.britter"
 version = "0.6.4-SNAPSHOT"
 
 plugins {
-    `java-library`
-    `java-test-fixtures`
+    `java-conventions`
     jacoco
     `maven-publish`
     signing
@@ -35,18 +32,7 @@ repositories {
     mavenCentral()
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-    withJavadocJar()
-    withSourcesJar()
-}
-
 tasks {
-    withType<JavaCompile> {
-        options.encoding = StandardCharsets.UTF_8.name()
-    }
-
     javadoc {
         exclude("**/internal/**")
     }
