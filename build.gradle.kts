@@ -13,69 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.nio.charset.StandardCharsets
-
 description = "Additional validator implementations for javax.validation"
 group = "com.github.britter"
 version = "0.6.4-SNAPSHOT"
 
 plugins {
-    `java-library`
-    `java-test-fixtures`
-    jacoco
-    `maven-publish`
-    signing
-    id("de.marcphilipp.nexus-publish") version "0.3.0"
-    id("com.github.kt3k.coveralls") version "2.9.0"
-    id("org.asciidoctor.jvm.convert") version "2.4.0"
-    id("org.ajoberstar.git-publish") version "2.1.3"
+    `java-conventions`
+    `coveralls-conventions`
+    `documentation-conventions`
+    `publishing-conventions`
 }
 
 repositories {
     mavenCentral()
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-    withJavadocJar()
-    withSourcesJar()
-}
-
-tasks {
-    withType<JavaCompile> {
-        options.encoding = StandardCharsets.UTF_8.name()
-    }
-
-    javadoc {
-        exclude("**/internal/**")
-    }
-
-    val jacocoTestReport = named<JacocoReport>("jacocoTestReport") {
-        reports {
-            xml.isEnabled = true
-        }
-    }
-
-    coveralls {
-        jacocoReportPath = jacocoTestReport.map { it.reports.xml.destination }
-    }
-
-    asciidoctor {
-        outputOptions {
-            separateOutputDirs = false
-        }
-
-        attributes(mapOf(
-                "source-highlighter" to "coderay",
-                "tabsize" to "4",
-                "toc" to "left",
-                "icons" to "font",
-                "sectanchors" to true,
-                "idprefix" to "",
-                "idseparator" to "-"
-        ))
-    }
 }
 
 dependencies {
@@ -89,65 +39,4 @@ dependencies {
     testFixturesApi("org.assertj:assertj-core:3.8.0")
     testFixturesApi("javax.el:javax.el-api:3.0.0")
     testFixturesImplementation("com.google.guava:guava:23.0")
-}
-
-val asciidoctor by tasks.getting
-val javadoc by tasks.getting
-val testFixturesJavadoc by tasks.getting
-
-gitPublish {
-    repoUri.set("https://github.com/britter/bean-validators")
-    branch.set("gh-pages")
-
-    contents {
-        from(asciidoctor)
-        from(javadoc) {
-            into("apidocs/main")
-        }
-        from(testFixturesJavadoc) {
-            into("apidocs/test-fixtures")
-        }
-    }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-
-            pom {
-                description.set(project.description)
-                url.set("https://britter.github.io/bean-validators")
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("britter")
-                        name.set("Benedikt Ritter")
-                        email.set("beneritter@gmail.com")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/britter/bean-validators.git")
-                    developerConnection.set("scm:git:ssh://git@github.com/britter/bean-validators.git")
-                    url.set("https://github.com/britter/bean-validators")
-                }
-            }
-        }
-    }
-}
-
-nexusPublishing {
-    repositories {
-        sonatype()
-    }
-}
-
-signing {
-    useGpgCmd()
-    sign(publishing.publications["maven"])
 }
