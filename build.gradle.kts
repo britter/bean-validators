@@ -21,6 +21,7 @@ version = "0.6.4-SNAPSHOT"
 
 plugins {
     `java-library`
+    `java-test-fixtures`
     jacoco
     `maven-publish`
     signing
@@ -84,10 +85,11 @@ dependencies {
     implementation("commons-validator:commons-validator:1.6")
 
     testImplementation("junit:junit:4.12")
-    testImplementation("org.assertj:assertj-core:3.8.0")
-    testImplementation("com.google.guava:guava:23.0")
-    testImplementation("org.hibernate:hibernate-validator:5.1.3.Final")
-    testImplementation("javax.el:javax.el-api:3.0.0")
+    testRuntimeOnly("org.hibernate:hibernate-validator:5.1.3.Final")
+
+    testFixturesApi("org.assertj:assertj-core:3.8.0")
+    testFixturesApi("javax.el:javax.el-api:3.0.0")
+    testFixturesImplementation("com.google.guava:guava:23.0")
 }
 
 val asciidoctor by tasks.getting
