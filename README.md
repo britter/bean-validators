@@ -14,7 +14,7 @@ More information can be found on the [project website](https://britter.github.io
 
 ## How to release
 
-- Set the version to be released in `build.gradle.kts` and commit the change
+- Set the version to be released in `build.gradle.kts` and commit and tag the change
 - Sign an arbitrary file to force gpg-agent to store the password for the gpg key (see https://github.com/gradle/gradle/issues/11706)
 - Run `./gradlew publishToSonatype -Dorg.gradle.internal.publish.checksums.insecure=true` (see https://github.com/gradle/gradle/issues/11308 and https://issues.sonatype.org/browse/MVNCENTRAL-5276)
 - Login to Sonatype Nexus and close and release the staging repository
