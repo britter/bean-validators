@@ -16,6 +16,7 @@
 plugins {
     java
     `kotlin-dsl`
+    `kotlin-dsl-precompiled-script-plugins`
 }
 
 repositories {
@@ -24,4 +25,6 @@ repositories {
 
 dependencies {
     implementation("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.9.0")
+    implementation("org.asciidoctor:asciidoctor-gradle-jvm:2.4.0")
+    implementation("org.ajoberstar:gradle-git-publish:2.1.3")
 }

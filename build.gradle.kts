@@ -20,37 +20,14 @@ version = "0.6.4-SNAPSHOT"
 plugins {
     `java-conventions`
     `coveralls-conventions`
+    `documentation-conventions`
     `maven-publish`
     signing
     id("de.marcphilipp.nexus-publish") version "0.3.0"
-    id("org.asciidoctor.jvm.convert") version "2.4.0"
-    id("org.ajoberstar.git-publish") version "2.1.3"
 }
 
 repositories {
     mavenCentral()
-}
-
-tasks {
-    javadoc {
-        exclude("**/internal/**")
-    }
-
-    asciidoctor {
-        outputOptions {
-            separateOutputDirs = false
-        }
-
-        attributes(mapOf(
-                "source-highlighter" to "coderay",
-                "tabsize" to "4",
-                "toc" to "left",
-                "icons" to "font",
-                "sectanchors" to true,
-                "idprefix" to "",
-                "idseparator" to "-"
-        ))
-    }
 }
 
 dependencies {
@@ -64,25 +41,6 @@ dependencies {
     testFixturesApi("org.assertj:assertj-core:3.8.0")
     testFixturesApi("javax.el:javax.el-api:3.0.0")
     testFixturesImplementation("com.google.guava:guava:23.0")
-}
-
-val asciidoctor by tasks.getting
-val javadoc by tasks.getting
-val testFixturesJavadoc by tasks.getting
-
-gitPublish {
-    repoUri.set("https://github.com/britter/bean-validators")
-    branch.set("gh-pages")
-
-    contents {
-        from(asciidoctor)
-        from(javadoc) {
-            into("apidocs/main")
-        }
-        from(testFixturesJavadoc) {
-            into("apidocs/test-fixtures")
-        }
-    }
 }
 
 publishing {
