@@ -19,11 +19,10 @@ version = "0.6.4-SNAPSHOT"
 
 plugins {
     `java-conventions`
-    jacoco
+    `coveralls-conventions`
     `maven-publish`
     signing
     id("de.marcphilipp.nexus-publish") version "0.3.0"
-    id("com.github.kt3k.coveralls") version "2.9.0"
     id("org.asciidoctor.jvm.convert") version "2.4.0"
     id("org.ajoberstar.git-publish") version "2.1.3"
 }
@@ -35,16 +34,6 @@ repositories {
 tasks {
     javadoc {
         exclude("**/internal/**")
-    }
-
-    val jacocoTestReport = named<JacocoReport>("jacocoTestReport") {
-        reports {
-            xml.isEnabled = true
-        }
-    }
-
-    coveralls {
-        jacocoReportPath = jacocoTestReport.map { it.reports.xml.destination }
     }
 
     asciidoctor {

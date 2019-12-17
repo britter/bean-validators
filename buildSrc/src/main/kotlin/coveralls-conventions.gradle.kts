@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 plugins {
-    java
-    `kotlin-dsl`
+    jacoco
+    id("com.github.kt3k.coveralls")
 }
 
-repositories {
-    gradlePluginPortal()
-}
+tasks {
+    val jacocoTestReport = named<JacocoReport>("jacocoTestReport") {
+        reports {
+            xml.isEnabled = true
+        }
+    }
 
-dependencies {
-    implementation("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.9.0")
+    coveralls {
+        jacocoReportPath = jacocoTestReport.map { it.reports.xml.destination }
+    }
 }
