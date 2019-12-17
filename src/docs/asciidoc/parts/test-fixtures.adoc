@@ -1,0 +1,42 @@
+////
+ Copyright 2019 Benedikt Ritter
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+////
+
+Since the 0.7.0 release this project also publishes a https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures[test fixtures variant].
+The test fixtures variant provides functionality which is useful for testing custom validators.
+Please refer to the link:apidocs/test-fixtures/index.html[Test Fixtures JavaDoc] for more information on how to use.
+
+To use the test fixtures in your tests add them to your Gradle build:
+
+.build.gradle.kts
+[source,java,subs="attributes+"]
+----
+dependencies {
+    tesImplementation(testFixtures("{gradle-project-group}:{gradle-project-name}:{gradle-project-version}"))
+}
+----
+
+If you use Maven you can add them by adding the corresponding classifer:
+
+.pom.xml
+[source,xml,subs="attributes+"]
+----
+<dependency>
+    <groupId>{gradle-project-group}</groupId>
+    <artifactId>{gradle-project-name}</artifactId>
+    <version>{gradle-project-version}</version>
+    <classifier>test-fixtures</classifier>
+</dependency>
+----

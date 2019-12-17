@@ -67,11 +67,16 @@ If you prefer https://maven.apache.org[Apache Maven] add the dependency to your 
 </dependency>
 ----
 
+## Test Fixtures
+
+include::{includedir}/parts/test-fixtures.adoc[leveloffset=+2]
+
 ## Javadoc
 
-The latest link:apidocs/index.html[JavaDoc] can be browsed.
+The latest link:apidocs/main/index.html[JavaDoc] can be browsed.
 
-## Examples
+## Validators
 
-include::{includedir}/examples.adoc[leveloffset=+2]
+include::{includedir}/parts/validators.adoc[leveloffset=+2]
+
 

@@ -70,7 +70,6 @@ tasks {
                 "source-highlighter" to "coderay",
                 "tabsize" to "4",
                 "toc" to "left",
-                "toclevels" to "4",
                 "icons" to "font",
                 "sectanchors" to true,
                 "idprefix" to "",
@@ -94,6 +93,7 @@ dependencies {
 
 val asciidoctor by tasks.getting
 val javadoc by tasks.getting
+val testFixturesJavadoc by tasks.getting
 
 gitPublish {
     repoUri.set("https://github.com/britter/bean-validators")
@@ -102,7 +102,10 @@ gitPublish {
     contents {
         from(asciidoctor)
         from(javadoc) {
-            into("apidocs")
+            into("apidocs/main")
+        }
+        from(testFixturesJavadoc) {
+            into("apidocs/test-fixtures")
         }
     }
 }

@@ -1,0 +1,294 @@
+////
+ Copyright 2019 Benedikt Ritter
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+////
+
+Constraints validating all properties of `java.io.File` objects. There is an annotation for each property as well as one
+for the negation of each property. All annotations can also be applied to Strings. The validators will construct a new
+File instance using `new File(String)` and use that instance for validation.
+
+## @Absolute
+
+Makes sure a file represents an absolute path in the file system.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.isAbsolute() == true
+     *
+     * invalid:
+     *      dir.isAbsolute() == false
+     */
+    @Absolute
+    private File file;
+----
+
+## @NotAbsolute
+
+Makes sure a file does not represent an absolute path in the file system.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.isAbsolute() == false
+     *
+     * invalid:
+     *      dir.isAbsolute() == true
+     */
+    @NotAbsolute
+    private File file;
+----
+
+## @Directory
+
+Makes sure a file represents a directory.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      dir.isDirectory() == true
+     *
+     * invalid:
+     *      dir.isDirectory() == false
+     */
+    @Directory
+    private File dir;
+----
+
+## @NotDirectory
+
+Makes sure a file does not represent a directory.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      dir.isDirectory() == false
+     *
+     * invalid:
+     *      dir.isDirectory() == true
+     */
+    @NotDirectory
+    private File dir;
+----
+
+## @Executable
+
+Makes sure a file has executable permission in the file system.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.canExecute() == true
+     *
+     * invalid:
+     *      file.canExecute() == false
+     */
+    @Executable
+    private File file;
+----
+
+## @NotExecutable
+
+Makes sure a file does not have executable permission in the file system.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.canExecute() == false
+     *
+     * invalid:
+     *      file.canExecute() == true
+     */
+    @NotExecutable
+    private File file;
+----
+
+## @Existing
+
+Makes sure a file exists.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.exists() == true
+     *
+     * invalid:
+     *      file.exists() == false
+     */
+    @Existing
+    private File file;
+----
+
+## @NotExisting
+
+Makes sure a file does not exist.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.exists() == false
+     *
+     * invalid:
+     *      file.exists() == true
+     */
+    @NotExisting
+    private File file;
+----
+
+## @File
+
+Makes sure a file represents a file in the file system.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.isFile() == true
+     *
+     * invalid:
+     *      file.isFile() == false
+     */
+    @com.github.britter.beanvalidators.file.IsFile
+    private File file;
+----
+
+## @NotFile
+
+Makes sure a file does not represent a file in the file system. Note that both `File.isFile()` and `File.isDirectory()`
+can return false, for example for sockets, mounts or pipes.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.isFile() == false
+     *
+     * invalid:
+     *      file.isFile() == true
+     */
+    @NotFile
+    private File file;
+----
+
+## @Hidden
+
+Makes sure a file is hidden. Note that the definition of a hidden files various between operating systems. For examples
+in an UNIX-like OS, all files and directories starting with a dot are considered to be hidden, where as on Windows the
+hidden attribute of the file has to be set to true.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.isHidden() == true
+     *
+     * invalid:
+     *      file.isHidden() == false
+     */
+    @Hidden
+    private File file;
+----
+
+## @NotHidden
+
+Makes sure a file is not hidden.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.isHidden() == false
+     *
+     * invalid:
+     *      file.isHidden() == true
+     */
+    @NotHidden
+    private File file;
+----
+
+## @Readable
+
+Makes sure a file is readable.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.canRead() == true
+     *
+     * invalid:
+     *      file.canRead() == false
+     */
+    @Readable
+    private File file;
+----
+
+## @NotReadable
+
+Makes sure a file is not readable. There is probably no real use case for this annotation, but it has been added for completeness
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.canRead() == false
+     *
+     * invalid:
+     *      file.canRead() == true
+     */
+    @NotReadable
+    private File file;
+----
+
+## @Writable
+
+Makes sure a file is writable.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.canWrite() == true
+     *
+     * invalid:
+     *      file.canWrite() == false
+     */
+    @Writable
+    private File file;
+----
+
+## @NotWritable
+
+Makes sure a file is not writeable.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      file.canWrite() == false
+     *
+     * invalid:
+     *      file.canWrite() == true
+     */
+    @NotWritable
+    private File file;
+----

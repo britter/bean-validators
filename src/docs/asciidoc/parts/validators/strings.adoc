@@ -1,0 +1,223 @@
+////
+ Copyright 2019 Benedikt Ritter
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+////
+
+Various constraints which can be applied to instance of `java.lang.String`. All validators treat blank strings as valid.
+If you need a non empty/non blank String, you annotations such as `@NotEmpty` or `@NotBlank` in addition.
+
+## @Alphabetic
+
+Makes sure a String only contains letters. Can be configured to allow spaces as well.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "abcd"
+     *
+     * invalid:
+     *      "1234"
+     *      "abcd1234"
+     *      "ab cd1234"
+     *      "ab cd"
+     */
+    @Alphabetic
+    private String alphabetic;
+
+    /**
+     * valid:
+     *      "abcd"
+     *      "ab cd"
+     *
+     * invalid:
+     *      "1234"
+     *      "abcd1234"
+     *      "ab cd1234"
+     */
+    @Alphabetic(allowSpaces = true)
+    private String alphabetic;
+----
+
+## @AlphaNumeric
+
+Makes sure a String only contains letters and digits. Can be configured to allow spaces as well.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "abcd"
+     *      "abcd1234"
+     *      "1234"
+     *
+     * invalid:
+     *      "abcd?"
+     *      "ab cd"
+     *      "ab cd 1234"
+     *      "ab cd 1234?"
+     */
+    @AlphaNumeric
+    private String alphaNum;
+
+    /**
+     * valid:
+     *      "abcd"
+     *      "abcd1234"
+     *      "ab cd"
+     *      "ab cd 1234"
+     *
+     * invalid:
+     *      "abcd?"
+     *      "ab cd 1234?"
+     */
+    @AlphaNumeric(allowSpaces = true)
+    private String alphaNum;
+----
+
+## @ASCII
+
+Makes sure a String ony contains ASCII printable characters. ASCII printable characters are all charaters in the range
+32 thru 126.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "abcd"
+     *      "abcd1234"
+     *      "ab cd"
+     *
+     * invalid:
+     *      "äöü"
+     */
+    @ASCII
+    private String ascii;
+----
+
+## @Blank
+
+The opposite of `org.hibernate.validator.constraints.NotBlank`.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      null
+     *      ""
+     *      "  "
+     *
+     * invalid:
+     *      "abcd"
+     */
+    @Blank
+    private String blank;
+----
+
+## @ISBN
+
+Makes sure a String represents an [International Standard Book Number (ISBN)](https://en.wikipedia.org/wiki/International_Standard_Book_Number).
+There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will allow both. The
+`com.github.britter.beanvalidators.strings.ISBNType` enum can be used to control this behavior.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "3551551677"
+     *      "978-3-55155-167-2"
+     *
+     * invalid:
+     *      "35515516770"
+     *      "978-3-551551672"
+     *      "abc"
+     */
+    @ISBN
+    private String isbn;
+
+    /**
+     * valid:
+     *      "3551551677"
+     *
+     * invalid:
+     *      "35515516770"
+     *      "978-3-55155-167-2"
+     *      "978-3-551551672"
+     *      "abc"
+     */
+    @ISBN(type = ISBNType.ISBN_10)
+    private String isbn10;
+
+    /**
+     * valid:
+     *      "978-3-55155-167-2"
+     *
+     * invalid:
+     *      "3551551677"
+     *      "35515516770"
+     *      "978-3-551551672"
+     *      "abc"
+     */
+    @ISBN(type = ISBNType.ISBN_13)
+    private String isbn13;
+----
+
+## @JavaNumber
+
+Makes sure a String contains a valid Java number. Note that this doesn't mean the given String can be parsed by the
+various `parse` and `valueOf` methods defined on `Integer` etc. It just means, that the String could be used to define
+an number in Java code. For more information see [NumberUtils.isNumber(String)](http://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html).
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "1234"
+     *      "-1234"
+     *      "1234L"
+     *      "0x1A"
+     *      "0X1A"
+     *      "017"
+     *      "0.17"
+     *
+     * invalid:
+     *      "abcd"
+     *      "0x1G"
+     *      "018"
+     *      "0,17"
+     */
+    @JavaNumber
+    private String javaNum;
+----
+
+## @Numeric
+
+Makes sure a String only contains digits.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "1234"
+     *
+     * invalid:
+     *      "abc"
+     *      "-1234"
+     *      "0.1234"
+     *      "0x1234"
+     *      "0e1234"
+     */
+    @Numeric
+    private String numeric;
+----

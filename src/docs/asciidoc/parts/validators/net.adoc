@@ -1,0 +1,128 @@
+////
+ Copyright 2019 Benedikt Ritter
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+////
+
+Constraints dealing with networking.
+
+## @Domain
+
+Makes sure a string represents a valid domain. Note that the list of valid top level domains is changes frequently. Since
+this validator uses `org.apache.commons.validator.routines.DomainValidator` under the hood, there may be domains which
+are acutally valid reported as invalid, because the Apache Commons Validator TLP list is not up to date.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "www.example.com"
+     *
+     * invalid:
+     *      "http://www.example.com"
+     *      "abcd"
+     */
+    @Domain
+    private String domain;
+----
+
+## @IP
+
+Makes sure a String represents a valid [Internet Protocol (IP) address](https://en.wikipedia.org/wiki/IP_address). There
+are two kinds of IP addresses: IPv4 and the newer IPv6. The default is to validate against both versions. The behavior
+can be controlled by the `com.github.britter.beanvalidators.net.IPType` enum.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "192.168.0.1"
+     *      "fe80::8a1f:a1ff:fe11:9326"
+     *
+     * invalid:
+     *      "abcd"
+     *      "999.168.0.1"
+     *      "ge80::8a1f:a1ff:fe11:9326"
+     */
+    @IP
+    private String ip;
+
+    /**
+     * valid:
+     *      "192.168.0.1"
+     *
+     * invalid:
+     *      "abcd"
+     *      "fe80::8a1f:a1ff:fe11:9326"
+     *      "999.168.0.1"
+     *      "ge80::8a1f:a1ff:fe11:9326"
+     */
+    @IP(type = IPType.IP_V4)
+    private String ipv4;
+
+    /**
+     * valid:
+     *      "fe80::8a1f:a1ff:fe11:9326"
+     *
+     * invalid:
+     *      "abcd"
+     *      "192.168.0.1"
+     *      "999.168.0.1"
+     *      "ge80::8a1f:a1ff:fe11:9326"
+     */
+    @IP(type = IPType.IP_V6)
+    private String ipv6;
+----
+
+## @Port
+
+Makes sure a String, int or Integer represents a valid [port](https://en.wikipedia.org/wiki/Port_(computer_networking))
+number. A port number is a 16-bit unsigned integer, thus ranging from 0 to 65535. `@Port` can be applied to String, ints
+and Integers. If `@Port` is applied to any other type, a ValidationException will be thrown.
+
+[source,java]
+----
+    /**
+     * valid:
+     *      "8080"
+     *
+     * invalid:
+     *      "-8080"
+     *      "65537"
+     *      "abcd"
+     */
+    @Port
+    private String portString;
+
+    /**
+     * valid:
+     *      8080
+     *
+     * invalid:
+     *      -8080
+     *      65537
+     */
+    @Port
+    private int portInt;
+
+    /**
+     * valid:
+     *      Integer.valueOf(8080)
+     *
+     * invalid:
+     *      Integer.valueOf(-8080)
+     *      Integer.valueOf(65537)
+     */
+    @Port
+    private Integer portInteger;
+----
