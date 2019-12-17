@@ -21,9 +21,7 @@ plugins {
     `java-conventions`
     `coveralls-conventions`
     `documentation-conventions`
-    `maven-publish`
-    signing
-    id("de.marcphilipp.nexus-publish") version "0.3.0"
+    `publishing-conventions`
 }
 
 repositories {
@@ -41,46 +39,4 @@ dependencies {
     testFixturesApi("org.assertj:assertj-core:3.8.0")
     testFixturesApi("javax.el:javax.el-api:3.0.0")
     testFixturesImplementation("com.google.guava:guava:23.0")
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-
-            pom {
-                description.set(project.description)
-                url.set("https://britter.github.io/bean-validators")
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("britter")
-                        name.set("Benedikt Ritter")
-                        email.set("beneritter@gmail.com")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/britter/bean-validators.git")
-                    developerConnection.set("scm:git:ssh://git@github.com/britter/bean-validators.git")
-                    url.set("https://github.com/britter/bean-validators")
-                }
-            }
-        }
-    }
-}
-
-nexusPublishing {
-    repositories {
-        sonatype()
-    }
-}
-
-signing {
-    useGpgCmd()
-    sign(publishing.publications["maven"])
 }
