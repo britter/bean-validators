@@ -12,23 +12,14 @@ Most validators use [Apache Commons Lang3](http://commons.apache.org/lang/) and
 
 More information can be found on the [project website](https://britter.github.io/bean-validators).
 
-## Usage
-
-Add the following to your Maven dependency list:
-
-```xml
-<dependency>
-  <groupId>com.github.britter</groupId>
-  <artifactId>bean-validators</artifactId>
-  <version>0.6.3</version>
-</dependency>
-```
-
 ## How to release
 
-`./mvnw -Prelease release:prepare -Darguments=-Dgpg.keyname=<key to use>`
-
-`./mvnw -Prelease release:perform -Darguments=-Dgpg.keyname=<key to use>`
+- Set the version to be released in `build.gradle.kts` and commit the change
+- Sign an arbitrary file to force gpg-agent to store the password for the gpg key (see https://github.com/gradle/gradle/issues/11706)
+- Run `./gradlew publishToSonatype -Dorg.gradle.internal.publish.checksums.insecure=true` (see https://github.com/gradle/gradle/issues/11308 and https://issues.sonatype.org/browse/MVNCENTRAL-5276)
+- Login to Sonatype Nexus and close and release the staging repository
+- Deploy the site for the new version `./gradlew gitPublishPush`
+- Set the version to the next SNAPSHOT version in `build.gradle.kts` and commit and push the change
 
 ## License
 
