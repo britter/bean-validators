@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<title>bean-validators</title>
+<title>@Empty</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -524,200 +524,57 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>bean-validators</h1>
-<div class="details">
-<span id="revnumber">version 0.6.4-SNAPSHOT</span>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#installation">Installation</a></li>
-<li><a href="#test-fixtures">Test Fixtures</a></li>
-<li><a href="#javadoc">Javadoc</a></li>
-<li><a href="#validators">Validators</a>
-<ul class="sectlevel2">
+<ul class="sectlevel0">
 <li><a href="#empty">@Empty</a></li>
-<li><a href="#strings">Strings</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#net">Net</a></li>
+<li><a href="#strings">Strings</a>
+<ul class="sectlevel1">
+<li><a href="#alphabetic">@Alphabetic</a></li>
+<li><a href="#alphanumeric">@AlphaNumeric</a></li>
+<li><a href="#ascii">@ASCII</a></li>
+<li><a href="#blank">@Blank</a></li>
+<li><a href="#isbn">@ISBN</a></li>
+<li><a href="#javanumber">@JavaNumber</a></li>
+<li><a href="#numeric">@Numeric</a></li>
+</ul>
+</li>
+<li><a href="#files">Files</a>
+<ul class="sectlevel1">
+<li><a href="#absolute">@Absolute</a></li>
+<li><a href="#notabsolute">@NotAbsolute</a></li>
+<li><a href="#directory">@Directory</a></li>
+<li><a href="#notdirectory">@NotDirectory</a></li>
+<li><a href="#executable">@Executable</a></li>
+<li><a href="#notexecutable">@NotExecutable</a></li>
+<li><a href="#existing">@Existing</a></li>
+<li><a href="#notexisting">@NotExisting</a></li>
+<li><a href="#file">@File</a></li>
+<li><a href="#notfile">@NotFile</a></li>
+<li><a href="#hidden">@Hidden</a></li>
+<li><a href="#nothidden">@NotHidden</a></li>
+<li><a href="#readable">@Readable</a></li>
+<li><a href="#notreadable">@NotReadable</a></li>
+<li><a href="#writable">@Writable</a></li>
+<li><a href="#notwritable">@NotWritable</a></li>
+</ul>
+</li>
+<li><a href="#net">Net</a>
+<ul class="sectlevel1">
+<li><a href="#domain">@Domain</a></li>
+<li><a href="#ip">@IP</a></li>
+<li><a href="#port">@Port</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="https://travis-ci.org/britter/bean-validators"><img src="https://travis-ci.org/britter/bean-validators.svg?branch=master" alt="Build Status"></a></span>
-<span class="image"><a class="image" href="https://coveralls.io/r/britter/bean-validators"><img src="https://coveralls.io/repos/britter/bean-validators/badge.svg" alt="Coverage Status"></a></span>
-<span class="image"><a class="image" href="https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/"><img src="https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/badge.svg" alt="Maven Central"></a></span>
-<span class="image"><a class="image" href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License"></a></span></p>
-</div>
-<div class="paragraph">
-<p>Additional validator implementations for <a href="http://beanvalidation.org/">javax.validation</a>.</p>
-</div>
-<div class="paragraph">
-<p>There are annotations available for various basic Java types such as:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Strings</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><code>@Blank</code></p>
-</li>
-<li>
-<p><code>@Alphabetic</code></p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Files</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><code>@Readable</code></p>
-</li>
-<li>
-<p><code>@Writable</code></p>
-</li>
-<li>
-<p><code>@Directory</code></p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Networking</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><code>@Domain</code></p>
-</li>
-<li>
-<p><code>@IP</code></p>
-</li>
-<li>
-<p><code>@Port</code></p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Misc</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><code>@Empty</code></p>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>Most validators use <a href="http://commons.apache.org/lang">Apache Commons Lang3</a> and <a href="http://commons.apache.org/validator">Apache Commons Validator</a> functionality to implement various validation routines.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="installation"><a class="anchor" href="#installation"></a>Installation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Releases can be installed from <a href="https://search.maven.org/artifact/com.github.britter/bean-validators:">Maven Central</a>.
-Simply add the following to your <a href="https://gradle.org:">Gradle</a> build file:</p>
-</div>
-<div class="listingblock">
-<div class="title">build.gradle.kts</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">dependencies {
-    implementation(<span class="string"><span class="delimiter">&quot;</span><span class="content">com.github.britter:bean-validators:0.6.4-SNAPSHOT</span><span class="delimiter">&quot;</span></span>)
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you&#8217;re using bean-validators annotations to annotate public members, the <code>api</code> configuration provided by the <a href="https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_recognizing_dependencies:">java-library plugin</a> is more appropriate.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If you prefer <a href="https://maven.apache.org">Apache Maven</a> add the dependency to your <code>pom.xml</code>:</p>
-</div>
-<div class="listingblock">
-<div class="title">pom.xml</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
-    <span class="tag">&lt;groupId&gt;</span>com.github.britter<span class="tag">&lt;/groupId&gt;</span>
-    <span class="tag">&lt;artifactId&gt;</span>bean-validators<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>0.6.4-SNAPSHOT<span class="tag">&lt;/version&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="test-fixtures"><a class="anchor" href="#test-fixtures"></a>Test Fixtures</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Since the 0.7.0 release this project also publishes a <a href="https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures">test fixtures variant</a>.
-The test fixtures variant provides functionality which is useful for testing custom validators.
-Please refer to the <a href="apidocs/test-fixtures/index.html">Test Fixtures JavaDoc</a> for more information on how to use.</p>
-</div>
-<div class="paragraph">
-<p>To use the test fixtures in your tests add them to your Gradle build:</p>
-</div>
-<div class="listingblock">
-<div class="title">build.gradle.kts</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">dependencies {
-    tesImplementation(testFixtures(<span class="string"><span class="delimiter">&quot;</span><span class="content">com.github.britter:bean-validators:0.6.4-SNAPSHOT</span><span class="delimiter">&quot;</span></span>))
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you use Maven you can add them by adding the corresponding classifer:</p>
-</div>
-<div class="listingblock">
-<div class="title">pom.xml</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
-    <span class="tag">&lt;groupId&gt;</span>com.github.britter<span class="tag">&lt;/groupId&gt;</span>
-    <span class="tag">&lt;artifactId&gt;</span>bean-validators<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>0.6.4-SNAPSHOT<span class="tag">&lt;/version&gt;</span>
-    <span class="tag">&lt;classifier&gt;</span>test-fixtures<span class="tag">&lt;/classifier&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="javadoc"><a class="anchor" href="#javadoc"></a>Javadoc</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The latest <a href="apidocs/main/index.html">JavaDoc</a> can be browsed.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="validators"><a class="anchor" href="#validators"></a>Validators</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>All Validators will treat null and blank input strings as valid. If you want to make sure fields are not null/blank
 you have to use <code>@NotNull</code> or <code>@NotBlank</code> in addition.</p>
 </div>
-<div class="sect2">
-<h3 id="empty"><a class="anchor" href="#empty"></a>@Empty</h3>
+<h1 id="empty" class="sect0"><a class="anchor" href="#empty"></a>@Empty</h1>
 <div class="paragraph">
 <p>The <code>@Empty</code> annotation is the opposite of <code>org.hibernate.validator.constraints.NotEmpty</code> and works on String,
 Collections, Maps and arrays. If any other type is annotated with <code>@Empty</code> a <code>javax.validation.ValidationException</code> will
@@ -771,15 +628,14 @@ be thrown.</p>
     <span class="directive">private</span> T<span class="type">[]</span> empty;</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="strings"><a class="anchor" href="#strings"></a>Strings</h3>
+<h1 id="strings" class="sect0"><a class="anchor" href="#strings"></a>Strings</h1>
 <div class="paragraph">
 <p>Various constraints which can be applied to instance of <code>java.lang.String</code>. All validators treat blank strings as valid.
 If you need a non empty/non blank String, you annotations such as <code>@NotEmpty</code> or <code>@NotBlank</code> in addition.</p>
 </div>
-<div class="sect3">
-<h4 id="alphabetic"><a class="anchor" href="#alphabetic"></a>@Alphabetic</h4>
+<div class="sect1">
+<h2 id="alphabetic"><a class="anchor" href="#alphabetic"></a>@Alphabetic</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String only contains letters. Can be configured to allow spaces as well.</p>
 </div>
@@ -813,8 +669,10 @@ If you need a non empty/non blank String, you annotations such as <code>@NotEmpt
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="alphanumeric"><a class="anchor" href="#alphanumeric"></a>@AlphaNumeric</h4>
+</div>
+<div class="sect1">
+<h2 id="alphanumeric"><a class="anchor" href="#alphanumeric"></a>@AlphaNumeric</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String only contains letters and digits. Can be configured to allow spaces as well.</p>
 </div>
@@ -851,8 +709,10 @@ If you need a non empty/non blank String, you annotations such as <code>@NotEmpt
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="ascii"><a class="anchor" href="#ascii"></a>@ASCII</h4>
+</div>
+<div class="sect1">
+<h2 id="ascii"><a class="anchor" href="#ascii"></a>@ASCII</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String ony contains ASCII printable characters. ASCII printable characters are all charaters in the range
 32 thru 126.</p>
@@ -873,8 +733,10 @@ If you need a non empty/non blank String, you annotations such as <code>@NotEmpt
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="blank"><a class="anchor" href="#blank"></a>@Blank</h4>
+</div>
+<div class="sect1">
+<h2 id="blank"><a class="anchor" href="#blank"></a>@Blank</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The opposite of <code>org.hibernate.validator.constraints.NotBlank</code>.</p>
 </div>
@@ -894,8 +756,10 @@ If you need a non empty/non blank String, you annotations such as <code>@NotEmpt
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="isbn"><a class="anchor" href="#isbn"></a>@ISBN</h4>
+</div>
+<div class="sect1">
+<h2 id="isbn"><a class="anchor" href="#isbn"></a>@ISBN</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String represents an [International Standard Book Number (ISBN)](<a href="https://en.wikipedia.org/wiki/International_Standard_Book_Number" class="bare">https://en.wikipedia.org/wiki/International_Standard_Book_Number</a>).
 There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will allow both. The
@@ -944,8 +808,10 @@ There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will all
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="javanumber"><a class="anchor" href="#javanumber"></a>@JavaNumber</h4>
+</div>
+<div class="sect1">
+<h2 id="javanumber"><a class="anchor" href="#javanumber"></a>@JavaNumber</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String contains a valid Java number. Note that this doesn&#8217;t mean the given String can be parsed by the
 various <code>parse</code> and <code>valueOf</code> methods defined on <code>Integer</code> etc. It just means, that the String could be used to define
@@ -974,8 +840,10 @@ an number in Java code. For more information see [NumberUtils.isNumber(String)](
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="numeric"><a class="anchor" href="#numeric"></a>@Numeric</h4>
+</div>
+<div class="sect1">
+<h2 id="numeric"><a class="anchor" href="#numeric"></a>@Numeric</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String only contains digits.</p>
 </div>
@@ -998,15 +866,15 @@ an number in Java code. For more information see [NumberUtils.isNumber(String)](
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="files"><a class="anchor" href="#files"></a>Files</h3>
+<h1 id="files" class="sect0"><a class="anchor" href="#files"></a>Files</h1>
 <div class="paragraph">
 <p>Constraints validating all properties of <code>java.io.File</code> objects. There is an annotation for each property as well as one
 for the negation of each property. All annotations can also be applied to Strings. The validators will construct a new
 File instance using <code>new File(String)</code> and use that instance for validation.</p>
 </div>
-<div class="sect3">
-<h4 id="absolute"><a class="anchor" href="#absolute"></a>@Absolute</h4>
+<div class="sect1">
+<h2 id="absolute"><a class="anchor" href="#absolute"></a>@Absolute</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file represents an absolute path in the file system.</p>
 </div>
@@ -1024,8 +892,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="notabsolute"><a class="anchor" href="#notabsolute"></a>@NotAbsolute</h4>
+</div>
+<div class="sect1">
+<h2 id="notabsolute"><a class="anchor" href="#notabsolute"></a>@NotAbsolute</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file does not represent an absolute path in the file system.</p>
 </div>
@@ -1043,8 +913,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="directory"><a class="anchor" href="#directory"></a>@Directory</h4>
+</div>
+<div class="sect1">
+<h2 id="directory"><a class="anchor" href="#directory"></a>@Directory</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file represents a directory.</p>
 </div>
@@ -1062,8 +934,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="notdirectory"><a class="anchor" href="#notdirectory"></a>@NotDirectory</h4>
+</div>
+<div class="sect1">
+<h2 id="notdirectory"><a class="anchor" href="#notdirectory"></a>@NotDirectory</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file does not represent a directory.</p>
 </div>
@@ -1081,8 +955,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="executable"><a class="anchor" href="#executable"></a>@Executable</h4>
+</div>
+<div class="sect1">
+<h2 id="executable"><a class="anchor" href="#executable"></a>@Executable</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file has executable permission in the file system.</p>
 </div>
@@ -1100,8 +976,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="notexecutable"><a class="anchor" href="#notexecutable"></a>@NotExecutable</h4>
+</div>
+<div class="sect1">
+<h2 id="notexecutable"><a class="anchor" href="#notexecutable"></a>@NotExecutable</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file does not have executable permission in the file system.</p>
 </div>
@@ -1119,8 +997,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="existing"><a class="anchor" href="#existing"></a>@Existing</h4>
+</div>
+<div class="sect1">
+<h2 id="existing"><a class="anchor" href="#existing"></a>@Existing</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file exists.</p>
 </div>
@@ -1138,8 +1018,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="notexisting"><a class="anchor" href="#notexisting"></a>@NotExisting</h4>
+</div>
+<div class="sect1">
+<h2 id="notexisting"><a class="anchor" href="#notexisting"></a>@NotExisting</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file does not exist.</p>
 </div>
@@ -1157,8 +1039,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="file"><a class="anchor" href="#file"></a>@File</h4>
+</div>
+<div class="sect1">
+<h2 id="file"><a class="anchor" href="#file"></a>@File</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file represents a file in the file system.</p>
 </div>
@@ -1176,8 +1060,10 @@ File instance using <code>new File(String)</code> and use that instance for vali
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="notfile"><a class="anchor" href="#notfile"></a>@NotFile</h4>
+</div>
+<div class="sect1">
+<h2 id="notfile"><a class="anchor" href="#notfile"></a>@NotFile</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file does not represent a file in the file system. Note that both <code>File.isFile()</code> and <code>File.isDirectory()</code>
 can return false, for example for sockets, mounts or pipes.</p>
@@ -1196,8 +1082,10 @@ can return false, for example for sockets, mounts or pipes.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="hidden"><a class="anchor" href="#hidden"></a>@Hidden</h4>
+</div>
+<div class="sect1">
+<h2 id="hidden"><a class="anchor" href="#hidden"></a>@Hidden</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file is hidden. Note that the definition of a hidden files various between operating systems. For examples
 in an UNIX-like OS, all files and directories starting with a dot are considered to be hidden, where as on Windows the
@@ -1217,8 +1105,10 @@ hidden attribute of the file has to be set to true.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="nothidden"><a class="anchor" href="#nothidden"></a>@NotHidden</h4>
+</div>
+<div class="sect1">
+<h2 id="nothidden"><a class="anchor" href="#nothidden"></a>@NotHidden</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file is not hidden.</p>
 </div>
@@ -1236,8 +1126,10 @@ hidden attribute of the file has to be set to true.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="readable"><a class="anchor" href="#readable"></a>@Readable</h4>
+</div>
+<div class="sect1">
+<h2 id="readable"><a class="anchor" href="#readable"></a>@Readable</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file is readable.</p>
 </div>
@@ -1255,8 +1147,10 @@ hidden attribute of the file has to be set to true.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="notreadable"><a class="anchor" href="#notreadable"></a>@NotReadable</h4>
+</div>
+<div class="sect1">
+<h2 id="notreadable"><a class="anchor" href="#notreadable"></a>@NotReadable</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file is not readable. There is probably no real use case for this annotation, but it has been added for completeness</p>
 </div>
@@ -1274,8 +1168,10 @@ hidden attribute of the file has to be set to true.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="writable"><a class="anchor" href="#writable"></a>@Writable</h4>
+</div>
+<div class="sect1">
+<h2 id="writable"><a class="anchor" href="#writable"></a>@Writable</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file is writable.</p>
 </div>
@@ -1293,8 +1189,10 @@ hidden attribute of the file has to be set to true.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="notwritable"><a class="anchor" href="#notwritable"></a>@NotWritable</h4>
+</div>
+<div class="sect1">
+<h2 id="notwritable"><a class="anchor" href="#notwritable"></a>@NotWritable</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a file is not writeable.</p>
 </div>
@@ -1313,13 +1211,13 @@ hidden attribute of the file has to be set to true.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="net"><a class="anchor" href="#net"></a>Net</h3>
+<h1 id="net" class="sect0"><a class="anchor" href="#net"></a>Net</h1>
 <div class="paragraph">
 <p>Constraints dealing with networking.</p>
 </div>
-<div class="sect3">
-<h4 id="domain"><a class="anchor" href="#domain"></a>@Domain</h4>
+<div class="sect1">
+<h2 id="domain"><a class="anchor" href="#domain"></a>@Domain</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a string represents a valid domain. Note that the list of valid top level domains is changes frequently. Since
 this validator uses <code>org.apache.commons.validator.routines.DomainValidator</code> under the hood, there may be domains which
@@ -1340,8 +1238,10 @@ are acutally valid reported as invalid, because the Apache Commons Validator TLP
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="ip"><a class="anchor" href="#ip"></a>@IP</h4>
+</div>
+<div class="sect1">
+<h2 id="ip"><a class="anchor" href="#ip"></a>@IP</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String represents a valid [Internet Protocol (IP) address](<a href="https://en.wikipedia.org/wiki/IP_address" class="bare">https://en.wikipedia.org/wiki/IP_address</a>). There
 are two kinds of IP addresses: IPv4 and the newer IPv6. The default is to validate against both versions. The behavior
@@ -1390,8 +1290,10 @@ can be controlled by the <code>com.github.britter.beanvalidators.net.IPType</cod
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="port"><a class="anchor" href="#port"></a>@Port</h4>
+</div>
+<div class="sect1">
+<h2 id="port"><a class="anchor" href="#port"></a>@Port</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Makes sure a String, int or Integer represents a valid [port](<a href="https://en.wikipedia.org/wiki/Port_(computer_networking)" class="bare">https://en.wikipedia.org/wiki/Port_(computer_networking)</a>)
 number. A port number is a 16-bit unsigned integer, thus ranging from 0 to 65535. <code>@Port</code> can be applied to String, ints
@@ -1437,12 +1339,10 @@ and Integers. If <code>@Port</code> is applied to any other type, a ValidationEx
 </div>
 </div>
 </div>
-</div>
-</div>
 <div id="footer">
 <div id="footer-text">
 Version 0.6.4-SNAPSHOT<br>
-Last updated 2019-12-17 16:47:09 +0100
+Last updated 2019-12-17 16:35:29 +0100
 </div>
 </div>
 </body>
