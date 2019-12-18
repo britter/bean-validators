@@ -1,8 +1,5 @@
 import org.ajoberstar.gradle.git.publish.tasks.GitPublishCommit
 import org.ajoberstar.gradle.git.publish.tasks.GitPublishReset
-
-import org.gradle.kotlin.dsl.getValue
-
 /*
  * Copyright 2019 Benedikt Ritter
  *
@@ -46,6 +43,7 @@ tasks {
 
     val gitPublishReset = named("gitPublishReset", GitPublishReset::class)
 
+    // Work around for https://github.com/ajoberstar/gradle-git-publish/issues/78
     val deactivateSigning = register("gitPublishDeactivateSigning") {
         mustRunAfter(gitPublishReset)
         val repo = gitPublishReset.flatMap { it.repoDirectory }
