@@ -1,3 +1,5 @@
+import java.time.Duration
+
 /*
  * Copyright 2019 Benedikt Ritter
  *
@@ -25,7 +27,8 @@ publishing {
             from(components["java"])
 
             pom {
-                description.set(project.description)
+                name.set(provider { project.name })
+                description.set(provider { project.description })
                 url.set("https://britter.github.io/bean-validators")
                 licenses {
                     license {
@@ -51,6 +54,8 @@ publishing {
 }
 
 nexusPublishing {
+    connectTimeout.set(Duration.ofMinutes(5))
+    clientTimeout.set(Duration.ofMinutes(5))
     repositories {
         sonatype()
     }
