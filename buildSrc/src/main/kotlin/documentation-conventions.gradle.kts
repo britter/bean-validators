@@ -1,3 +1,8 @@
+import org.ajoberstar.gradle.git.publish.tasks.GitPublishCommit
+import org.ajoberstar.gradle.git.publish.tasks.GitPublishReset
+
+import org.gradle.kotlin.dsl.getValue
+
 /*
  * Copyright 2019 Benedikt Ritter
  *
@@ -37,6 +42,27 @@ tasks {
                 "idprefix" to "",
                 "idseparator" to "-"
         ))
+    }
+
+    val gitPublishReset = named("gitPublishReset", GitPublishReset::class)
+
+    val deactivateSigning = register("gitPublishDeactivateSigning") {
+        mustRunAfter(gitPublishReset)
+        val repo = gitPublishReset.flatMap { it.repoDirectory }
+        val gitConfig = file("${repo.get().asFile}/.git/config")
+        onlyIf {
+            !gitConfig.readText().contains("gpgsign")
+        }
+        doLast {
+            gitConfig.appendText("""
+                [commit]
+                        gpgsign = false
+            """.trimIndent())
+        }
+    }
+
+    named("gitPublishCommit", GitPublishCommit::class) {
+        dependsOn(deactivateSigning)
     }
 }
 
