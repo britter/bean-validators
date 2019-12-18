@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 plugins {
-    java
     `kotlin-dsl`
-    `kotlin-dsl-precompiled-script-plugins`
 }
 
 repositories {
