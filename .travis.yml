@@ -19,6 +19,7 @@ sudo: false
 
 jdk:
   - openjdk8
+  - openjdk11
 
 after_success:
   - ./gradlew jacocoTestReport coveralls

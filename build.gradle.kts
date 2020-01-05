@@ -39,4 +39,5 @@ dependencies {
     testFixturesApi("org.assertj:assertj-core:3.8.0")
     testFixturesApi("javax.el:javax.el-api:3.0.0")
     testFixturesImplementation("com.google.guava:guava:23.0")
+    testFixturesImplementation("javax.xml.bind:jaxb-api:2.3.1")
 }
