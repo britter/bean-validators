@@ -17,6 +17,7 @@ jobs:
         uses: eskatos/gradle-command-action@v1
         with:
           arguments: check
-      - uses: eskatos/gradle-command-action@v1
+      - name: "./gradlew jacocoTestReport coveralls"
+        uses: eskatos/gradle-command-action@v1
         with:
           arguments: jacocoTestReport coveralls
