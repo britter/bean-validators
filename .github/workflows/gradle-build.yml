@@ -12,13 +12,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: Check JDK ${{ matrix.java }} on ${{ matrix.os }}
     steps:
-    - name: git clone
+    - name: "git clone"
       uses: actions/checkout@v1
-    - name: Set up JDK ${{ matrix.java }}
+    - name: "Set up JDK ${{ matrix.java }}"
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
     - name: "./gradlew check"
-      uses: eskatos/gradle-command-action@v1
-      with:
-          arguments: check
+      run: ./gradlew check
+      shell: bash
