@@ -16,43 +16,43 @@
 package com.github.britter.beanvalidators.strings;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class ASCIITest {
 
     private ASCIIBean asciiBean;
     private ValidationWrapper<ASCIIBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         asciiBean = new ASCIIBean();
         validator = new ValidationWrapper<>(asciiBean, "must be ASCII printable");
     }
 
     @Test
-    public void shouldValidateNullString() throws Exception {
+    public void shouldValidateNullString() {
         asciiBean.ascii = null;
 
         validator.assertNoViolations("ascii");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         asciiBean.ascii = " ";
 
         validator.assertNoViolations("ascii");
     }
 
     @Test
-    public void shouldValidateAscii() throws Exception {
+    public void shouldValidateAscii() {
         asciiBean.ascii = "abcd";
 
         validator.assertNoViolations("ascii");
     }
 
     @Test
-    public void shouldNotValidateNonAscii() throws Exception {
+    public void shouldNotValidateNonAscii() {
         asciiBean.ascii = "äöü";
 
         validator.assertViolation("ascii");

@@ -16,71 +16,71 @@
 package com.github.britter.beanvalidators.strings;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class AlphabeticTest {
 
     private AlphabeticBean alphabeticBean;
     private ValidationWrapper<AlphabeticBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         alphabeticBean = new AlphabeticBean();
         validator = new ValidationWrapper<>(alphabeticBean, "must be alphabetic");
     }
 
     @Test
-    public void defaultSettingsShouldValidateAlphabeticString() throws Exception {
+    public void defaultSettingsShouldValidateAlphabeticString() {
         alphabeticBean.alphabetic = "abcd";
 
         validator.assertNoViolations("alphabetic");
     }
 
     @Test
-    public void defaultSettingsShouldValidateNull() throws Exception {
+    public void defaultSettingsShouldValidateNull() {
         alphabeticBean.alphabetic = null;
 
         validator.assertNoViolations("alphabetic");
     }
 
     @Test
-    public void defaultSettingsShouldValidateBlankString() throws Exception {
+    public void defaultSettingsShouldValidateBlankString() {
         alphabeticBean.alphabetic = "";
 
         validator.assertNoViolations("alphabetic");
     }
 
     @Test
-    public void defaultSettingsShouldNotValidateNonAlphabeticString() throws Exception {
+    public void defaultSettingsShouldNotValidateNonAlphabeticString() {
         alphabeticBean.alphabetic = "abcd123";
 
         validator.assertViolation("alphabetic");
     }
 
     @Test
-    public void defaultSettingsShouldNotValidateAlphabeticStringWithSpaces() throws Exception {
+    public void defaultSettingsShouldNotValidateAlphabeticStringWithSpaces() {
         alphabeticBean.alphabetic = "ab cd";
 
         validator.assertViolation("alphabetic");
     }
 
     @Test
-    public void allowSpacesSettingsShouldValidateAlphabeticString() throws Exception {
+    public void allowSpacesSettingsShouldValidateAlphabeticString() {
         alphabeticBean.alphabeticSpace = "abcd";
 
         validator.assertNoViolations("alphabeticSpace");
     }
 
     @Test
-    public void allowSpacesSettingsShouldNotValidateNonAlphabeticString() throws Exception {
+    public void allowSpacesSettingsShouldNotValidateNonAlphabeticString() {
         alphabeticBean.alphabeticSpace = "abcd123";
 
         validator.assertViolation("alphabeticSpace");
     }
 
     @Test
-    public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() throws Exception {
+    public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() {
         alphabeticBean.alphabeticSpace = "ab cd";
 
         validator.assertNoViolations("alphabeticSpace");

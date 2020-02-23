@@ -16,8 +16,8 @@
 package com.github.britter.beanvalidators.strings;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolation;
 import java.util.Set;
@@ -27,35 +27,35 @@ public final class AlphaNumericTest {
     private AlphaNumericBean alphaNumBean;
     private ValidationWrapper<AlphaNumericBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         alphaNumBean = new AlphaNumericBean();
         validator = new ValidationWrapper<>(alphaNumBean, "must be alpha numeric");
     }
 
     @Test
-    public void defaultSettingsShouldValidateAlphabeticString() throws Exception {
+    public void defaultSettingsShouldValidateAlphabeticString() {
         alphaNumBean.alphaNum = "abcd";
 
         validator.assertNoViolations("alphaNum");
     }
 
     @Test
-    public void defaultSettingsShouldValidateAlphabeticNumericString() throws Exception {
+    public void defaultSettingsShouldValidateAlphabeticNumericString() {
         alphaNumBean.alphaNum = "abcd1234";
 
         validator.assertNoViolations("alphaNum");
     }
 
     @Test
-    public void defaultSettingsShouldValidateNull() throws Exception {
+    public void defaultSettingsShouldValidateNull() {
         alphaNumBean.alphaNum = null;
 
         validator.assertNoViolations("alphaNum");
     }
 
     @Test
-    public void defaultSettingsShouldValidateBlankString() throws Exception {
+    public void defaultSettingsShouldValidateBlankString() {
         alphaNumBean.alphaNum = "";
 
         validator.assertNoViolations("alphaNum");
@@ -63,7 +63,7 @@ public final class AlphaNumericTest {
 
 
     @Test
-    public void defaultSettingsShouldNotValidateNonAlphabeticString() throws Exception {
+    public void defaultSettingsShouldNotValidateNonAlphabeticString() {
         alphaNumBean.alphaNum = "abcd?";
 
         Set<ConstraintViolation<AlphaNumericBean>> violations = validator.validate("alphaNum");
@@ -72,14 +72,14 @@ public final class AlphaNumericTest {
     }
 
     @Test
-    public void defaultSettingsShouldNotValidateAlphabeticStringWithSpaces() throws Exception {
+    public void defaultSettingsShouldNotValidateAlphabeticStringWithSpaces() {
         alphaNumBean.alphaNum = "ab cd";
 
         validator.assertViolation("alphaNum");
     }
 
     @Test
-    public void defaultSettingsShouldNotValidateAlphabeticNumericStringWithSpaces() throws Exception {
+    public void defaultSettingsShouldNotValidateAlphabeticNumericStringWithSpaces() {
         alphaNumBean.alphaNum = "ab cd 1234";
 
         validator.assertViolation("alphaNum");
@@ -87,35 +87,35 @@ public final class AlphaNumericTest {
 
 
     @Test
-    public void allowSpacesSettingsShouldValidateAlphabeticString() throws Exception {
+    public void allowSpacesSettingsShouldValidateAlphabeticString() {
         alphaNumBean.alphaNumSpace = "abcd";
 
         validator.assertNoViolations("alphaNumSpace");
     }
 
     @Test
-    public void allowSpacesSettingsShouldValidateAlphabeticNumericString() throws Exception {
+    public void allowSpacesSettingsShouldValidateAlphabeticNumericString() {
         alphaNumBean.alphaNumSpace = "abcd1234";
 
         validator.assertNoViolations("alphaNumSpace");
     }
 
     @Test
-    public void allowSpacesSettingsShouldNotValidateNonAlphabeticString() throws Exception {
+    public void allowSpacesSettingsShouldNotValidateNonAlphabeticString() {
         alphaNumBean.alphaNumSpace = "abcd123?";
 
         validator.assertViolation("alphaNumSpace");
     }
 
     @Test
-    public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() throws Exception {
+    public void allowSpacesSettingsShouldValidateAlphabeticStringWithSpaces() {
         alphaNumBean.alphaNumSpace = "ab cd";
 
         validator.assertNoViolations("alphaNumSpace");
     }
 
     @Test
-    public void allowSpacesSettingsShouldValidateAlphabeticNumericStringWithSpaces() throws Exception {
+    public void allowSpacesSettingsShouldValidateAlphabeticNumericStringWithSpaces() {
         alphaNumBean.alphaNumSpace = "ab cd 1234";
 
         validator.assertNoViolations("alphaNumSpace");

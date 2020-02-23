@@ -16,15 +16,16 @@
 package com.github.britter.beanvalidators.strings;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 public final class ISBNTest {
 
     private ValidationWrapper<ISBNBean> validator;
     private ISBNBean isbnBean;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         isbnBean = new ISBNBean();
         validator = new ValidationWrapper<>(isbnBean, "must be an ISBN");
@@ -45,94 +46,102 @@ public final class ISBNTest {
     }
 
     @Test
-    public void defaultSettingShouldNotValidateInvalidISBN() throws Exception {
+    public void defaultSettingShouldNotValidateInvalidISBN() {
         isbnBean.isbn = "abc";
 
         validator.assertViolation("isbn");
     }
 
     @Test
-    public void defaultSettingShouldValidateNullValue() throws Exception {
+    public void defaultSettingShouldValidateNullValue() {
         isbnBean.isbn = null;
 
         validator.assertNoViolations("isbn");
     }
 
     @Test
-    public void defaultSettingShouldValidateBlankValue() throws Exception {
+    public void defaultSettingShouldValidateBlankValue() {
         isbnBean.isbn = " ";
 
         validator.assertNoViolations("isbn");
     }
 
-    @Test
-    public void isbn10SettingShouldValidateISBN10() throws Exception {
-        isbnBean.isbn10 = "3551551677";
+    @Nested
+    class Isbn10 {
 
-        validator.assertNoViolations("isbn10");
+        @Test
+        public void isbn10SettingShouldValidateISBN10() {
+            isbnBean.isbn10 = "3551551677";
+
+            validator.assertNoViolations("isbn10");
+        }
+
+        @Test
+        public void isbn10SettingShouldNotValidateISBN13() {
+            isbnBean.isbn10 = "978-3-55155-167-2";
+
+            validator.assertViolation("isbn10");
+        }
+
+        @Test
+        public void isbn10SettingShouldNotValidateInvalidISBN() {
+            isbnBean.isbn10 = "abc";
+
+            validator.assertViolation("isbn10");
+        }
+
+        @Test
+        public void isbn10SettingShouldValidateNullValue() {
+            isbnBean.isbn10 = null;
+
+            validator.assertNoViolations("isbn10");
+        }
+
+        @Test
+        public void isbn10SettingShouldValidateBlankValue() {
+            isbnBean.isbn10 = " ";
+
+            validator.assertNoViolations("isbn10");
+        }
     }
 
-    @Test
-    public void isbn10SettingShouldNotValidateISBN13() throws Exception {
-        isbnBean.isbn10 = "978-3-55155-167-2";
+    @Nested
+    class Isbn13 {
 
-        validator.assertViolation("isbn10");
-    }
+        @Test
+        public void isbn13SettingShouldNotValidateISBN10() {
+            isbnBean.isbn13 = "3551551677";
 
-    @Test
-    public void isbn10SettingShouldNotValidateInvalidISBN() throws Exception {
-        isbnBean.isbn10 = "abc";
+            validator.assertViolation("isbn13");
+        }
 
-        validator.assertViolation("isbn10");
-    }
+        @Test
+        public void isbn13SettingShouldValidateISBN13() {
+            isbnBean.isbn10 = "978-3-55155-167-2";
 
-    @Test
-    public void isbn10SettingShouldValidateNullValue() throws Exception {
-        isbnBean.isbn10 = null;
+            validator.assertNoViolations("isbn13");
+        }
 
-        validator.assertNoViolations("isbn10");
-    }
+        @Test
+        public void isbn13SettingShouldNotValidateInvalidISBN() {
+            isbnBean.isbn13 = "abc";
 
-    @Test
-    public void isbn10SettingShouldValidateBlankValue() throws Exception {
-        isbnBean.isbn10 = " ";
+            validator.assertViolation("isbn13");
+        }
 
-        validator.assertNoViolations("isbn10");
-    }
+        @Test
+        public void isbn13SettingShouldValidateNullValue() {
+            isbnBean.isbn13 = null;
 
-    @Test
-    public void isbn13SettingShouldNotValidateISBN10() throws Exception {
-        isbnBean.isbn13 = "3551551677";
+            validator.assertNoViolations("isbn13");
+        }
 
-        validator.assertViolation("isbn13");
-    }
+        @Test
+        public void isbn13SettingShouldValidateBlankValue() {
+            isbnBean.isbn13 = " ";
 
-    @Test
-    public void isbn13SettingShouldValidateISBN13() throws Exception {
-        isbnBean.isbn10 = "978-3-55155-167-2";
-
-        validator.assertNoViolations("isbn13");
-    }
-
-    @Test
-    public void isbn13SettingShouldNotValidateInvalidISBN() throws Exception {
-        isbnBean.isbn13 = "abc";
-
-        validator.assertViolation("isbn13");
-    }
-
-    @Test
-    public void isbn13SettingShouldValidateNullValue() throws Exception {
-        isbnBean.isbn13 = null;
-
-        validator.assertNoViolations("isbn13");
-    }
-
-    @Test
-    public void isbn13SettingShouldValidateBlankValue() throws Exception {
-        isbnBean.isbn13 = " ";
-
-        validator.assertNoViolations("isbn13");
+            validator.assertNoViolations("isbn13");
+        }
     }
 
     private static final class ISBNBean {

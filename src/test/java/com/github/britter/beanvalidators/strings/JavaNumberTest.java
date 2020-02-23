@@ -16,43 +16,43 @@
 package com.github.britter.beanvalidators.strings;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class JavaNumberTest {
 
     private JavaNumberBean numBean;
     private ValidationWrapper<JavaNumberBean> validator;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         numBean = new JavaNumberBean();
         validator = new ValidationWrapper<>(numBean, "must be a valid Java number");
     }
 
     @Test
-    public void shouldValidateNullString() throws Exception {
+    public void shouldValidateNullString() {
         numBean.javaNum = null;
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         numBean.javaNum = " ";
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldValidateNumber() throws Exception {
+    public void shouldValidateNumber() {
         numBean.javaNum = "1234";
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldValidateNegativeNumber() throws Exception {
+    public void shouldValidateNegativeNumber() {
         numBean.javaNum = "-1234";
 
         validator.assertNoViolations("javaNum");
@@ -60,42 +60,42 @@ public final class JavaNumberTest {
 
 
     @Test
-    public void shouldValidateNumberWithTypeQualifier() throws Exception {
+    public void shouldValidateNumberWithTypeQualifier() {
         numBean.javaNum = "1234L";
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldValidateHexNumberLowerCaseX() throws Exception {
+    public void shouldValidateHexNumberLowerCaseX() {
         numBean.javaNum = "0x1A";
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldValidateHexNumberUpperCaseX() throws Exception {
+    public void shouldValidateHexNumberUpperCaseX() {
         numBean.javaNum = "0X1A";
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldValidateOctalNumber() throws Exception {
+    public void shouldValidateOctalNumber() {
         numBean.javaNum = "017";
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldValidateDecimalNumber() throws Exception {
+    public void shouldValidateDecimalNumber() {
         numBean.javaNum = "0.19";
 
         validator.assertNoViolations("javaNum");
     }
 
     @Test
-    public void shouldNotValidateRandomString() throws Exception {
+    public void shouldNotValidateRandomString() {
         numBean.javaNum = "abcd";
 
         validator.assertViolation("javaNum");
