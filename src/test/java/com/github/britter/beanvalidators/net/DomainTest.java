@@ -16,43 +16,43 @@
 package com.github.britter.beanvalidators.net;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class DomainTest {
 
     private ValidationWrapper<DomainBean> validator;
     private DomainBean domainBean;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         domainBean = new DomainBean();
         validator = new ValidationWrapper<>(domainBean, "must be a domain");
     }
 
     @Test
-    public void shouldValidateNullString() throws Exception {
+    public void shouldValidateNullString() {
         domainBean.domain = null;
 
         validator.assertNoViolations("domain");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         domainBean.domain = " ";
 
         validator.assertNoViolations("domain");
     }
 
     @Test
-    public void shouldValidateDomain() throws Exception {
+    public void shouldValidateDomain() {
         domainBean.domain = "www.example.com";
 
         validator.assertNoViolations("domain");
     }
 
     @Test
-    public void shouldNotValidateRandomString() throws Exception {
+    public void shouldNotValidateRandomString() {
         domainBean.domain = "abcd";
 
         validator.assertViolation("domain");

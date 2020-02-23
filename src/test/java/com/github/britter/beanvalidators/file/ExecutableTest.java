@@ -19,63 +19,61 @@ import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public final class ExecutableTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    @Rule
-    public TemporaryFolder tmpFolder = new TemporaryFolder();
+public final class ExecutableTest extends BaseFileTest {
+
     private FileBean fileBean;
     private ValidationWrapper<FileBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fileBean = new FileBean();
         validator = new ValidationWrapper<>(fileBean, "must be executable");
     }
 
     @Test
-    public void shouldValidateNull() throws Exception {
+    public void shouldValidateNull() {
         fileBean.file = null;
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldValidateExecutableDirectory() throws Exception {
-        fileBean.file = tmpFolder.newFolder();
+    public void shouldValidateExecutableDirectory() {
+        fileBean.file = dir();
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldValidateExecutableFile() throws Exception {
-        fileBean.file = tmpFolder.newFile();
+    public void shouldValidateExecutableFile() {
+        fileBean.file = file();
         fileBean.file.setExecutable(true);
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldNotValidateUnexecutableFile() throws Exception {
-        fileBean.file = new File("/should/not/exist");
+    public void shouldNotValidateUnexecutableFile() {
+        fileBean.file = NON_EXISTENT_FILE;
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldValidateStringRepresentingExecutableDirectory() throws Exception {
-        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+    public void shouldValidateStringRepresentingExecutableDirectory() {
+        fileBean.path = dir().getAbsolutePath();
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldValidateStringRepresentingExecutableFile() throws Exception {
-        File file = tmpFolder.newFile();
+    public void shouldValidateStringRepresentingExecutableFile() {
+        File file = file();
         file.setExecutable(true);
         fileBean.path = file.getAbsolutePath();
 
@@ -83,17 +81,17 @@ public final class ExecutableTest {
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingNonExecutableFile() throws Exception {
-        File file = tmpFolder.newFile();
+    public void shouldNotValidateStringRepresentingNonExecutableFile() {
+        File file = file();
         file.setExecutable(false);
         fileBean.path = file.getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenOtherTypeIsAnnotated() throws Exception {
-        validator.validate("object");
+    @Test
+    public void shouldThrowExceptionWhenOtherTypeIsAnnotated() {
+        assertThrows(ValidationException.class, () -> validator.validate("object"));
     }
 
     private static final class FileBean {

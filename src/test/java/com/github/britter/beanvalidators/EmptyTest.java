@@ -15,154 +15,166 @@
  */
 package com.github.britter.beanvalidators;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
 import javax.validation.ValidationException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class EmptyTest {
 
     private EmptyBean emptyBean;
     private ValidationWrapper<EmptyBean> validator;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         emptyBean = new EmptyBean();
         validator = new ValidationWrapper<>(emptyBean, "must be empty");
     }
 
-    // Strings
+    @Nested
+    class WithStrings {
 
-    @Test
-    public void shouldValidateEmptyString() throws Exception {
-        emptyBean.string = "";
+        @Test
+        public void shouldValidateEmptyString() {
+            emptyBean.string = "";
 
-        validator.assertNoViolations("string");
+            validator.assertNoViolations("string");
+        }
+
+        @Test
+        public void shouldValidateNullString() {
+            emptyBean.string = null;
+
+            validator.assertNoViolations("string");
+        }
+
+        @Test
+        public void shouldNotValidateBlankString() {
+            emptyBean.string = "  ";
+
+            validator.assertViolation("string");
+        }
+
+        @Test
+        public void shouldNotValidateString() {
+            emptyBean.string = "abcd";
+
+            validator.assertViolation("string");
+        }
+    }
+
+    @Nested
+    class WithCollections {
+
+        @Test
+        public void shouldValidateNullCollection() {
+            emptyBean.col = null;
+
+            validator.assertNoViolations("col");
+        }
+
+        @Test
+        public void shouldValidateEmptyCollection() {
+            emptyBean.col = Collections.emptyList();
+
+            validator.assertNoViolations("col");
+        }
+
+        @Test
+        public void shouldNotValidateFilledCollection() {
+            emptyBean.col = Collections.singleton("abcd");
+
+            validator.assertViolation("col");
+        }
+    }
+
+    @Nested
+    class WithMaps {
+
+        @Test
+        public void shouldValidateNullMap() {
+            emptyBean.map = null;
+
+            validator.assertNoViolations("map");
+        }
+
+        @Test
+        public void shouldValidateEmptyMap() {
+            emptyBean.map = Collections.emptyMap();
+
+            validator.assertNoViolations("map");
+        }
+
+        @Test
+        public void shouldNotValidateFilledMap() {
+            emptyBean.map = Collections.singletonMap("key", "value");
+
+            validator.assertViolation("map");
+        }
+    }
+
+    @Nested
+    class WithArrays {
+
+        @Test
+        public void shouldValidateNullArray() {
+            emptyBean.array = null;
+
+            validator.assertNoViolations("array");
+        }
+
+        @Test
+        public void shouldValidateEmptyArray() {
+            emptyBean.array = new String[0];
+
+            validator.assertNoViolations("array");
+        }
+
+        @Test
+        public void shouldNotValidateNonEmptyArray() {
+            emptyBean.array = new String[1];
+
+            validator.assertViolation("array");
+        }
+    }
+
+    @Nested
+    class WithOptional {
+
+        @Test
+        public void shouldValidateNullOptional() {
+            emptyBean.optional = null;
+
+            validator.assertNoViolations("optional");
+        }
+
+        @Test
+        public void shouldValidateEmptyOptional() {
+            emptyBean.optional = Optional.empty();
+
+            validator.assertNoViolations("optional");
+        }
+
+        @Test
+        public void shouldNotValidateNonEmptyOptional() {
+            emptyBean.optional = Optional.of("some");
+
+            validator.assertViolation("optional");
+        }
     }
 
     @Test
-    public void shouldValidateNullString() throws Exception {
-        emptyBean.string = null;
-
-        validator.assertNoViolations("string");
-    }
-
-    @Test
-    public void shouldNotValidateBlankString() throws Exception {
-        emptyBean.string = "  ";
-
-        validator.assertViolation("string");
-    }
-
-    @Test
-    public void shouldNotValidateString() throws Exception {
-        emptyBean.string = "abcd";
-
-        validator.assertViolation("string");
-    }
-
-    // Collections
-
-    @Test
-    public void shouldValidateNullCollection() throws Exception {
-        emptyBean.col = null;
-
-        validator.assertNoViolations("col");
-    }
-
-    @Test
-    public void shouldValidateEmptyCollection() throws Exception {
-        emptyBean.col = Collections.emptyList();
-
-        validator.assertNoViolations("col");
-    }
-
-    @Test
-    public void shouldNotValidateFilledCollection() throws Exception {
-        emptyBean.col = Collections.singleton("abcd");
-
-        validator.assertViolation("col");
-    }
-
-    // Maps
-
-    @Test
-    public void shouldValidateNullMap() throws Exception {
-        emptyBean.map = null;
-
-        validator.assertNoViolations("map");
-    }
-
-    @Test
-    public void shouldValidateEmptyMap() throws Exception {
-        emptyBean.map = Collections.emptyMap();
-
-        validator.assertNoViolations("map");
-    }
-
-    @Test
-    public void shouldNotValidateFilledMap() throws Exception {
-        emptyBean.map = Collections.singletonMap("key", "value");
-
-        validator.assertViolation("map");
-    }
-
-    // Arrays
-
-    @Test
-    public void shouldValidateNullArray() throws Exception {
-        emptyBean.array = null;
-
-        validator.assertNoViolations("array");
-    }
-
-    @Test
-    public void shouldValidateEmptyArray() throws Exception {
-        emptyBean.array = new String[0];
-
-        validator.assertNoViolations("array");
-    }
-
-    @Test
-    public void shouldNotValidateNonEmptyArray() throws Exception {
-        emptyBean.array = new String[1];
-
-        validator.assertViolation("array");
-    }
-
-    // Optional
-
-    @Test
-    public void shouldValidateNullOptional() throws Exception {
-        emptyBean.optional = null;
-
-        validator.assertNoViolations("optional");
-    }
-
-    @Test
-    public void shouldValidateEmptyOptional() throws Exception {
-        emptyBean.optional = Optional.empty();
-
-        validator.assertNoViolations("optional");
-    }
-
-    @Test
-    public void shouldNotValidateNonEmptyOptional() throws Exception {
-        emptyBean.optional = Optional.of("some");
-
-        validator.assertViolation("optional");
-    }
-
-    // Other
-    @Test(expected = ValidationException.class)
-    public void shouldName() throws Exception {
+    public void shouldName() {
         emptyBean.integer = 1;
 
-        validator.validate("integer");
+        assertThrows(ValidationException.class, () -> validator.validate("integer"));
     }
 
     private static final class EmptyBean {

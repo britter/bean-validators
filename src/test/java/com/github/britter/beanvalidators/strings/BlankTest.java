@@ -16,43 +16,43 @@
 package com.github.britter.beanvalidators.strings;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class BlankTest {
 
     private BlankBean blankBean;
     private ValidationWrapper<BlankBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         blankBean = new BlankBean();
         validator = new ValidationWrapper<>(blankBean, "must be blank");
     }
 
     @Test
-    public void shouldValidateEmptyString() throws Exception {
+    public void shouldValidateEmptyString() {
         blankBean.blank = "";
 
         validator.assertNoViolations("blank");
     }
 
     @Test
-    public void shouldValidateNullString() throws Exception {
+    public void shouldValidateNullString() {
         blankBean.blank = null;
 
         validator.assertNoViolations("blank");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         blankBean.blank = "  ";
 
         validator.assertNoViolations("blank");
     }
 
     @Test
-    public void shouldNotValidateNonBlankString() throws Exception {
+    public void shouldNotValidateNonBlankString() {
         blankBean.blank = " abcd ";
 
         validator.assertViolation("blank");

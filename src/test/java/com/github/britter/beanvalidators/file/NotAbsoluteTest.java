@@ -19,76 +19,74 @@ import javax.validation.ValidationException;
 import java.io.File;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public final class NotAbsoluteTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    @Rule
-    public TemporaryFolder tmpFolder = new TemporaryFolder();
+public final class NotAbsoluteTest extends BaseFileTest {
+
     private FileBean fileBean;
     private ValidationWrapper<FileBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fileBean = new FileBean();
         validator = new ValidationWrapper<>(fileBean, "must not be absolute");
     }
 
     @Test
-    public void shouldValidateNull() throws Exception {
+    public void shouldValidateNull() {
         fileBean.file = null;
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldNotValidateDirectory() throws Exception {
-        fileBean.file = tmpFolder.newFolder();
+    public void shouldNotValidateDirectory() {
+        fileBean.file = dir();
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldNotValidateFile() throws Exception {
-        fileBean.file = tmpFolder.newFile();
+    public void shouldNotValidateFile() {
+        fileBean.file = file();
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldValidateNonExistingFile() throws Exception {
+    public void shouldValidateNonExistingFile() {
         fileBean.file = new File("is/not/absolute");
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         fileBean.path = " ";
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldValidateStringRepresentingNonAbsolutePath() throws Exception {
+    public void shouldValidateStringRepresentingNonAbsolutePath() {
         fileBean.path = "is/not/absolute";
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingAbsolutePath() throws Exception {
+    public void shouldNotValidateStringRepresentingAbsolutePath() {
         fileBean.path = "/is/absolute";
 
         validator.assertViolation("path");
     }
 
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
-        validator.validate("object");
+    @Test
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() {
+        assertThrows(ValidationException.class, () -> validator.validate("object"));
     }
 
     private static final class FileBean {

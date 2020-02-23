@@ -15,8 +15,8 @@
  */
 package com.github.britter.beanvalidators;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
@@ -25,28 +25,28 @@ public final class PresentTest {
     private PresentBean presentBean;
     private ValidationWrapper<PresentBean> validator;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         presentBean = new PresentBean();
         validator = new ValidationWrapper<>(presentBean, "must be present");
     }
 
     @Test
-    public void shouldValidateNullOptional() throws Exception {
+    public void shouldValidateNullOptional() {
         presentBean.optional = null;
 
         validator.assertNoViolations("optional");
     }
 
     @Test
-    public void shouldNotValidateEmptyOptional() throws Exception {
+    public void shouldNotValidateEmptyOptional() {
         presentBean.optional = Optional.empty();
 
         validator.assertViolation("optional");
     }
 
     @Test
-    public void shouldValidatePresentOptional() throws Exception {
+    public void shouldValidatePresentOptional() {
         presentBean.optional = Optional.of("some");
 
         validator.assertNoViolations("optional");

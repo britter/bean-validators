@@ -16,43 +16,43 @@
 package com.github.britter.beanvalidators.strings;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class NumericTest {
 
     private ValidationWrapper<NumericBean> validator;
     private NumericBean numericBean;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         numericBean = new NumericBean();
         validator = new ValidationWrapper<>(numericBean, "must be numeric");
     }
 
     @Test
-    public void shouldValidateNumericString() throws Exception {
+    public void shouldValidateNumericString() {
         numericBean.numeric = "123456";
 
         validator.assertNoViolations("numeric");
     }
 
     @Test
-    public void shouldValidateNullString() throws Exception {
+    public void shouldValidateNullString() {
         numericBean.numeric = null;
 
         validator.assertNoViolations("numeric");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         numericBean.numeric = " ";
 
         validator.assertNoViolations("numeric");
     }
 
     @Test
-    public void shouldNotValidateNonNumericString() throws Exception {
+    public void shouldNotValidateNonNumericString() {
         numericBean.numeric = "abc";
 
         validator.assertViolation("numeric");
