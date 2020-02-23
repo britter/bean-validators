@@ -16,8 +16,8 @@
 package com.github.britter.beanvalidators.time;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -34,196 +34,196 @@ public final class AfterNowTest {
     private AfterNowBean afterNowBean;
     private ValidationWrapper<AfterNowBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         afterNowBean = new AfterNowBean();
         validator = new ValidationWrapper<>(afterNowBean, "must be after now");
     }
 
     @Test
-    public void shouldValidateLocalDateAfterNow() throws Exception {
+    public void shouldValidateLocalDateAfterNow() {
         afterNowBean.localDate = LocalDate.now().plusDays(1);
 
         validator.assertNoViolations("localDate");
     }
 
     @Test
-    public void shouldNotValidateLocalDateNow() throws Exception {
+    public void shouldNotValidateLocalDateNow() {
         afterNowBean.localDate = LocalDate.now();
 
         validator.assertViolation("localDate");
     }
 
     @Test
-    public void shouldNotValidateLocalDateBeforeNow() throws Exception {
+    public void shouldNotValidateLocalDateBeforeNow() {
         afterNowBean.localDate = LocalDate.now().minusDays(1);
 
         validator.assertViolation("localDate");
     }
 
     @Test
-    public void shouldValidateLocalDateTimeAfterNow() throws Exception {
+    public void shouldValidateLocalDateTimeAfterNow() {
         afterNowBean.localDateTime = LocalDateTime.now().plusDays(1);
 
         validator.assertNoViolations("localDateTime");
     }
 
     @Test
-    public void shouldNotValidateLocalDateTimeNow() throws Exception {
+    public void shouldNotValidateLocalDateTimeNow() {
         afterNowBean.localDateTime = LocalDateTime.now();
 
         validator.assertViolation("localDateTime");
     }
 
     @Test
-    public void shouldNotValidateLocalDateTimeBeforeNow() throws Exception {
+    public void shouldNotValidateLocalDateTimeBeforeNow() {
         afterNowBean.localDateTime = LocalDateTime.now().minusDays(1);
 
         validator.assertViolation("localDateTime");
     }
 
     @Test
-    public void shouldValidateLocalTimeAfterNow() throws Exception {
+    public void shouldValidateLocalTimeAfterNow() {
         afterNowBean.localTime = LocalTime.now().plusHours(1);
 
         validator.assertNoViolations("localTime");
     }
 
     @Test
-    public void shouldNotValidateLocalTimeNow() throws Exception {
+    public void shouldNotValidateLocalTimeNow() {
         afterNowBean.localTime = LocalTime.now();
 
         validator.assertViolation("localTime");
     }
 
     @Test
-    public void shouldNotValidateLocalTimeBeforeNow() throws Exception {
+    public void shouldNotValidateLocalTimeBeforeNow() {
         afterNowBean.localTime = LocalTime.now().minusHours(1);
 
         validator.assertViolation("localTime");
     }
 
     @Test
-    public void shouldValidateInstantAfterNow() throws Exception {
+    public void shouldValidateInstantAfterNow() {
         afterNowBean.instant = Instant.now().plusMillis(1000);
 
         validator.assertNoViolations("instant");
     }
 
     @Test
-    public void shouldNotValidateInstantNow() throws Exception {
+    public void shouldNotValidateInstantNow() {
         afterNowBean.instant = Instant.now();
 
         validator.assertViolation("instant");
     }
 
     @Test
-    public void shouldNotValidateInstantBeforeNow() throws Exception {
+    public void shouldNotValidateInstantBeforeNow() {
         afterNowBean.instant = Instant.now().minusMillis(1000);
 
         validator.assertViolation("instant");
     }
 
     @Test
-    public void shouldValidateOffsetDateTimeAfterNow() throws Exception {
+    public void shouldValidateOffsetDateTimeAfterNow() {
         afterNowBean.offsetDateTime = OffsetDateTime.now().plusDays(1);
 
         validator.assertNoViolations("offsetDateTime");
     }
 
     @Test
-    public void shouldNotValidateOffsetDateTimeNow() throws Exception {
+    public void shouldNotValidateOffsetDateTimeNow() {
         afterNowBean.offsetDateTime = OffsetDateTime.now();
 
         validator.assertViolation("offsetDateTime");
     }
 
     @Test
-    public void shouldNotValidateOffsetDateTimeBeforeNow() throws Exception {
+    public void shouldNotValidateOffsetDateTimeBeforeNow() {
         afterNowBean.offsetDateTime = OffsetDateTime.now().minusDays(1);
 
         validator.assertViolation("offsetDateTime");
     }
 
     @Test
-    public void shouldValidateOffsetTimeAfterNow() throws Exception {
+    public void shouldValidateOffsetTimeAfterNow() {
         afterNowBean.offsetTime = OffsetTime.now().plusHours(1);
 
         validator.assertNoViolations("offsetTime");
     }
 
     @Test
-    public void shouldNotValidateOffsetTimeNow() throws Exception {
+    public void shouldNotValidateOffsetTimeNow() {
         afterNowBean.offsetTime = OffsetTime.now();
 
         validator.assertViolation("offsetTime");
     }
 
     @Test
-    public void shouldNotValidateOffsetTimeBeforeNow() throws Exception {
+    public void shouldNotValidateOffsetTimeBeforeNow() {
         afterNowBean.offsetTime = OffsetTime.now().minusHours(1);
 
         validator.assertViolation("offsetTime");
     }
 
     @Test
-    public void shouldValidateZonedDateTimeAfterNow() throws Exception {
+    public void shouldValidateZonedDateTimeAfterNow() {
         afterNowBean.zonedDateTime = ZonedDateTime.now().plusHours(1);
 
         validator.assertNoViolations("zonedDateTime");
     }
 
     @Test
-    public void shouldNotValidateZonedDateTimeNow() throws Exception {
+    public void shouldNotValidateZonedDateTimeNow() {
         afterNowBean.zonedDateTime = ZonedDateTime.now();
 
         validator.assertViolation("zonedDateTime");
     }
 
     @Test
-    public void shouldNotValidateZonedDateTimeBeforeNow() throws Exception {
+    public void shouldNotValidateZonedDateTimeBeforeNow() {
         afterNowBean.zonedDateTime = ZonedDateTime.now().minusHours(1);
 
         validator.assertViolation("zonedDateTime");
     }
 
     @Test
-    public void shouldValidateYearMonthAfterNow() throws Exception {
+    public void shouldValidateYearMonthAfterNow() {
         afterNowBean.yearMonth = YearMonth.now().plusMonths(1);
 
         validator.assertNoViolations("yearMonth");
     }
 
     @Test
-    public void shouldNotValidateYearMonthNow() throws Exception {
+    public void shouldNotValidateYearMonthNow() {
         afterNowBean.yearMonth = YearMonth.now();
 
         validator.assertViolation("yearMonth");
     }
 
     @Test
-    public void shouldNotValidateYearMonthBeforeNow() throws Exception {
+    public void shouldNotValidateYearMonthBeforeNow() {
         afterNowBean.yearMonth = YearMonth.now().minusMonths(1);
 
         validator.assertViolation("yearMonth");
     }
 
     @Test
-    public void shouldValidateYearAfterNow() throws Exception {
+    public void shouldValidateYearAfterNow() {
         afterNowBean.year = Year.now().plusYears(1);
 
         validator.assertNoViolations("year");
     }
 
     @Test
-    public void shouldNotValidateYearNow() throws Exception {
+    public void shouldNotValidateYearNow() {
         afterNowBean.year = Year.now();
 
         validator.assertViolation("year");
     }
 
     @Test
-    public void shouldNotValidateYearBeforeNow() throws Exception {
+    public void shouldNotValidateYearBeforeNow() {
         afterNowBean.year = Year.now().minusYears(1);
 
         validator.assertViolation("year");
