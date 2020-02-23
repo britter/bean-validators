@@ -16,169 +16,174 @@
 package com.github.britter.beanvalidators.net;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 public final class IPTest {
 
     private IPBean ipBean;
     private ValidationWrapper<IPBean> validator;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         ipBean = new IPBean();
         validator = new ValidationWrapper<>(ipBean, "must be an IP");
     }
 
     @Test
-    public void defaultSettingShouldValidateIPv4() throws Exception {
+    public void defaultSettingShouldValidateIPv4() {
         ipBean.ip = "192.168.0.1";
 
         validator.assertNoViolations("ip");
     }
 
     @Test
-    public void defaultSettingShouldValidateIPv6() throws Exception {
+    public void defaultSettingShouldValidateIPv6() {
         ipBean.ip = "fe80::8a1f:a1ff:fe11:9326";
 
         validator.assertNoViolations("ip");
     }
 
     @Test
-    public void defaultSettingShouldValidateNullString() throws Exception {
+    public void defaultSettingShouldValidateNullString() {
         ipBean.ip = null;
 
         validator.assertNoViolations("ip");
     }
 
     @Test
-    public void defaultSettingShouldValidateBlankString() throws Exception {
+    public void defaultSettingShouldValidateBlankString() {
         ipBean.ip = " ";
 
         validator.assertNoViolations("ip");
     }
 
     @Test
-    public void defaultSettingShouldNotValidateRandomString() throws Exception {
+    public void defaultSettingShouldNotValidateRandomString() {
         ipBean.ip = "abcd";
 
         validator.assertViolation("ip");
     }
 
     @Test
-    public void defaultSettingShouldNotValidateInvalidIPv4() throws Exception {
+    public void defaultSettingShouldNotValidateInvalidIPv4() {
         ipBean.ip = "999.168.0.1";
 
         validator.assertViolation("ip");
     }
 
     @Test
-    public void defaultSettingShouldNotValidateInvalidIPv6() throws Exception {
+    public void defaultSettingShouldNotValidateInvalidIPv6() {
         ipBean.ip = "ge99::8a1f:a1ff:fe11:9326";
 
         validator.assertViolation("ip");
     }
 
-    // IPv4
+    @Nested
+    class IPv4 {
 
-    @Test
-    public void ipv4SettingShouldValidateIPv4() throws Exception {
-        ipBean.ipv4 = "192.168.0.1";
+        @Test
+        public void ipv4SettingShouldValidateIPv4() {
+            ipBean.ipv4 = "192.168.0.1";
 
-        validator.assertNoViolations("ipv4");
+            validator.assertNoViolations("ipv4");
+        }
+
+        @Test
+        public void ipv4SettingShouldNotValidateIPv6() {
+            ipBean.ipv4 = "fe80::8a1f:a1ff:fe11:9326";
+
+            validator.assertViolation("ipv4");
+        }
+
+        @Test
+        public void ipv4SettingShouldValidateNullString() {
+            ipBean.ipv4 = null;
+
+            validator.assertNoViolations("ipv4");
+        }
+
+        @Test
+        public void ipv4SettingShouldValidateBlankString() {
+            ipBean.ipv4 = " ";
+
+            validator.assertNoViolations("ipv4");
+        }
+
+        @Test
+        public void ipv4SettingShouldNotValidateRandomString() {
+            ipBean.ipv4 = "abcd";
+
+            validator.assertViolation("ipv4");
+        }
+
+        @Test
+        public void ipv4SettingShouldNotValidateInvalidIPv4() {
+            ipBean.ipv4 = "999.168.0.1";
+
+            validator.assertViolation("ipv4");
+        }
+
+        @Test
+        public void ipv4SettingShouldNotValidateInvalidIPv6() {
+            ipBean.ipv4 = "ge99::8a1f:a1ff:fe11:9326";
+
+            validator.assertViolation("ipv4");
+        }
     }
 
-    @Test
-    public void ipv4SettingShouldNotValidateIPv6() throws Exception {
-        ipBean.ipv4 = "fe80::8a1f:a1ff:fe11:9326";
+    @Nested
+    class IPv6 {
 
-        validator.assertViolation("ipv4");
-    }
+        @Test
+        public void ipv6SettingShouldNotValidateIPv4() {
+            ipBean.ipv6 = "192.168.0.1";
 
-    @Test
-    public void ipv4SettingShouldValidateNullString() throws Exception {
-        ipBean.ipv4 = null;
+            validator.assertViolation("ipv6");
+        }
 
-        validator.assertNoViolations("ipv4");
-    }
+        @Test
+        public void ipv6SettingShouldNotValidateIPv6() {
+            ipBean.ipv6 = "fe80::8a1f:a1ff:fe11:9326";
 
-    @Test
-    public void ipv4SettingShouldValidateBlankString() throws Exception {
-        ipBean.ipv4 = " ";
+            validator.assertNoViolations("ipv6");
+        }
 
-        validator.assertNoViolations("ipv4");
-    }
+        @Test
+        public void ipv6SettingShouldValidateNullString() {
+            ipBean.ipv6 = null;
 
-    @Test
-    public void ipv4SettingShouldNotValidateRandomString() throws Exception {
-        ipBean.ipv4 = "abcd";
+            validator.assertNoViolations("ipv6");
+        }
 
-        validator.assertViolation("ipv4");
-    }
+        @Test
+        public void ipv6SettingShouldValidateBlankString() {
+            ipBean.ipv6 = " ";
 
-    @Test
-    public void ipv4SettingShouldNotValidateInvalidIPv4() throws Exception {
-        ipBean.ipv4 = "999.168.0.1";
+            validator.assertNoViolations("ipv6");
+        }
 
-        validator.assertViolation("ipv4");
-    }
+        @Test
+        public void ipv6SettingShouldNotValidateRandomString() {
+            ipBean.ipv6 = "abcd";
 
-    @Test
-    public void ipv4SettingShouldNotValidateInvalidIPv6() throws Exception {
-        ipBean.ipv4 = "ge99::8a1f:a1ff:fe11:9326";
+            validator.assertViolation("ipv6");
+        }
 
-        validator.assertViolation("ipv4");
-    }
+        @Test
+        public void ipv6SettingShouldNotValidateInvalidIPv4() {
+            ipBean.ipv6 = "999.168.0.1";
 
-    // IPv6
+            validator.assertViolation("ipv6");
+        }
 
-    @Test
-    public void ipv6SettingShouldNotValidateIPv4() throws Exception {
-        ipBean.ipv6 = "192.168.0.1";
+        @Test
+        public void ipv6SettingShouldNotValidateInvalidIPv6() {
+            ipBean.ipv6 = "ge99::8a1f:a1ff:fe11:9326";
 
-        validator.assertViolation("ipv6");
-    }
-
-    @Test
-    public void ipv6SettingShouldNotValidateIPv6() throws Exception {
-        ipBean.ipv6 = "fe80::8a1f:a1ff:fe11:9326";
-
-        validator.assertNoViolations("ipv6");
-    }
-
-    @Test
-    public void ipv6SettingShouldValidateNullString() throws Exception {
-        ipBean.ipv6 = null;
-
-        validator.assertNoViolations("ipv6");
-    }
-
-    @Test
-    public void ipv6SettingShouldValidateBlankString() throws Exception {
-        ipBean.ipv6 = " ";
-
-        validator.assertNoViolations("ipv6");
-    }
-
-    @Test
-    public void ipv6SettingShouldNotValidateRandomString() throws Exception {
-        ipBean.ipv6 = "abcd";
-
-        validator.assertViolation("ipv6");
-    }
-
-    @Test
-    public void ipv6SettingShouldNotValidateInvalidIPv4() throws Exception {
-        ipBean.ipv6 = "999.168.0.1";
-
-        validator.assertViolation("ipv6");
-    }
-
-    @Test
-    public void ipv6SettingShouldNotValidateInvalidIPv6() throws Exception {
-        ipBean.ipv6 = "ge99::8a1f:a1ff:fe11:9326";
-
-        validator.assertViolation("ipv6");
+            validator.assertViolation("ipv6");
+        }
     }
 
     private static final class IPBean {
