@@ -33,10 +33,8 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.6")
     implementation("commons-validator:commons-validator:1.6")
 
-    testImplementation("junit:junit:4.12")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
-    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.5.2")
     testRuntimeOnly("org.hibernate:hibernate-validator:5.1.3.Final")
 
     testFixturesApi("org.assertj:assertj-core:3.8.0")
