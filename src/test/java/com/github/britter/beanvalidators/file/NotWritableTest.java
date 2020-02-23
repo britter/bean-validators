@@ -44,7 +44,7 @@ public final class NotWritableTest extends BaseFileTest {
 
     @Test
     public void shouldValidateUnwritableFile() {
-        fileBean.file = new File("/should/not/exist");
+        fileBean.file = NON_EXISTENT_FILE;
 
         validator.assertNoViolations("file");
     }
@@ -72,7 +72,7 @@ public final class NotWritableTest extends BaseFileTest {
 
     @Test
     public void shouldValidateStringRepresentingUnwritableFile() {
-        fileBean.path = "/should/not/exist";
+        fileBean.path = NON_EXISTENT_PATH;;
 
         validator.assertNoViolations("path");
     }

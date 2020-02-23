@@ -58,7 +58,7 @@ public final class ExistingTest extends BaseFileTest {
 
     @Test
     public void shouldNotValidateNonExistingFile() {
-        fileBean.file = new File("/should/not/exist");
+        fileBean.file = NON_EXISTENT_FILE;
 
         validator.assertViolation("file");
     }
@@ -79,7 +79,7 @@ public final class ExistingTest extends BaseFileTest {
 
     @Test
     public void shouldNotValidateNonExistingPath() {
-        fileBean.path = "/should/not/exist";
+        fileBean.path = NON_EXISTENT_PATH;;
 
         validator.assertViolation("path");
     }

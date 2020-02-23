@@ -45,7 +45,7 @@ public final class NotReadableTest extends BaseFileTest {
 
     @Test
     public void shouldValidateUnreadableFile() {
-        fileBean.file = new File("/should/not/exist");
+        fileBean.file = NON_EXISTENT_FILE;
 
         validator.assertNoViolations("file");
     }
@@ -73,7 +73,7 @@ public final class NotReadableTest extends BaseFileTest {
 
     @Test
     public void shouldValidateStringRepresentingNonExistingFile() {
-        fileBean.path = "/should/not/exist";
+        fileBean.path = NON_EXISTENT_PATH;;
 
         validator.assertNoViolations("path");
     }

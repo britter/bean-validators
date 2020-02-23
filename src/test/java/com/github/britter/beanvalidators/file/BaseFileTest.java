@@ -10,6 +10,10 @@ import java.nio.file.Path;
 
 abstract class BaseFileTest {
 
+    static final String NON_EXISTENT_PATH = "/does/not/exist";
+
+    static final File NON_EXISTENT_FILE = new File(NON_EXISTENT_PATH);
+
     @TempDir
     public Path tmpDir;
 

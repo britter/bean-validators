@@ -75,7 +75,7 @@ public final class NotExecutableTest extends BaseFileTest {
 
     @Test
     public void shouldValidateUnexecutableNonExistingFile() {
-        fileBean.file = new File("/should/not/exist");
+        fileBean.file = NON_EXISTENT_FILE;
 
         validator.assertNoViolations("file");
     }

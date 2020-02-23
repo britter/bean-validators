@@ -59,7 +59,7 @@ public final class ExecutableTest extends BaseFileTest {
 
     @Test
     public void shouldNotValidateUnexecutableFile() {
-        fileBean.file = new File("/should/not/exist");
+        fileBean.file = NON_EXISTENT_FILE;
 
         validator.assertViolation("file");
     }
