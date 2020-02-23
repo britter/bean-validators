@@ -81,7 +81,7 @@ public final class IPTest {
     }
 
     @Nested
-    class IPv4 {
+    class WithIPv4 {
 
         @Test
         public void ipv4SettingShouldValidateIPv4() {
@@ -134,7 +134,7 @@ public final class IPTest {
     }
 
     @Nested
-    class IPv6 {
+    class WithIPv6 {
 
         @Test
         public void ipv6SettingShouldNotValidateIPv4() {

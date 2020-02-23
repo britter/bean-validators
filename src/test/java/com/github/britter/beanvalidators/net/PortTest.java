@@ -36,7 +36,7 @@ public final class PortTest {
     }
 
     @Nested
-    class StringPort {
+    class WithStrings {
 
         @Test
         public void shouldValidateNullString() {
@@ -82,7 +82,7 @@ public final class PortTest {
     }
 
     @Nested
-    class IntPort {
+    class WithInts {
 
         @Test
         public void shouldValidateValidPortInt() {
@@ -107,7 +107,7 @@ public final class PortTest {
     }
 
     @Nested
-    class IntegerPort {
+    class WithIntegers {
 
         @Test
         public void shouldValidateNullPortInteger() {

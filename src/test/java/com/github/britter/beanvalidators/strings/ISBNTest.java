@@ -67,7 +67,7 @@ public final class ISBNTest {
     }
 
     @Nested
-    class Isbn10 {
+    class WithISBN10 {
 
         @Test
         public void isbn10SettingShouldValidateISBN10() {
@@ -106,7 +106,7 @@ public final class ISBNTest {
     }
 
     @Nested
-    class Isbn13 {
+    class WithISBN13 {
 
         @Test
         public void isbn13SettingShouldNotValidateISBN10() {
