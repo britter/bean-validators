@@ -15,66 +15,64 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import javax.validation.ValidationException;
 import java.io.File;
 
-import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class DirectoryTest {
+public final class DirectoryTest extends BaseFileTest {
 
-    @Rule
-    public TemporaryFolder tmpFolder = new TemporaryFolder();
     private FileBean fileBean;
     private ValidationWrapper<FileBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fileBean = new FileBean();
         validator = new ValidationWrapper<>(fileBean, "must be a directory");
     }
 
     @Test
-    public void shouldValidateNull() throws Exception {
+    public void shouldValidateNull() {
         fileBean.dir = null;
 
         validator.assertNoViolations("dir");
     }
 
     @Test
-    public void shouldValidateDirectory() throws Exception {
-        fileBean.dir = tmpFolder.newFolder();
+    public void shouldValidateDirectory() {
+        fileBean.dir = dir();
 
         validator.assertNoViolations("dir");
     }
 
     @Test
-    public void shouldNotValidateFile() throws Exception {
-        fileBean.dir = tmpFolder.newFile();
+    public void shouldNotValidateFile() {
+        fileBean.dir = file();
 
         validator.assertViolation("dir");
     }
 
     @Test
-    public void shouldValidateStringRepresentingDirectory() throws Exception {
-        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+    public void shouldValidateStringRepresentingDirectory() {
+        fileBean.path = dir().getAbsolutePath();
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingFile() throws Exception {
-        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+    public void shouldNotValidateStringRepresentingFile() {
+        fileBean.path = file().getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenOtherTypeIsAnnotated() throws Exception {
-        validator.validate("object");
+    @Test
+    public void shouldThrowExceptionWhenOtherTypeIsAnnotated() {
+        assertThrows(ValidationException.class, () -> validator.validate("object"));
     }
 
     private static final class FileBean {

@@ -16,93 +16,91 @@
 package com.github.britter.beanvalidators.file;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.validation.ValidationException;
 import java.io.File;
 
-public final class HiddenTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    @Rule
-    public TemporaryFolder tmpFolder = new TemporaryFolder();
+public final class HiddenTest extends BaseFileTest {
+
     private FileBean fileBean;
     private ValidationWrapper<FileBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fileBean = new FileBean();
         validator = new ValidationWrapper<>(fileBean, "must be hidden");
     }
 
     @Test
-    public void shouldValidateNull() throws Exception {
+    public void shouldValidateNull() {
         fileBean.file = null;
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldNotValidateUnhiddenDirectory() throws Exception {
-        fileBean.file = tmpFolder.newFolder();
+    public void shouldNotValidateUnhiddenDirectory() {
+        fileBean.file = dir();
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldNotValidateUnhiddenFile() throws Exception {
-        fileBean.file = tmpFolder.newFile();
+    public void shouldNotValidateUnhiddenFile() {
+        fileBean.file = file();
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldValidateHiddenDirectory() throws Exception {
-        fileBean.file = tmpFolder.newFolder(".hidden");
+    public void shouldValidateHiddenDirectory() {
+        fileBean.file = dir(".hidden");
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldValidateHiddenFile() throws Exception {
-        fileBean.file = tmpFolder.newFile(".hidden");
+    public void shouldValidateHiddenFile() {
+        fileBean.file = file(".hidden");
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldNotValidateStringRepresendingUnhiddenFile() throws Exception {
-        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+    public void shouldNotValidateStringRepresendingUnhiddenFile() {
+        fileBean.path = file().getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingUnhiddenDirectory() throws Exception {
-        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+    public void shouldNotValidateStringRepresentingUnhiddenDirectory() {
+        fileBean.path = dir().getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
     @Test
-    public void shouldValidateStringRepresentingHiddenFile() throws Exception {
-        fileBean.path = tmpFolder.newFile(".hidden").getAbsolutePath();
+    public void shouldValidateStringRepresentingHiddenFile() {
+        fileBean.path = file(".hidden").getAbsolutePath();
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldValidateStringRepresentingHiddenDirectory() throws Exception {
-        fileBean.path = tmpFolder.newFolder(".hidde").getAbsolutePath();
+    public void shouldValidateStringRepresentingHiddenDirectory() {
+        fileBean.path = dir(".hidde").getAbsolutePath();
 
         validator.assertNoViolations("path");
     }
 
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
-        validator.validate("object");
+    @Test
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() {
+        assertThrows(ValidationException.class, () -> validator.validate("object"));
     }
 
     private static final class FileBean {

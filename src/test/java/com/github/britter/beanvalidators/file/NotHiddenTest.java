@@ -15,101 +15,99 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import javax.validation.ValidationException;
 import java.io.File;
 
-import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class NotHiddenTest {
+public final class NotHiddenTest extends BaseFileTest {
 
-    @Rule
-    public TemporaryFolder tmpFolder = new TemporaryFolder();
     private FileBean fileBean;
     private ValidationWrapper<FileBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fileBean = new FileBean();
         validator = new ValidationWrapper<>(fileBean, "must not be hidden");
     }
 
     @Test
-    public void shouldValidateNull() throws Exception {
+    public void shouldValidateNull() {
         fileBean.file = null;
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldValidateUnhiddenDirectory() throws Exception {
-        fileBean.file = tmpFolder.newFolder();
+    public void shouldValidateUnhiddenDirectory() {
+        fileBean.file = dir();
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldValidateUnhiddenFile() throws Exception {
-        fileBean.file = tmpFolder.newFile();
+    public void shouldValidateUnhiddenFile() {
+        fileBean.file = file();
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldNotValidateHiddenDirectory() throws Exception {
-        fileBean.file = tmpFolder.newFolder(".hidden");
+    public void shouldNotValidateHiddenDirectory() {
+        fileBean.file = dir(".hidden");
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldNotValidateHiddenFile() throws Exception {
-        fileBean.file = tmpFolder.newFile(".hidden");
+    public void shouldNotValidateHiddenFile() {
+        fileBean.file = file(".hidden");
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         fileBean.path = " ";
 
         validator.validate("path");
     }
 
     @Test
-    public void shouldValidateStringRepresentingDirectory() throws Exception {
-        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+    public void shouldValidateStringRepresentingDirectory() {
+        fileBean.path = dir().getAbsolutePath();
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldValidateStringRepresentingFile() throws Exception {
-        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+    public void shouldValidateStringRepresentingFile() {
+        fileBean.path = file().getAbsolutePath();
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingHiddenDirectory() throws Exception {
-        fileBean.path = tmpFolder.newFolder(".hidden").getAbsolutePath();
+    public void shouldNotValidateStringRepresentingHiddenDirectory() {
+        fileBean.path = dir(".hidden").getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingHiddenFile() throws Exception {
-        fileBean.path = tmpFolder.newFile(".hidden").getAbsolutePath();
+    public void shouldNotValidateStringRepresentingHiddenFile() {
+        fileBean.path = file(".hidden").getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
-        validator.validate("object");
+    @Test
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() {
+        assertThrows(ValidationException.class, () -> validator.validate("object"));
     }
 
     private static final class FileBean {

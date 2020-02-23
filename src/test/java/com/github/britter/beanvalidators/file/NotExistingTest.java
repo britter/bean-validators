@@ -15,87 +15,85 @@
  */
 package com.github.britter.beanvalidators.file;
 
+import com.github.britter.beanvalidators.ValidationWrapper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import javax.validation.ValidationException;
 import java.io.File;
 
-import com.github.britter.beanvalidators.ValidationWrapper;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class NotExistingTest {
+public final class NotExistingTest extends BaseFileTest {
 
-    @Rule
-    public TemporaryFolder tmpFolder = new TemporaryFolder();
     private FileBean fileBean;
     private ValidationWrapper<FileBean> validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fileBean = new FileBean();
         validator = new ValidationWrapper<>(fileBean, "must not exist");
     }
 
     @Test
-    public void shouldValidateNull() throws Exception {
+    public void shouldValidateNull() {
         fileBean.file = null;
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldNotValidateDirectory() throws Exception {
-        fileBean.file = tmpFolder.newFolder();
+    public void shouldNotValidateDirectory() {
+        fileBean.file = dir();
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldNotValidateFile() throws Exception {
-        fileBean.file = tmpFolder.newFile();
+    public void shouldNotValidateFile() {
+        fileBean.file = file();
 
         validator.assertViolation("file");
     }
 
     @Test
-    public void shouldValidateNonExistingFile() throws Exception {
+    public void shouldValidateNonExistingFile() {
         fileBean.file = new File("/should/not/exist");
 
         validator.assertNoViolations("file");
     }
 
     @Test
-    public void shouldValidateBlankString() throws Exception {
+    public void shouldValidateBlankString() {
         fileBean.path = " ";
 
         validator.assertNoViolations("path");
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingExistingDirectory() throws Exception {
-        fileBean.path = tmpFolder.newFolder().getAbsolutePath();
+    public void shouldNotValidateStringRepresentingExistingDirectory() {
+        fileBean.path = dir().getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
     @Test
-    public void shouldNotValidateStringRepresentingExistingFile() throws Exception {
-        fileBean.path = tmpFolder.newFile().getAbsolutePath();
+    public void shouldNotValidateStringRepresentingExistingFile() {
+        fileBean.path = file().getAbsolutePath();
 
         validator.assertViolation("path");
     }
 
     @Test
-    public void shouldValidateStringRepresentingNonExistingFile() throws Exception {
+    public void shouldValidateStringRepresentingNonExistingFile() {
         fileBean.path = "/should/not/exist";
 
         validator.assertNoViolations("path");
     }
 
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenAppliedToOtherTypes() throws Exception {
-        validator.validate("object");
+    @Test
+    public void shouldThrowExceptionWhenAppliedToOtherTypes() {
+        assertThrows(ValidationException.class, () -> validator.validate("object"));
     }
 
     private static final class FileBean {
