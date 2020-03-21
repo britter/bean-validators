@@ -33,4 +33,5 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-
+# marker file to accept publishing build scans
+gradle/.build-scans-tos-agree
