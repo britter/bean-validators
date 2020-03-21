@@ -15,14 +15,17 @@
  */
 package com.github.britter.beanvalidators.file;
 
-import javax.validation.ValidationException;
-import java.io.File;
-
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
+
+import javax.validation.ValidationException;
+import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class ExecutableTest extends BaseFileTest {
 
@@ -80,6 +83,8 @@ public final class ExecutableTest extends BaseFileTest {
         validator.assertNoViolations("path");
     }
 
+    // does does not seem to be possible to set a file not executable on the CI environment running on windows.
+    @DisabledOnOs(OS.WINDOWS)
     @Test
     public void shouldNotValidateStringRepresentingNonExecutableFile() {
         File file = file();
