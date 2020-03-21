@@ -6,7 +6,7 @@ plugins {
 
 gradleEnterprise {
     buildScan {
-        if(!System.getenv("CI").isNullOrEmpty() || file("gradle/.build-scans-tos-agree").exists()) {
+        if(!System.getenv("GITHUB_WORKFLOW").isNullOrEmpty() || file("gradle/.build-scans-tos-agree").exists()) {
             termsOfServiceUrl = "https://gradle.com/terms-of-service"
             termsOfServiceAgree = "yes"
             publishAlways()
