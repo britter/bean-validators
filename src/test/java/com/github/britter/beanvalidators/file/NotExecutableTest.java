@@ -21,6 +21,8 @@ import java.io.File;
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -42,6 +44,8 @@ public final class NotExecutableTest extends BaseFileTest {
         validator.assertNoViolations("file");
     }
 
+    // does does not seem to be possible to set a file not executable on the CI environment running on windows.
+    @DisabledOnOs(OS.WINDOWS)
     @Test
     public void shouldValidateNonExecutableDirectory() {
         fileBean.file = dir();
@@ -57,6 +61,8 @@ public final class NotExecutableTest extends BaseFileTest {
         validator.assertViolation("file");
     }
 
+    // does does not seem to be possible to set a file not executable on the CI environment running on windows.
+    @DisabledOnOs(OS.WINDOWS)
     @Test
     public void shouldValidateNonExecutableFile() {
         fileBean.file = file();
@@ -103,6 +109,8 @@ public final class NotExecutableTest extends BaseFileTest {
         validator.assertViolation("path");
     }
 
+    // does does not seem to be possible to set a file not executable on the CI environment running on windows.
+    @DisabledOnOs(OS.WINDOWS)
     @Test
     public void shouldValidateStringRepresentingNonExecutableFile() {
         fileBean.path = file().getAbsolutePath();
@@ -110,6 +118,8 @@ public final class NotExecutableTest extends BaseFileTest {
         validator.assertNoViolations("path");
     }
 
+    // does does not seem to be possible to set a file not executable on the CI environment running on windows.
+    @DisabledOnOs(OS.WINDOWS)
     @Test
     public void shouldValidateStringRepresentingNonExecutableDirectory() {
         File dir = dir();
