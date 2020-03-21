@@ -93,7 +93,7 @@ public final class HiddenTest extends BaseFileTest {
 
     @Test
     public void shouldValidateStringRepresentingHiddenDirectory() {
-        fileBean.path = dir(".hidde").getAbsolutePath();
+        fileBean.path = dir(".hidden").getAbsolutePath();
 
         validator.assertNoViolations("path");
     }

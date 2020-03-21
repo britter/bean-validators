@@ -21,6 +21,9 @@ import java.io.File;
 import com.github.britter.beanvalidators.ValidationWrapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -77,9 +80,18 @@ public final class NotAbsoluteTest extends BaseFileTest {
         validator.assertNoViolations("path");
     }
 
+    @DisabledOnOs(OS.WINDOWS)
     @Test
     public void shouldNotValidateStringRepresentingAbsolutePath() {
         fileBean.path = "/is/absolute";
+
+        validator.assertViolation("path");
+    }
+
+    @EnabledOnOs(OS.WINDOWS)
+    @Test
+    public void shouldNotValidateStringRepresentingAbsolutePathWindows() {
+        fileBean.path = "C:/is/absolute";
 
         validator.assertViolation("path");
     }
