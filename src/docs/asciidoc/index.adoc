@@ -15,7 +15,7 @@
 ////
 # bean-validators
 
-image:https://travis-ci.org/britter/bean-validators.svg?branch=master["Build Status", link="https://travis-ci.org/britter/bean-validators"]
+image:https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fbritter%2Fbean-validators%2Fbadge&style=flat["Build Status", link="https://actions-badge.atrox.dev/britter/bean-validators/goto"]
 image:https://coveralls.io/repos/britter/bean-validators/badge.svg["Coverage Status", link="https://coveralls.io/r/britter/bean-validators"]
 image:https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/badge.svg["Maven Central", link="https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/"]
 image:http://img.shields.io/:license-apache-blue.svg["License", link="http://www.apache.org/licenses/LICENSE-2.0.html"]
