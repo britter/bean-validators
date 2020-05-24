@@ -40,28 +40,6 @@ tasks {
                 "idseparator" to "-"
         ))
     }
-
-    val gitPublishReset = named("gitPublishReset", GitPublishReset::class)
-
-    // Work around for https://github.com/ajoberstar/gradle-git-publish/issues/78
-    val deactivateSigning = register("gitPublishDeactivateSigning") {
-        mustRunAfter(gitPublishReset)
-        val repo = gitPublishReset.flatMap { it.repoDirectory }
-        val gitConfig = file("${repo.get().asFile}/.git/config")
-        onlyIf {
-            !gitConfig.readText().contains("gpgsign")
-        }
-        doLast {
-            gitConfig.appendText("""
-                [commit]
-                        gpgsign = false
-            """.trimIndent())
-        }
-    }
-
-    named("gitPublishCommit", GitPublishCommit::class) {
-        dependsOn(deactivateSigning)
-    }
 }
 
 val asciidoctor by tasks.getting
@@ -71,6 +49,7 @@ val testFixturesJavadoc by tasks.getting
 gitPublish {
     repoUri.set("https://github.com/britter/bean-validators")
     branch.set("gh-pages")
+    sign.set(false)
 
     contents {
         from(asciidoctor)

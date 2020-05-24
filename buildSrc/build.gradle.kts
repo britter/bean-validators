@@ -24,6 +24,6 @@ repositories {
 dependencies {
     implementation("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.9.0")
     implementation("org.asciidoctor:asciidoctor-gradle-jvm:2.4.0")
-    implementation("org.ajoberstar:gradle-git-publish:2.1.3")
+    implementation("org.ajoberstar:gradle-git-publish:3.0.0-rc.1")
     implementation("de.marcphilipp.gradle:nexus-publish-plugin:0.4.0")
 }
