@@ -15,7 +15,7 @@
  */
 description = "Additional validator implementations for javax.validation"
 group = "com.github.britter"
-version = "0.7.1"
+version = "0.7.2-SNAPSHOT"
 
 plugins {
     `java-conventions`
