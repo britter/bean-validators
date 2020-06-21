@@ -26,6 +26,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 
@@ -35,7 +36,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @see java.util.Optional#isPresent()
  * @since 1.0.0
  */
-@Target({METHOD, FIELD, ANNOTATION_TYPE})
+@Target({METHOD, FIELD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = PresentConstraintValidator.class)
 @Documented
