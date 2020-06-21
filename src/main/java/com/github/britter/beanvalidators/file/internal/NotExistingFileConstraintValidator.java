@@ -15,8 +15,8 @@
  */
 package com.github.britter.beanvalidators.file.internal;
 
-import com.github.britter.beanvalidators.internal.NullAcceptingConstraintValidator;
 import com.github.britter.beanvalidators.file.NotExisting;
+import com.github.britter.beanvalidators.internal.NullAcceptingConstraintValidator;
 
 import javax.validation.ConstraintValidatorContext;
 import java.io.File;

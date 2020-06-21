@@ -15,11 +15,11 @@
  */
 package com.github.britter.beanvalidators.strings.internal;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
 import com.github.britter.beanvalidators.strings.Blank;
 import org.apache.commons.lang3.StringUtils;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public final class BlankConstraintValidator implements ConstraintValidator<Blank, String> {
 
