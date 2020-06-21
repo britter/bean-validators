@@ -5,7 +5,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
 
-      http://www.apache.org/licenses/LICENSE-2.0
+      https://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -177,7 +177,7 @@ There are two kinds of ISBNs: ISBN-10 and ISBN-13. The default settings will all
 
 Makes sure a String contains a valid Java number. Note that this doesn't mean the given String can be parsed by the
 various `parse` and `valueOf` methods defined on `Integer` etc. It just means, that the String could be used to define
-an number in Java code. For more information see [NumberUtils.isNumber(String)](http://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html).
+an number in Java code. For more information see [NumberUtils.isNumber(String)](https://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html).
 
 [source,java]
 ----
