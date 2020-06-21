@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,7 +33,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * Makes sure a string represents a valid domain.
  *
  * <p>Note that the list of valid top level domains is changes frequently. Since
- * this validator uses <a href="http://commons.apache.org/proper/commons-validator/apidocs/index.html">{@code org.apache.commons.validator.routines.DomainValidator}</a>
+ * this validator uses <a href="https://commons.apache.org/proper/commons-validator/apidocs/index.html">{@code org.apache.commons.validator.routines.DomainValidator}</a>
  * under the hood, there may be domains which
  * are actually valid reported as invalid, because the Apache Commons Validator TLP list is not up to date.</p>
  *

@@ -4,11 +4,11 @@
 [![Coverage Status](https://coveralls.io/repos/britter/bean-validators/badge.svg)](https://coveralls.io/r/britter/bean-validators)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/dd0d4de9bb9e4160803b32b3ff0889c7)](https://www.codacy.com/app/britter/bean-validators)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.britter/bean-validators/)
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![License](https://img.shields.io/:license-apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-Additional validator implementations for [javax.validation](http://beanvalidation.org/).
-Most validators use [Apache Commons Lang3](http://commons.apache.org/lang/) and
-[Apache Commons Validator](http://commons.apache.org/validator/) functionality to implement various validation routines.
+Additional validator implementations for [javax.validation](https://beanvalidation.org/).
+Most validators use [Apache Commons Lang3](https://commons.apache.org/lang/) and
+[Apache Commons Validator](https://commons.apache.org/validator/) functionality to implement various validation routines.
 
 More information can be found on the [project website](https://britter.github.io/bean-validators).
 
@@ -27,7 +27,7 @@ Code is under the [Apache Licence v2](https://www.apache.org/licenses/LICENSE-2.
 
 ## Additional Resources
 
-+ [javax.validation documentation](http://beanvalidation.org/)
-+ [javax.validation reference implementation](http://hibernate.org/validator/)
-+ [Apache Commons Lang3](http://commons.apache.org/lang/)
-+ [Apache Commons Validator](http://commons.apache.org/validator/)
++ [javax.validation documentation](https://beanvalidation.org/)
++ [javax.validation reference implementation](https://hibernate.org/validator/)
++ [Apache Commons Lang3](https://commons.apache.org/lang/)
++ [Apache Commons Validator](https://commons.apache.org/validator/)
