@@ -26,6 +26,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
@@ -38,7 +39,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  *
  * @since 0.3
  */
-@Target({METHOD, FIELD, ANNOTATION_TYPE})
+@Target({METHOD, FIELD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = DomainConstraintValidator.class)
 @Documented

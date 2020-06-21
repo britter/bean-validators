@@ -24,6 +24,7 @@ import com.github.britter.beanvalidators.internal.EmptyStringConstraintValidator
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import javax.validation.Constraint;
@@ -38,7 +39,7 @@ import java.lang.annotation.Target;
  * <p>Works on String, Collections, Maps, arrays and Optionals. If any other type is annotated with @Empty
  * a {@link javax.validation.ValidationException} will be thrown.</p>
  */
-@Target({METHOD, FIELD, ANNOTATION_TYPE})
+@Target({METHOD, FIELD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = {
         EmptyArrayConstraintValidator.class,
