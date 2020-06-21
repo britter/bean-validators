@@ -21,6 +21,7 @@ import com.github.britter.beanvalidators.strings.internal.JavaNumberConstraintVa
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import javax.validation.Constraint;
@@ -37,7 +38,7 @@ import java.lang.annotation.Target;
  *
  * @since 0.4
  */
-@Target({METHOD, FIELD, ANNOTATION_TYPE})
+@Target({METHOD, FIELD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = JavaNumberConstraintValidator.class)
 @Documented
