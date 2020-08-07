@@ -1,7 +1,7 @@
 rootProject.name = "bean-validators"
 
 plugins {
-    id("com.gradle.enterprise") version "3.1.1"
+    id("com.gradle.enterprise") version "3.2.1"
 }
 
 gradleEnterprise {
