@@ -30,7 +30,7 @@ public interface BlankStringAcceptingConstraintValidator<A extends Annotation> e
     @Override
     default boolean isValid(final String value, final ConstraintValidatorContext context) {
         // Don't validate null, empty and blank strings, since these are validated by @NotNull, @NotEmpty and @NotBlank
-        return StringUtils.isBlank(value) || isValidNonBlankValue(value, context);
+        return StringUtils.isBlank(value) || isValidNonBlankValue(value, context)
     }
 
     boolean isValidNonBlankValue(final String value, final ConstraintValidatorContext context);
