@@ -28,3 +28,15 @@ jobs:
       uses: eskatos/gradle-command-action@v1
       with:
           arguments: check
+    - name: "Comment build scan url"
+      uses: actions/github-script@v3
+      if: github.event_name == 'pull_request' && failure()
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '❌ ${{ github.workflow }} ${{ matrix.java }} on ${{ matrix.os }} failed: ${{ steps.gradle.outputs.build-scan-url }}'
+          })
