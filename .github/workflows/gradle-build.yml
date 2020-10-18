@@ -28,7 +28,7 @@ jobs:
       id: gradle
       uses: eskatos/gradle-command-action@v1.3.3
       with:
-          arguments: check -Dscan.uploadInBackground=false
+          arguments: check
     - name: "Comment build scan url"
       uses: actions/github-script@v3
       if: github.event_name == 'pull_request' && failure()
