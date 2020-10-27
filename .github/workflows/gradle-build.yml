@@ -30,6 +30,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-
     - name: "./gradlew check"
       id: gradle
       uses: eskatos/gradle-command-action@v1.3.3
