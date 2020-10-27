@@ -71,9 +71,9 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          key: ${{ runner.os }}-JDK-11-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
-            ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-
+            ${{ runner.os }}-JDK-11-gradle-
       - name: "./gradlew check"
         uses: eskatos/gradle-command-action@v1.3.3
         with:
