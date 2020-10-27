@@ -9,6 +9,12 @@ on:
       - master
 
 jobs:
+  validation:
+    name: "Validate Gradle Wrapper"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1.0.3
   build:
     strategy:
       fail-fast: false
@@ -39,5 +45,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '❌ ${{ github.workflow }} JDK ${{ matrix.java }} on ${{ matrix.os }} failed: ${{ steps.gradle.outputs.build-scan-url }}'
+            body: '❌ ${{ jobs.build.name }} failed: ${{ steps.gradle.outputs.build-scan-url }}'
           })
