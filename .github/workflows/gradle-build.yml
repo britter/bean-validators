@@ -9,6 +9,12 @@ on:
       - master
 
 jobs:
+  validation:
+    name: "Validate Gradle Wrapper"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1.0.3
   build:
     strategy:
       fail-fast: false
@@ -24,6 +30,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-
     - name: "./gradlew check"
       id: gradle
       uses: eskatos/gradle-command-action@v1.3.3
@@ -39,5 +53,34 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '❌ ${{ github.workflow }} JDK ${{ matrix.java }} on ${{ matrix.os }} failed: ${{ steps.gradle.outputs.build-scan-url }}'
+            body: '❌ ${{ job.name }} failed: ${{ steps.gradle.outputs.build-scan-url }}'
           })
+  coveralls:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Publish coverage to coveralls
+    steps:
+      - name: git clone
+        uses: actions/checkout@v1
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-JDK-11-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-JDK-11-gradle-
+      - name: "./gradlew check"
+        uses: eskatos/gradle-command-action@v1.3.3
+        with:
+          arguments: check
+      - name: "./gradlew jacocoTestReport coveralls"
+        uses: eskatos/gradle-command-action@v1.3.3
+        with:
+          arguments: jacocoTestReport coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
