@@ -30,18 +30,18 @@ repositories {
 }
 
 dependencies {
-    api("javax.validation:validation-api:1.1.0.Final")
-    implementation("org.apache.commons:commons-lang3:3.6")
-    implementation("commons-validator:commons-validator:1.6")
+    api(libs.javax.validation)
+    implementation(libs.commons.lang)
+    implementation(libs.commons.validator)
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
-    testRuntimeOnly("org.hibernate:hibernate-validator:5.1.3.Final")
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testRuntimeOnly(libs.hibernate.validator)
 
-    testFixturesApi("org.assertj:assertj-core:3.8.0")
-    testFixturesApi("javax.el:javax.el-api:3.0.0")
-    testFixturesImplementation("com.google.guava:guava:23.0")
-    testFixturesImplementation("javax.xml.bind:jaxb-api:2.3.1")
+    testFixturesApi(libs.assertj.core)
+    testFixturesApi(libs.javax.elApi)
+    testFixturesImplementation(libs.guava)
+    testFixturesImplementation(libs.javax.jaxbApi)
 }
 
 tasks.test {
