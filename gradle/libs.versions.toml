@@ -1,4 +1,5 @@
 [libraries]
+# main build
 assertj-core = { module = "org.assertj:assertj-core", version = "3.8.0"}
 commons-lang = { module = "org.apache.commons:commons-lang3", version = "3.6" }
 commons-validator = { module = "commons-validator:commons-validator", version = "1.6" }
@@ -9,3 +10,9 @@ javax-jaxbApi = { module = "javax.xml.bind:jaxb-api", version = "2.3.1" }
 javax-validation = { module = "javax.validation:validation-api", version = "1.1.0.Final" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "5.6.0" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.6.0" }
+
+# buildSrc
+plugins-asciidoctor = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version = "2.4.0" }
+plugins-coveralls = { module = "gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin", version = "2.11.0" }
+plugins-gitPublish = { module = "org.ajoberstar:gradle-git-publish", version = "3.0.0-rc.1" }
+plugins-nexusPublish = { module = "de.marcphilipp.gradle:nexus-publish-plugin", version = "0.4.0" }
