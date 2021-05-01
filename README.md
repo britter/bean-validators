@@ -16,8 +16,7 @@ More information can be found on the [project website](https://britter.github.io
 
 - Set the version to be released in `build.gradle.kts` and commit and tag the change
 - Sign an arbitrary file to force gpg-agent to store the password for the gpg key (see https://github.com/gradle/gradle/issues/11706)
-- Run `./gradlew publishToSonatype`
-- Login to [Sonatype Nexus](https://oss.sonatype.org) and close and release the staging repository
+- Run `./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository`
 - Deploy the site for the new version `./gradlew gitPublishPush`
 - Set the version to the next SNAPSHOT version in `build.gradle.kts` and commit and push the change
 

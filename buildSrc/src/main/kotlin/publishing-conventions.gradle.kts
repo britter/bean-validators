@@ -18,7 +18,7 @@ import java.time.Duration
 plugins {
     `maven-publish`
     signing
-    id("de.marcphilipp.nexus-publish")
+    id("io.github.gradle-nexus.publish-plugin")
 }
 
 publishing {

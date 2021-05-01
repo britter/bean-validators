@@ -15,4 +15,4 @@ junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", vers
 plugins-asciidoctor = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version = "2.4.0" }
 plugins-coveralls = { module = "gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin", version = "2.11.0" }
 plugins-gitPublish = { module = "org.ajoberstar:gradle-git-publish", version = "3.0.0-rc.1" }
-plugins-nexusPublish = { module = "de.marcphilipp.gradle:nexus-publish-plugin", version = "0.4.0" }
+plugins-nexusPublish = { module = "io.github.gradle-nexus:publish-plugin", version = "1.1.0" }
