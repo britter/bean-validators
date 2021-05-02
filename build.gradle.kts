@@ -22,6 +22,7 @@ plugins {
     `coveralls-conventions`
     `documentation-conventions`
     `publishing-conventions`
+    beanvalidators.`code-quality-conventions`
     id("org.nosphere.gradle.github.actions") version "1.1.0"
 }
 

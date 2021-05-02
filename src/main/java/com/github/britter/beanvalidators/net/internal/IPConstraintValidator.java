@@ -22,6 +22,7 @@ import org.apache.commons.validator.routines.InetAddressValidator;
 
 import javax.validation.ConstraintValidatorContext;
 
+@SuppressWarnings("PMD.BeanMembersShouldSerialize")
 public final class IPConstraintValidator implements BlankStringAcceptingConstraintValidator<IP> {
 
     private IPType type;

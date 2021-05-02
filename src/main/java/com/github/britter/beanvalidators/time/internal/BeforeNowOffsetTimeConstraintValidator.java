@@ -27,7 +27,7 @@ public final class BeforeNowOffsetTimeConstraintValidator implements NullAccepti
     /**
      * Only for testing!
      */
-    static Optional<OffsetTime> now = Optional.empty();
+    static Optional<OffsetTime> suppliedNow = Optional.empty();
 
     @Override
     public boolean isValidNonNullValue(OffsetTime value, ConstraintValidatorContext context) {
@@ -35,7 +35,7 @@ public final class BeforeNowOffsetTimeConstraintValidator implements NullAccepti
     }
 
     private OffsetTime now() {
-        return now.orElse(OffsetTime.now());
+        return suppliedNow.orElse(OffsetTime.now());
     }
 
 }

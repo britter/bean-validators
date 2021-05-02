@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintValidatorContext;
 
+@SuppressWarnings("PMD.BeanMembersShouldSerialize")
 public final class AlphabeticConstraintValidator implements BlankStringAcceptingConstraintValidator<Alphabetic> {
 
     private boolean allowSpaces;

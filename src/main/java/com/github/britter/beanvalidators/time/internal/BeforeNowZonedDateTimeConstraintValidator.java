@@ -27,7 +27,7 @@ public final class BeforeNowZonedDateTimeConstraintValidator implements NullAcce
     /**
      * Only for testing!
      */
-    static Optional<ZonedDateTime> now = Optional.empty();
+    static Optional<ZonedDateTime> suppliedNow = Optional.empty();
 
     @Override
     public boolean isValidNonNullValue(ZonedDateTime value, ConstraintValidatorContext context) {
@@ -35,7 +35,7 @@ public final class BeforeNowZonedDateTimeConstraintValidator implements NullAcce
     }
 
     private ZonedDateTime now() {
-        return now.orElse(ZonedDateTime.now());
+        return suppliedNow.orElse(ZonedDateTime.now());
     }
 
 }

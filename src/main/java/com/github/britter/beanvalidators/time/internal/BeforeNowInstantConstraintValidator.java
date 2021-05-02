@@ -27,7 +27,7 @@ public final class BeforeNowInstantConstraintValidator implements NullAcceptingC
     /**
      * Only for testing!
      */
-    static Optional<Instant> now = Optional.empty();
+    static Optional<Instant> suppliedNow = Optional.empty();
 
     @Override
     public boolean isValidNonNullValue(Instant value, ConstraintValidatorContext context) {
@@ -35,6 +35,6 @@ public final class BeforeNowInstantConstraintValidator implements NullAcceptingC
     }
 
     private Instant now() {
-        return now.orElse(Instant.now());
+        return suppliedNow.orElse(Instant.now());
     }
 }
