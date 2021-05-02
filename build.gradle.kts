@@ -18,10 +18,10 @@ group = "com.github.britter"
 version = "0.8.1-SNAPSHOT"
 
 plugins {
-    `java-conventions`
-    `coveralls-conventions`
-    `documentation-conventions`
-    `publishing-conventions`
+    beanvalidators.`java-conventions`
+    beanvalidators.`coveralls-conventions`
+    beanvalidators.`documentation-conventions`
+    beanvalidators.`publishing-conventions`
     beanvalidators.`code-quality-conventions`
     id("org.nosphere.gradle.github.actions") version "1.1.0"
 }
