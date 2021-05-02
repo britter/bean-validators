@@ -27,7 +27,7 @@ public final class BeforeNowLocalTimeConstraintValidator implements NullAcceptin
     /**
      * Only for testing!
      */
-    static Optional<LocalTime> now = Optional.empty();
+    static Optional<LocalTime> suppliedNow = Optional.empty();
 
     @Override
     public boolean isValidNonNullValue(LocalTime value, ConstraintValidatorContext context) {
@@ -35,6 +35,6 @@ public final class BeforeNowLocalTimeConstraintValidator implements NullAcceptin
     }
 
     private LocalTime now() {
-        return now.orElse(LocalTime.now());
+        return suppliedNow.orElse(LocalTime.now());
     }
 }

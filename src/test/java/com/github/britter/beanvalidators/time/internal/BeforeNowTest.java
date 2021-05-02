@@ -17,12 +17,6 @@ package com.github.britter.beanvalidators.time.internal;
 
 import com.github.britter.beanvalidators.ValidationWrapper;
 import com.github.britter.beanvalidators.time.BeforeNow;
-import com.github.britter.beanvalidators.time.internal.BeforeNowInstantConstraintValidator;
-import com.github.britter.beanvalidators.time.internal.BeforeNowLocalDateTimeConstraintValidator;
-import com.github.britter.beanvalidators.time.internal.BeforeNowLocalTimeConstraintValidator;
-import com.github.britter.beanvalidators.time.internal.BeforeNowOffsetDateTimeConstraintValidator;
-import com.github.britter.beanvalidators.time.internal.BeforeNowOffsetTimeConstraintValidator;
-import com.github.britter.beanvalidators.time.internal.BeforeNowZonedDateTimeConstraintValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -79,7 +73,7 @@ public final class BeforeNowTest {
     @Test
     public void shouldNotValidateLocalDateTimeNow() {
         LocalDateTime now = LocalDateTime.now();
-        BeforeNowLocalDateTimeConstraintValidator.now = Optional.of(now);
+        BeforeNowLocalDateTimeConstraintValidator.suppliedNow = Optional.of(now);
 
         beforeNowBean.localDateTime = now;
 
@@ -103,7 +97,7 @@ public final class BeforeNowTest {
     @Test
     public void shouldNotValidateLocalTimeNow() {
         LocalTime now = LocalTime.now();
-        BeforeNowLocalTimeConstraintValidator.now = Optional.of(now);
+        BeforeNowLocalTimeConstraintValidator.suppliedNow = Optional.of(now);
 
         beforeNowBean.localTime = now;
 
@@ -127,7 +121,7 @@ public final class BeforeNowTest {
     @Test
     public void shouldNotValidateInstantNow() {
         Instant now = Instant.now();
-        BeforeNowInstantConstraintValidator.now = Optional.of(now);
+        BeforeNowInstantConstraintValidator.suppliedNow = Optional.of(now);
 
         beforeNowBean.instant = now;
 
@@ -151,7 +145,7 @@ public final class BeforeNowTest {
     @Test
     public void shouldNotValidateOffsetDateTimeNow() {
         OffsetDateTime now = OffsetDateTime.now();
-        BeforeNowOffsetDateTimeConstraintValidator.now = Optional.of(now);
+        BeforeNowOffsetDateTimeConstraintValidator.suppliedNow = Optional.of(now);
 
         beforeNowBean.offsetDateTime = now;
 
@@ -175,7 +169,7 @@ public final class BeforeNowTest {
     @Test
     public void shouldNotValidateOffsetTimeNow() {
         OffsetTime now = OffsetTime.now();
-        BeforeNowOffsetTimeConstraintValidator.now = Optional.of(now);
+        BeforeNowOffsetTimeConstraintValidator.suppliedNow = Optional.of(now);
 
         beforeNowBean.offsetTime = now;
 
@@ -199,7 +193,7 @@ public final class BeforeNowTest {
     @Test
     public void shouldNotValidateZonedDateTimeNow() {
         ZonedDateTime now = ZonedDateTime.now();
-        BeforeNowZonedDateTimeConstraintValidator.now = Optional.of(now);
+        BeforeNowZonedDateTimeConstraintValidator.suppliedNow = Optional.of(now);
 
         beforeNowBean.zonedDateTime = now;
 

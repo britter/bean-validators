@@ -26,4 +26,5 @@ dependencies {
     implementation(libs.plugins.asciidoctor)
     implementation(libs.plugins.gitPublish)
     implementation(libs.plugins.nexusPublish)
+    implementation(libs.plugins.spotless)
 }

@@ -27,7 +27,7 @@ public final class BeforeNowLocalDateTimeConstraintValidator implements NullAcce
     /**
      * Only for testing!
      */
-    static Optional<LocalDateTime> now = Optional.empty();
+    static Optional<LocalDateTime> suppliedNow = Optional.empty();
 
     @Override
     public boolean isValidNonNullValue(LocalDateTime value, ConstraintValidatorContext context) {
@@ -35,7 +35,7 @@ public final class BeforeNowLocalDateTimeConstraintValidator implements NullAcce
     }
 
     private LocalDateTime now() {
-        return now.orElse(LocalDateTime.now());
+        return suppliedNow.orElse(LocalDateTime.now());
     }
 
 }

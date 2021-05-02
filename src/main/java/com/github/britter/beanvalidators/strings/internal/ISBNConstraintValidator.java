@@ -22,6 +22,7 @@ import org.apache.commons.validator.routines.ISBNValidator;
 
 import javax.validation.ConstraintValidatorContext;
 
+@SuppressWarnings("PMD.BeanMembersShouldSerialize")
 public final class ISBNConstraintValidator implements BlankStringAcceptingConstraintValidator<ISBN> {
 
     private ISBNType type;
