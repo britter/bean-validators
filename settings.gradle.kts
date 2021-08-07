@@ -2,6 +2,7 @@ rootProject.name = "bean-validators"
 
 plugins {
     id("com.gradle.enterprise") version "3.6.3"
+    id("com.gradle.common-custom-user-data-gradle-plugin") version "1.4.2"
 }
 
 gradleEnterprise {
@@ -11,13 +12,6 @@ gradleEnterprise {
             termsOfServiceUrl = "https://gradle.com/terms-of-service"
             termsOfServiceAgree = "yes"
             publishAlways()
-            tag(System.getProperty("os.name"))
-            tag(if (isCi) "CI" else "LOCAL")
-            val repo = System.getenv("GITHUB_REPOSITORY")
-            val runId = System.getenv("GITHUB_RUN_ID")
-            if (!repo.isNullOrEmpty() && !runId.isNullOrBlank()) {
-                link("GitHub Actions run", "https://github.com/$repo/actions/runs/$runId")
-            }
         }
     }
 }
