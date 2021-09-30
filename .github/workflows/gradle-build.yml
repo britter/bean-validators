@@ -30,17 +30,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
-    - uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-${{ hashFiles('**/*.gradle*') }}
-        restore-keys: |
-          ${{ runner.os }}-JDK-${{ matrix.java }}-gradle-
     - name: "./gradlew check"
       id: gradle
-      uses: eskatos/gradle-command-action@v1.3.3
+      uses: gradle/gradle-build-action@v2
       with:
           arguments: check
     - name: "Comment build scan url"
@@ -66,20 +58,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-JDK-11-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-JDK-11-gradle-
       - name: "./gradlew check"
-        uses: eskatos/gradle-command-action@v1.3.3
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: check
       - name: "./gradlew jacocoTestReport coveralls"
-        uses: eskatos/gradle-command-action@v1.3.3
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: jacocoTestReport coveralls
         env:
