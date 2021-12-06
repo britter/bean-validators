@@ -5,3 +5,6 @@ dependencyResolutionManagement {
         }
     }
 }
+
+enableFeaturePreview("VERSION_CATALOGS")
+

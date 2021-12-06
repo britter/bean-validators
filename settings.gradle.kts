@@ -5,6 +5,8 @@ plugins {
     id("com.gradle.common-custom-user-data-gradle-plugin") version "1.4.2"
 }
 
+includeBuild("build-logic")
+
 gradleEnterprise {
     buildScan {
         val isCi = !System.getenv("GITHUB_WORKFLOW").isNullOrEmpty()
