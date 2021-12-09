@@ -12,8 +12,8 @@ junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version = 
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.6.0" }
 
 # buildSrc
-plugins-asciidoctor = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version = "2.4.0" }
-plugins-coveralls = { module = "gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin", version = "2.11.0" }
-plugins-gitPublish = { module = "org.ajoberstar:gradle-git-publish", version = "3.0.0-rc.1" }
-plugins-nexusPublish = { module = "io.github.gradle-nexus:publish-plugin", version = "1.1.0" }
-plugins-spotless = { module = "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin", version = "4.7.1" }
+asciidoctorPlugin = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version = "2.4.0" }
+coverallsPlugin = { module = "gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin", version = "2.11.0" }
+gitPublishPlugin = { module = "org.ajoberstar:gradle-git-publish", version = "3.0.0-rc.1" }
+nexusPublishPlugin = { module = "io.github.gradle-nexus:publish-plugin", version = "1.1.0" }
+spotlessPlugin = { module = "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin", version = "4.7.1" }

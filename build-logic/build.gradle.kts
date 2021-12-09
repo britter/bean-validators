@@ -22,9 +22,9 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.plugins.coveralls)
-    implementation(libs.plugins.asciidoctor)
-    implementation(libs.plugins.gitPublish)
-    implementation(libs.plugins.nexusPublish)
-    implementation(libs.plugins.spotless)
+    implementation(libs.coverallsPlugin)
+    implementation(libs.asciidoctorPlugin)
+    implementation(libs.gitPublishPlugin)
+    implementation(libs.nexusPublishPlugin)
+    implementation(libs.spotlessPlugin)
 }
