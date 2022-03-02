@@ -34,7 +34,7 @@ jobs:
       uses: gradle/gradle-build-action@v2.1.3
     - run: ./gradlew check
       id: gradle
-    - name: Coverallss
+    - name: Coveralls
       if: ${{ matrix.os }} == 'ubuntu-latest'
       run: ./gradlew jacocoTestReport coveralls
       env:
