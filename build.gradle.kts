@@ -45,6 +45,24 @@ dependencies {
     testFixturesImplementation(libs.javax.jaxbApi)
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    val testTasks = listOf(8, 11, 17).map {
+        register<Test>("testJdk$it") {
+            javaLauncher.set(project.javaToolchains.launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(it))
+            })
+        }
+    }
+
+    val testAll by registering {
+        dependsOn(test, testTasks)
+    }
+
+    withType<Test> {
+        useJUnitPlatform()
+    }
+
+    check {
+        dependsOn(testAll)
+    }
 }
