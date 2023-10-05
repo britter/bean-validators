@@ -21,11 +21,11 @@ plugins {
 tasks {
     val jacocoTestReport = named<JacocoReport>("jacocoTestReport") {
         reports {
-            xml.isEnabled = true
+            xml.required.set(true)
         }
     }
 
     coveralls {
-        jacocoReportPath = jacocoTestReport.map { it.reports.xml.destination }
+        jacocoReportPath = jacocoTestReport.map { it.reports.xml.outputLocation }
     }
 }

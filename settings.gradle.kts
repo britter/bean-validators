@@ -17,5 +17,3 @@ gradleEnterprise {
         }
     }
 }
-
-enableFeaturePreview("VERSION_CATALOGS")
