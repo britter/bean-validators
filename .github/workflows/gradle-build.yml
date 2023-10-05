@@ -32,11 +32,11 @@ jobs:
         java-version: 11
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2.9.0
-    - run: ./gradlew check
+    - run: "./gradlew check"
       id: gradle
     - name: Coveralls
       if: matrix.os == 'ubuntu-latest'
-      run: ./gradlew jacocoTestReport coveralls
+      run: "./gradlew jacocoTestReport coveralls"
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
     - name: "Comment build scan url"
