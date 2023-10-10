@@ -26,6 +26,6 @@ tasks {
     }
 
     coveralls {
-        jacocoReportPath = jacocoTestReport.map { it.reports.xml.outputLocation }
+        jacocoReportPath = jacocoTestReport.map { it.reports.xml.outputLocation.asFile.get().path }
     }
 }
