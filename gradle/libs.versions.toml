@@ -1,6 +1,6 @@
 [libraries]
 # main build
-assertj-core = { module = "org.assertj:assertj-core", version = "3.8.0"}
+assertj-core = { module = "org.assertj:assertj-core", version = "3.24.2"}
 commons-lang = { module = "org.apache.commons:commons-lang3", version = "3.6" }
 commons-validator = { module = "commons-validator:commons-validator", version = "1.6" }
 guava = { module = "com.google.guava:guava", version= "30.1.1-jre" }
