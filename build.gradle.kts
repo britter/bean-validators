@@ -23,7 +23,7 @@ plugins {
     id("beanvalidators.documentation-conventions")
     id("beanvalidators.publishing-conventions")
     id("beanvalidators.code-quality-conventions")
-    id("org.nosphere.gradle.github.actions") version "1.3.2"
+    id("org.nosphere.gradle.github.actions") version "1.4.0"
 }
 
 repositories {
