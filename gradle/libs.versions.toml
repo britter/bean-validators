@@ -9,7 +9,7 @@ javax-elApi = { module = "javax.el:javax.el-api", version = "3.0.0" }
 javax-jaxbApi = { module = "javax.xml.bind:jaxb-api", version = "2.3.1" }
 javax-validation = { module = "javax.validation:validation-api", version = "1.1.0.Final" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "5.10.0" }
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.10.0" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.10.1" }
 
 # buildSrc
 asciidoctorPlugin = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version = "2.4.0" }
